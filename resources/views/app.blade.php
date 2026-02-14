@@ -12,6 +12,9 @@
     </div>
     
     <div class="container-fluid">
+
+        @include('app.static-notification')
+
         @isset($pageTitle)
         <header class="mb-3">
             <h1 class="fs-2">{{ $pageTitle }}</h1>
