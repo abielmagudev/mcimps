@@ -14,7 +14,7 @@
     <div class="container-fluid">
         @isset($pageTitle)
         <header class="mb-3">
-            <h1>{{ $pageTitle }}</h1>
+            <h1 class="fs-2">{{ $pageTitle }}</h1>
         </header>
         @endisset
 

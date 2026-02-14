@@ -5,7 +5,7 @@
 
     <div class="card-body">
         @isset($title)
-        <h1 class="card-title fs-3 mb-3">{{ $title }}</h1>
+        <h1 class="card-title fs-5 mb-3">{{ $title }}</h1>
         @endisset
 
         {{ $slot }}
