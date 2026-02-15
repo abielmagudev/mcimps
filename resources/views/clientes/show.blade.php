@@ -20,7 +20,7 @@
                     <h1 class="fs-5">Direcciones</h1>
                 </div>
                 <div class="col text-end">
-                    <a href="#">Agregar</a>
+                    <a href="{{ route('clientes.direcciones.create', $cliente) }}">Agregar</a>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                     <tr>
                         <th>Calle</th>
                         <th>Colonia</th>
-                        <th>Codigo Postal</th>
+                        <th class="text-nowrap">Código Postal</th>
                         <th>Ciudad</th>
                         <th>Estado</th>
                         <th>Contacto</th>
@@ -39,9 +39,25 @@
                         <th></th>
                     </tr>
                 </x-slot>
+
+                @foreach ($cliente->direcciones->reverse() as $direccion)
+                <tr class="small">
+                    <td>{{ $direccion->calle }}</td>
+                    <td>{{ $direccion->colonia }}</td>
+                    <td>{{ $direccion->codigo_postal }}</td>
+                    <td>{{ $direccion->ciudad }}</td>
+                    <td>{{ $direccion->estado }}</td>
+                    <td>{{ $direccion->nombre_contacto }}</td>
+                    <td>{{ $direccion->telefono_contacto }}</td>
+                    <td class="text-capitalize">{{ $direccion->cobertura }}</td>
+                    <td>{{ $direccion->referencias }}</td>
+                    <td class="text-end">
+                        <a href="{{ route('clientes.direcciones.edit', [$cliente, $direccion]) }}" class="link-primary">Editar</a>
+                    </td>
+                </tr>
+                @endforeach
             </x-table>
         </x-card>
     </div>
 </div>
-
 @endsection
