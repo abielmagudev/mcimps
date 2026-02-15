@@ -18,7 +18,7 @@
             <td>{{ $cliente->nombre_completo }}</td>
             <td>{{ $cliente->telefono }}</td>
             <td class="text-end">
-                <a href="{{ route('clientes.show', $cliente->id) }}" class="link-primary">Ver</a>
+                <a href="{{ route('clientes.show', $cliente) }}" class="link-primary">Ver</a>
             </td>
         </tr>         
         @endforeach
