@@ -1,9 +1,9 @@
 @extends('app', ['pageTitle' => 'Clientes'])
 @section('content')
+<nav class="text-end mb-3">
+    <a href="{{ route('clientes.create') }}" class="link-primary">Nuevo cliente</a>
+</nav>
 <x-card>
-    <div class="text-end mb-3">
-        <a href="{{ route('clientes.create') }}" class="link-primary">Nuevo cliente</a>
-    </div>
     <x-table>
         <x-slot name="thead">
             <tr>
