@@ -27,7 +27,7 @@
             <x-table>
                 <x-slot name="thead">
                     <tr>
-                        <th>Información</th>
+                        <th>Dirección</th>
                         <th>Cobertura</th>
                         <th>Contacto</th>
                         <th></th>
