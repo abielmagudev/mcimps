@@ -1,6 +1,8 @@
 @extends('app', ['pageTitle' => 'Nueva dirección'])
 @section('content')
 <x-card>
+    @include('clientes._bloque-lectura-formulario')
+
     <form action="{{ route('clientes.direcciones.store', $cliente) }}" method="post">
         @csrf
         @method('post')
