@@ -18,7 +18,7 @@ class DireccionFactory extends Factory
     {
         return [
             'calle' => $this->faker->streetAddress(),
-            'colonia' => $this->faker->streetAddress(),
+            'colonia' => ucfirst($this->faker->word()),
             'codigo_postal' => $this->faker->postcode(),
             'ciudad' => $this->faker->city(),
             'estado' => $this->faker->state(),
