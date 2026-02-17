@@ -7,7 +7,7 @@
                 <span class="fw-bold">{{ $cliente->nombre_completo }}</span><br>
                 <span>{{ $cliente->telefono }}</span>
             </div>
-            <div class="text-end mb-3">
+            <div class="text-end">
                 <a href="{{ route('clientes.edit', $cliente->id) }}" class="link-primary">Editar</a>
             </div>
         </x-card>
