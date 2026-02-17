@@ -28,4 +28,15 @@ class Direccion extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
+
+    public function getLinealAttribute(): string
+    {
+        return sprintf('%s, %s, %s, %s %s', 
+            $this->calle, 
+            $this->colonia, 
+            $this->ciudad, 
+            $this->estado, 
+            $this->codigo_postal
+        );
+    }
 }
