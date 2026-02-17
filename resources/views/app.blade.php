@@ -11,7 +11,7 @@
         @include('app.navbar')
     </div>
     
-    <div class="container-fluid">
+    <div class="container-fluid pb-3">
 
         @include('app.static-notification')
 
