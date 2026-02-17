@@ -17,7 +17,7 @@ class DireccionFactory extends Factory
     public function definition(): array
     {
         return [
-            'calle' => $this->faker->streetAddress(),
+            'calle' => $this->faker->unique()->streetAddress(),
             'colonia' => ucfirst($this->faker->word()),
             'codigo_postal' => $this->faker->postcode(),
             'ciudad' => $this->faker->city(),

@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
-            $table->string('calle');
+            $table->string('calle')->unique();
             $table->string('colonia');
-            $table->string('codigo_postal');
-            $table->string('ciudad');
-            $table->string('estado');
+            $table->string('codigo_postal')->index();
+            $table->string('ciudad')->index();
+            $table->string('estado')->index();
             $table->string('nombre_contacto')->nullable();
             $table->string('telefono_contacto')->nullable();
             $table->text('referencias')->nullable();

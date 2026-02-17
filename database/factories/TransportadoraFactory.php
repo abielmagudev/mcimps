@@ -17,7 +17,7 @@ class TransportadoraFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => $this->faker->company(),
+            'nombre' => $this->faker->unique()->company(),
             'sitio_web' => $this->faker->domainName(),
             'telefono' => $this->faker->phoneNumber(),
         ];
