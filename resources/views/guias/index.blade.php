@@ -12,6 +12,7 @@
                 <th>Número</th>
                 <th>Direccion</th>
                 <th>Transportadora</th>
+                <th>Cobertura</th>
                 <th>Status</th>
                 <th></th>
             </tr>
@@ -22,6 +23,7 @@
             <td>{{ $guia->id }}</td>
             <td>{{ $guia->direccion->lineal }}</td>
             <td>{{ $guia->transportadora?->nombre }}</td>
+            <td class="text-capitalize">{{ $guia->direccion->cobertura }}</td>
             <td>
                 @include('guias.inc.etiqueta-status')
             </td>
