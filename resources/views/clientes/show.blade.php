@@ -24,6 +24,7 @@
                 </div>
             </div>
 
+            @if ( $cliente->direcciones->count() > 0 )
             <x-table>
                 <x-slot name="thead">
                     <tr>
@@ -58,6 +59,7 @@
                 </tr>
                 @endforeach
             </x-table>
+            @endif
         </x-card>
     </div>
 </div>
