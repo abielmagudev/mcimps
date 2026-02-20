@@ -34,7 +34,7 @@ class DireccionController extends Controller
             return back()->with('error', 'Error al guardar la dirección, intente nuevamente');
         }
 
-        return redirect()->route('clientes.show', $cliente)->with('success', sprintf('Dirección %s guardada', $direccion->calle));
+        return redirect()->route('guias.create', [$cliente, $direccion])->with('success', sprintf('Dirección %s guardada', $direccion->calle));
     }
 
     /**

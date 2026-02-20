@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Guia\Traits\RelacionGuias;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Direccion extends Model
 {
+    use RelacionGuias;
+    
     /** @use HasFactory<\Database\Factories\DireccionFactory> */
     use HasFactory;
 

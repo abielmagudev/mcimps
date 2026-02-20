@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Guias</a>
+          <a class="nav-link {{ request()->routeIs('guias.*') ? 'active' : '' }}" aria-current="page" href="{{ route('guias.index') }}">Guias</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('clientes.index') }}">Clients</a>
+          <a class="nav-link {{ request()->routeIs('clientes.*') ? 'active' : '' }}" href="{{ route('clientes.index') }}">Clientes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('transportadoras.index') }}">Transportadoras</a>
+          <a class="nav-link {{ request()->routeIs('transportadoras.*') ? 'active' : '' }}" href="{{ route('transportadoras.index') }}">Transportadoras</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Usuarios</a>
