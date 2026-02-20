@@ -7,16 +7,24 @@ use App\Http\Requests\UpdateGuiaRequest;
 use App\Models\Cliente;
 use App\Models\Direccion;
 use App\Models\Guia;
+use App\Models\Guia\GuiaFilter;
 use App\Models\Guia\GuiaStatusEnum;
 use App\Models\Transportadora;
 use Symfony\Component\HttpFoundation\Request;
 
 class GuiaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('guias.index', [
-            'guias' => Guia::with(['direccion.cliente', 'transportadora'])->get(),
+            'guias' => Guia::with(['direccion.cliente', 'transportadora'])->where('status', $request->get('status', GuiaStatusEnum::DEFAULT))->get(),
+            'contadores' => [
+                'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),
+                'en ruta' => Guia::where('status', GuiaStatusEnum::EN_RUTA)->count(),
+                'entregado' => Guia::where('status', GuiaStatusEnum::ENTREGADO)->count(),
+                'cancelado' => Guia::where('status', GuiaStatusEnum::CANCELADO)->count(),
+            ],
+            'statuses' => GuiaStatusEnum::cases(),
         ]);
     }
 
@@ -27,7 +35,7 @@ class GuiaController extends Controller
             if(! $cliente->direcciones->contains($direccion) ) {
                 return abort(404);
             }
-            
+
             return view('guias.create', [
                 'guia' => new Guia(),
                 'cliente' => $cliente,

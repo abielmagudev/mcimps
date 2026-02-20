@@ -6,6 +6,15 @@
     <a href="{{ route('guias.create') }}" class="link-primary">Nueva guia</a>
 </nav>
 <x-card>
+    <p>
+        @foreach ($statuses as $status)
+        <a href="{{ route('guias.index', ['status' => $status]) }}" class="link-primary me-2">
+            <span>({{ $contadores[$status->value] }})</span>
+            {{ ucfirst($status->value) }}
+        </a>
+        @endforeach
+    </p>
+
     <x-table>
         <x-slot name="thead">
             <tr>
