@@ -1,8 +1,7 @@
 @extends('app', ['pageTitle' => 'Editar dirección'])
 @section('content')
+@include('clientes.inc.bloque-info')
 <x-card>
-    @include('clientes._bloque-lectura-formulario')
-
     <form action="{{ route('clientes.direcciones.update', [$cliente, $direccion]) }}" method="post">
         @csrf
         @method('put')

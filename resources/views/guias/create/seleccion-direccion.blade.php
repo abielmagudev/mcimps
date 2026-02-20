@@ -1,7 +1,11 @@
 @extends('app', ['pageTitle' => 'Nueva guía'])
 @section('content')
 
-@include('clientes._bloque-lectura')
+<div class="alert alert-secondary mb-3">
+    <h5 class="alert-heading mb-3">Destino</h5>
+    <small class="text-secondary">Cliente</small><br>
+    <span>{{ $cliente->nombre_completo }} ({{ $cliente->telefono }})</span>
+</div>
 
 <x-card>
     @if ( $cliente->direcciones->count() )
@@ -17,10 +21,10 @@
             @foreach ($cliente->direcciones as $direccion)
             <tr>
                 <td>
-                    @include('direcciones._bloque-info')
+                    @include('direcciones.inc.bloque-info')
                 </td>
                 <td>
-                    @include('direcciones._bloque-contacto')
+                    @include('direcciones.inc.bloque-contacto')
                 </td>
                 <td>
                     <span class="text-capitalize">{{ $direccion->cobertura }}</span>

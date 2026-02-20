@@ -1,6 +1,6 @@
 @extends('app', ['pageTitle' => 'Agregar dirección'])
 @section('content')
-@include('clientes._bloque-lectura')
+@include('clientes.inc.bloque-info')
 <x-card>
     <form action="{{ route('clientes.direcciones.store', $cliente) }}" method="post">
         @csrf
