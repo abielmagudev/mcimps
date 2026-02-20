@@ -5,7 +5,7 @@
         @csrf
         @method('put')
         @include('transportadoras._form')
-        <button type="submit" class="btn btn-warning">Actualizar transportadora</button>
+        <button type="submit" class="btn btn-success">Actualizar transportadora</button>
         <a href="{{ route('transportadoras.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </x-card>

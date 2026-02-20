@@ -5,7 +5,7 @@
         @csrf
         @method('put')
         @include('clientes._form')
-        <button type="submit" class="btn btn-warning">Actualizar cliente</button>
+        <button type="submit" class="btn btn-success">Actualizar cliente</button>
         <a href="{{ route('clientes.show', $cliente) }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </x-card>
