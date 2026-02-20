@@ -16,8 +16,10 @@ class GuiaController extends Controller
 {
     public function index(Request $request)
     {
+        $statusInitials = $request->filled('status') ? [$request->get('status')] : [GuiaStatusEnum::DEFAULT, GuiaStatusEnum::EN_RUTA];
+
         return view('guias.index', [
-            'guias' => Guia::with(['direccion.cliente', 'transportadora'])->where('status', $request->get('status', GuiaStatusEnum::DEFAULT))->get(),
+            'guias' => Guia::with(['direccion.cliente', 'transportadora'])->whereIn('status', $statusInitials)->get(),
             'contadores' => [
                 'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),
                 'en ruta' => Guia::where('status', GuiaStatusEnum::EN_RUTA)->count(),
