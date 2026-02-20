@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('guias', function (Blueprint $table) {
             $table->id();
             $table->string('numero_rastreo_origen')->nullable();
-            $table->string('numero_rastreo_usa');
+            $table->string('numero_rastreo_usa')->nullable();
             $table->string('numero_rastreo_mex')->nullable();
             $table->string('numero_rastreo_salida')->nullable();
             $table->timestamp('fecha_salida')->nullable();
-            $table->text('observaciones');
+            $table->text('observaciones')->nullable();
             $table->string('status')->default(GuiaStatusEnum::DEFAULT);
             $table->unsignedBigInteger('direccion_id');
             $table->unsignedBigInteger('transportadora_id')->nullable();
