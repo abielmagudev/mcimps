@@ -20,6 +20,8 @@
             <tr>
                 <th>Número</th>
                 <th>Direccion</th>
+                <th>Rastreo USA</th>
+                <th>Rastreo MEX</th>
                 <th>Transportadora</th>
                 <th>Cobertura</th>
                 <th>Status</th>
@@ -31,7 +33,13 @@
         <tr>
             <td>{{ $guia->id }}</td>
             <td>{{ $guia->direccion->lineal }}</td>
-            <td>{{ $guia->transportadora?->nombre }}</td>
+            <td>{{ $guia->numero_rastreo_usa }}</td>
+            <td>{{ $guia->numero_rastreo_mex }}</td>
+            <td>
+                @isset($guia->transportadora)
+                <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadora->nombre }}</a>
+                @endisset
+            </td>
             <td class="text-capitalize">{{ $guia->direccion->cobertura }}</td>
             <td>
                 @include('guias.inc.etiqueta-status')
