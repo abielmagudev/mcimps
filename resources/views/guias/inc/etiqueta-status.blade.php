@@ -3,7 +3,7 @@ $colors = [
     'recibido' => 'text-bg-primary',
     'en ruta' => 'text-bg-warning',
     'entregado' => 'text-bg-success',
-    'cancelado' => 'text-bg-text-secondary',
+    'cancelado' => 'text-bg-secondary',
 ];
 ?>
 
