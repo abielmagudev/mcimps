@@ -1,13 +1,12 @@
-@extends('app', ['pageTitle' => 'Nueva dirección'])
+@extends('app', ['pageTitle' => 'Agregar dirección'])
 @section('content')
+@include('clientes._bloque-lectura')
 <x-card>
-    @include('clientes._bloque-lectura-formulario')
-
     <form action="{{ route('clientes.direcciones.store', $cliente) }}" method="post">
         @csrf
         @method('post')
         @include('direcciones._form')
-        <button type="submit" class="btn btn-success">Guardar dirección</button>
+        <button type="submit" class="btn btn-success">Agregar dirección</button>
         <a href="{{ route('clientes.show', $cliente) }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </x-card>

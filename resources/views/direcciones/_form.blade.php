@@ -27,13 +27,13 @@
   <input type="text" class="form-control" id="telefonoContactoInput" name="telefono_contacto" value="{{ $direccion->telefono_contacto }}"> 
 </div>
 <div class="mb-3">
+  <label for="referenciasInput" class="form-label">Referencias</label>
+  <textarea class="form-control" id="referenciasInput" name="referencias" rows="3">{{ $direccion->referencias }}</textarea>
+</div>
+<div class="mb-3">
   <label for="coberturaSelect" class="form-label">Cobertura</label>
   <select class="form-select" id="coberturaSelect" name="cobertura" required>
     <option value="domicilio" @selected($direccion->cobertura == 'domicilio')>Domicilio</option>
     <option value="ocurre" @selected($direccion->cobertura == 'ocurre')>Ocurre</option>
   </select>
-</div>
-<div class="mb-3">
-  <label for="referenciasInput" class="form-label">Referencias</label>
-  <textarea class="form-control" id="referenciasInput" name="referencias" rows="3">{{ $direccion->referencias }}</textarea>
 </div>
