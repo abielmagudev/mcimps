@@ -1,4 +1,4 @@
-@extends('app', ['pageTitle' => 'Editar guía'])
+@extends('app', ['pageTitle' => 'Editar guía #' . $guia->id])
 @section('content')
 
 <div class="alert alert-secondary mb-3">
