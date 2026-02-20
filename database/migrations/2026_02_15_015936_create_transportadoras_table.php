@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre')->unique();
             $table->string('sitio_web');
             $table->string('telefono');
+            $table->boolean('disponible')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });
