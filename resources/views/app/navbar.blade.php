@@ -21,8 +21,8 @@
       </ul>
       <form action="{{ route('guias.index') }}" class="d-flex" role="search">
         <div class="input-group">
-          <input type="search" class="form-control" name="rastreo" value="{{ request('rastreo') }}" placeholder="Números de rastreo...">
-          <button type="button" class="btn btn-outline-primary">Buscar</button>
+          <input type="search" class="form-control" name="rastreo" value="{{ request('rastreo') }}" placeholder="Números de rastreo">
+          <button type="submit" class="btn btn-outline-primary">Buscar</button>
         </div>
       </form>
     </div>
