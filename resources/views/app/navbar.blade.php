@@ -19,9 +19,9 @@
           <a class="nav-link" href="#">Usuarios</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
+      <form action="{{ route('guias.index') }}" class="d-flex" role="search">
         <div class="input-group">
-          <input type="search" class="form-control" placeholder="Dirección, teléfono, guía...">
+          <input type="search" class="form-control" name="rastreo" value="{{ request('rastreo') }}" placeholder="Números de rastreo...">
           <button type="button" class="btn btn-outline-primary">Buscar</button>
         </div>
       </form>

@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateGuiaRequest;
 use App\Models\Cliente;
 use App\Models\Direccion;
 use App\Models\Guia;
-use App\Models\Guia\GuiaFilter;
 use App\Models\Guia\GuiaStatusEnum;
 use App\Models\Transportadora;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +15,22 @@ class GuiaController extends Controller
 {
     public function index(Request $request)
     {
-        $statusInitials = $request->filled('status') ? [$request->get('status')] : [GuiaStatusEnum::DEFAULT, GuiaStatusEnum::EN_RUTA];
+        $guiasQuery = Guia::with(['direccion.cliente', 'transportadora']);
+
+        if( $request->has('rastreo') )
+        {      
+            $guias = $guiasQuery
+            ->where('numero_rastreo_origen', 'like', '%' . $request->get('rastreo') . '%')
+            ->orWhere('numero_rastreo_usa', 'like', '%' . $request->get('rastreo') . '%')
+            ->orWhere('numero_rastreo_mex', 'like', '%' . $request->get('rastreo') . '%')
+            ->get();  
+        } else {
+            $statusInitials = $request->filled('status') ? [$request->get('status')] : [GuiaStatusEnum::DEFAULT, GuiaStatusEnum::EN_RUTA];
+            $guias = $guiasQuery->whereIn('status', $statusInitials)->get();
+        }
 
         return view('guias.index', [
-            'guias' => Guia::with(['direccion.cliente', 'transportadora'])->whereIn('status', $statusInitials)->get(),
+            'guias' => $guias,
             'contadores' => [
                 'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),
                 'en ruta' => Guia::where('status', GuiaStatusEnum::EN_RUTA)->count(),
