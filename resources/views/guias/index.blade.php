@@ -48,7 +48,6 @@
             </td>
             <td>
                 <div class="d-flex justify-content-between flex-nowrap gap-1">
-                    <!-- <a href="{{ route('guias.show', $guia) }}" class="link-primary">Ver</a> -->
                     <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar</a>
                 </div>
             </td>
