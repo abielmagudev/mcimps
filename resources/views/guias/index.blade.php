@@ -59,7 +59,7 @@
 
 @else
 <div class="text-center">
-    <h3>No hay guías activas</h3>
+    <h3>{{ request()->has('rastreo') ? 'Sin resultados' : 'No hay guías activas' }}</h3>
     <a href="{{ route('guias.create') }}" class="link-primary">Crear nueva guia</a>
 </div>
 @endif
