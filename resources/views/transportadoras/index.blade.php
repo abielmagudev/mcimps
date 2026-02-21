@@ -16,11 +16,11 @@
 
         @foreach ($transportadoras as $transportadora)
         <tr>
-            <td>{{ $transportadora->nombre }}</td>
+            <td class="text-nowrap">{{ $transportadora->nombre }}</td>
             <td>
                 <a href="{{ $transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $transportadora->sitio_web }}</a>
             </td>
-            <td>{{ $transportadora->telefono }}</td>
+            <td class="text-nowrap">{{ $transportadora->telefono }}</td>
             <td class="text-end">
                 <a href="{{ route('transportadoras.edit', $transportadora) }}" class="link-primary">Editar</a>
             </td>

@@ -7,7 +7,7 @@
     <x-table>
         <x-slot name="thead">
             <tr>
-                <th>Nombre completo</th>
+                <th style="min-width: 240px">Nombre completo</th>
                 <th>Teléfono</th>
                 <th></th>
             </tr>
@@ -15,8 +15,8 @@
 
         @foreach ($clientes as $cliente)
         <tr>
-            <td>{{ $cliente->nombre_completo }}</td>
-            <td>{{ $cliente->telefono }}</td>
+            <td class="text-nowrap">{{ $cliente->nombre_completo }}</td>
+            <td class="text-nowrap">{{ $cliente->telefono }}</td>
             <td class="text-end">
                 <a href="{{ route('clientes.show', $cliente) }}" class="link-primary">Ver</a>
             </td>
