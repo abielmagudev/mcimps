@@ -19,10 +19,10 @@
         <x-slot name="thead">
             <tr>
                 <th>#</th>
-                <th>Direccion</th>
-                <th>Rastreo Origen</th>
-                <th>Rastreo USA</th>
-                <th>Rastreo MEX</th>
+                <th style="min-width: 248px;">Direccion</th>
+                <th class="text-nowrap">Rastreo Origen</th>
+                <th class="text-nowrap">Rastreo USA</th>
+                <th class="text-nowrap">Rastreo MEX</th>
                 <th>Transportadora</th>
                 <th>Cobertura</th>
                 <th>Status</th>
@@ -46,8 +46,11 @@
             <td>
                 @include('guias.inc.etiqueta-status')
             </td>
-            <td class="text-end">
-                <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar</a>
+            <td>
+                <div class="d-flex justify-content-between flex-nowrap gap-1">
+                    <!-- <a href="{{ route('guias.show', $guia) }}" class="link-primary">Ver</a> -->
+                    <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar</a>
+                </div>
             </td>
         </tr>         
         @endforeach
