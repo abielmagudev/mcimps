@@ -18,7 +18,7 @@
     <x-table>
         <x-slot name="thead">
             <tr>
-                <th>Número</th>
+                <th>#</th>
                 <th>Direccion</th>
                 <th>Rastreo Origen</th>
                 <th>Rastreo USA</th>
