@@ -1,4 +1,4 @@
-<article class="card">
+<article class="card {{ $attributes->get('class', '') }}">
     @isset($header)      
     <div class="card-header">{{ $header }}</div>
     @endisset
