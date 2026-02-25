@@ -38,10 +38,7 @@
                 @foreach ($cliente->direcciones->reverse() as $direccion)
                 <tr>
                     <td class="text-nowrap">
-                        <span class="d-block">{{ $direccion->lineal }}</span>
-                        @isset($direccion->referencias)                  
-                        <small class="text-secondary">Referencias: {{ $direccion->referencias }}</small>
-                        @endisset
+                        @include('direcciones.inc.info-horizontal')
                     </td>
                     <td class="text-capitalize">{{ $direccion->cobertura }}</td>
                     <td>

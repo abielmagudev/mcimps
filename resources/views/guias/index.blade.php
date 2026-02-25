@@ -33,7 +33,9 @@
         @foreach ($guias as $guia)
         <tr>
             <td>{{ $guia->id }}</td>
-            <td>{{ $guia->direccion->lineal }}</td>
+            <td>
+                @include('direcciones.inc.info-horizontal-sin-referencias', ['direccion' => $guia->direccion])
+            </td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_mex ?? '') !!}</td>
