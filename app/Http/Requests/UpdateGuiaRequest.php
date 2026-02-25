@@ -25,7 +25,7 @@ class UpdateGuiaRequest extends FormRequest
             'numero_rastreo_origen' => 'required',
             'numero_rastreo_usa' => 'required',
             'numero_rastreo_mex' => 'required',
-            'numero_rastreo_salida' => 'required',
+            'registro_salida' => 'required',
             'observaciones' => 'required',
             'transportadora' => 'required|exists:transportadoras,id',
             'status' => 'required',

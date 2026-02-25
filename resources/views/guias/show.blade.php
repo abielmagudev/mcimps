@@ -67,7 +67,7 @@
             </x-info>
 
             <x-info title="Registro de salida">
-                <span>{{ $guia->numero_rastreo_salida }}</span><br>
+                <span>{{ $guia->registro_salida }}</span><br>
                 <small>{{ $guia->fecha_salida }}</small><br>
                 <small>{{ $guia->salida_por_usuario }}</small>
             </x-info>

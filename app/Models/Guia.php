@@ -16,7 +16,7 @@ class Guia extends Model
         'numero_rastreo_origen',
         'numero_rastreo_usa',
         'numero_rastreo_mex',
-        'numero_rastreo_salida',
+        'registro_salida',
         'fecha_salida',
         'observaciones',
         'status',
