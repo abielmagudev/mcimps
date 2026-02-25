@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('salida_por_usuario')->nullable();
             $table->text('observaciones')->nullable();
             $table->string('status')->default(GuiaStatusEnum::DEFAULT);
-            $table->unsignedBigInteger('direccion_id');
+            $table->unsignedBigInteger('direccion_id')->nullable();
             $table->unsignedBigInteger('transportadora_id')->nullable();
             $table->unsignedBigInteger('creado_por_usuario');
             $table->unsignedBigInteger('actualizado_por_usuario');

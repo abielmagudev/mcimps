@@ -21,8 +21,8 @@ class GuiaSeeder extends Seeder
         $guias = Guia::factory(100)->make();
 
         foreach ($guias as $guia) {
-            $guia->direccion_id = $direcciones->random()->id;
-            $guia->transportadora_id = $transportadoras->random()->id;
+            $guia->direccion_id = mt_rand(0,1) ? $direcciones->random()->id : null;
+            $guia->transportadora_id = mt_rand(0,1) ? $transportadoras->random()->id : null;
             $guia->salida_por_usuario = $guia->fecha_salida ? mt_rand(1,10) : null;
             $guia->creado_por_usuario = mt_rand(1,10);
             $guia->actualizado_por_usuario = mt_rand(1,10);
