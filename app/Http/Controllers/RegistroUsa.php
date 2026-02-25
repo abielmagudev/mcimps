@@ -20,16 +20,16 @@ class RegistroUsa extends Controller
         if( is_null($guia) )
         {
             if( ! $guia = Guia::create($request->validated()) ) {
-                return back()->with('error', 'Error al guardar el número de rastreo en USA');
+                return back()->with('error', sprintf('Error al guardar rastreo en USA: %s', $request->input('numero_rastreo_usa')));
             }
 
-            return redirect()->route('registros.usa.create')->with('success', 'Número de rastreo en USA ha sido guardado');
+            return redirect()->route('registros.usa.create')->with('success', sprintf('Rastreo en USA ha sido guardado: %s', $guia->numero_rastreo_usa));
         }
 
         if(! $guia->update($request->validated()) ) {
-            return back()->with('error', 'Error al actualizar el número de rastreo en USA');
+            return back()->with('error', sprintf('Error al actualizar rastreo en USA: %s', $guia->numero_rastreo_usa));
         }
 
-        return redirect()->route('registros.usa.create')->with('success', 'Número de rastreo en USA ha sido actualizado');
+        return redirect()->route('registros.usa.create')->with('success', sprintf('Rastreo en USA ha sido actualizado: %s', $guia->numero_rastreo_usa));
     }
 }
