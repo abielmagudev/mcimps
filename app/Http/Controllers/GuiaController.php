@@ -94,12 +94,11 @@ class GuiaController extends Controller
         return redirect()->route('guias.index')->with('success', 'Guía creada exitosamente');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Guia $guia)
     {
-        //
+        return view('guias.show', [
+            'guia' => $guia,
+        ]);
     }
 
     public function edit(Guia $guia)
