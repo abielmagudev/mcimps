@@ -18,3 +18,6 @@ Route::resource('transportadoras', \App\Http\Controllers\TransportadoraControlle
 Route::resource('guias', \App\Http\Controllers\GuiaController::class)->except(['create', 'store']);
 Route::get('guias/create/{cliente?}/{direccion?}', \App\Http\Controllers\GuiaController::class . '@create')->name('guias.create');
 Route::post('guias/store/{cliente}/{direccion}', \App\Http\Controllers\GuiaController::class . '@store')->name('guias.store');
+
+Route::get('registros/usa', [\App\Http\Controllers\RegistroUsa::class, 'create'])->name('registros.usa.create');
+Route::post('registros/usa', [\App\Http\Controllers\RegistroUsa::class, 'store'])->name('registros.usa.store');

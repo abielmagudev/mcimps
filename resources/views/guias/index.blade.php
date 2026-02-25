@@ -34,7 +34,7 @@
         <tr>
             <td>{{ $guia->id }}</td>
             <td>
-                @include('direcciones.inc.info-horizontal-sin-referencias', ['direccion' => $guia->direccion])
+                @includeWhen($guia->direccion, 'direcciones.inc.info-horizontal-sin-referencias', ['direccion' => $guia->direccion])
             </td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
@@ -44,7 +44,7 @@
                 <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadora->nombre }}</a>
                 @endisset
             </td>
-            <td class="text-capitalize">{{ $guia->direccion->cobertura }}</td>
+            <td class="text-capitalize">{{ $guia->direccion?->cobertura }}</td>
             <td>
                 @include('guias.inc.etiqueta-status')
             </td>

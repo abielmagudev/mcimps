@@ -6,6 +6,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {{ request()->routeIs('registros.*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Registro
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item {{ request()->routeIs('registros.usa.*') ? 'active' : '' }}" href="{{ route('registros.usa.create') }}">Estados Unidos</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">México</a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('guias.*') ? 'active' : '' }}" aria-current="page" href="{{ route('guias.index') }}">Guías</a>
         </li>
