@@ -25,7 +25,7 @@ class GuiaController extends Controller
             ->orWhere('numero_rastreo_mex', 'like', '%' . $request->get('rastreo') . '%')
             ->get();  
         } else {
-            $statusInitials = $request->filled('status') ? [$request->get('status')] : [GuiaStatusEnum::DEFAULT, GuiaStatusEnum::EN_RUTA];
+            $statusInitials = $request->filled('status') ? [$request->get('status')] : [GuiaStatusEnum::DEFAULT];
             $guias = $guiasQuery->whereIn('status', $statusInitials)->get();
         }
 
@@ -33,9 +33,9 @@ class GuiaController extends Controller
             'guias' => $guias,
             'contadores' => [
                 'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),
-                'en ruta' => Guia::where('status', GuiaStatusEnum::EN_RUTA)->count(),
+                'pendiente' => Guia::where('status', GuiaStatusEnum::PENDIENTE)->count(),
+                'transito' => Guia::where('status', GuiaStatusEnum::TRANSITO)->count(),
                 'entregado' => Guia::where('status', GuiaStatusEnum::ENTREGADO)->count(),
-                'cancelado' => Guia::where('status', GuiaStatusEnum::CANCELADO)->count(),
             ],
             'statuses' => GuiaStatusEnum::cases(),
         ]);

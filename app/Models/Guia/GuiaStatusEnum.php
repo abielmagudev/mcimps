@@ -8,7 +8,7 @@ enum GuiaStatusEnum: string
     const DEFAULT = self::RECIBIDO;
     
     case RECIBIDO = 'recibido';
-    case EN_RUTA = 'en ruta';
+    case PENDIENTE = 'pendiente';
+    case TRANSITO = 'transito';
     case ENTREGADO = 'entregado';
-    case CANCELADO = 'cancelado';
 }
