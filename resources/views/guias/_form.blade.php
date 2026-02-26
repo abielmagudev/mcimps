@@ -1,5 +1,5 @@
 <div class="mb-3">
-  <label for="numeroRastreoOrigenInput" class="form-label">Número de rastreo de origen <small class="form-text text-muted">(Opcional)</small></label>
+  <label for="numeroRastreoOrigenInput" class="form-label">Número de rastreo de origen <small class="text-secondary">(Opcional)</small></label>
   <input type="text" class="form-control {{ bsIsInvalidClass('numero_rastreo_origen') }}" id="numeroRastreoOrigenInput" name="numero_rastreo_origen" value="{{ old('numero_rastreo_origen', $guia->numero_rastreo_origen) }}" autofocus>
   <x-invalid-feedback name="numero_rastreo_origen" />
 </div>
@@ -14,9 +14,9 @@
   <x-invalid-feedback name="numero_rastreo_mex" />
 </div>
 <div class="mb-3">
-  <label for="numeroRastreoEscaneadoInput" class="form-label">Número de rastreo de registro de salida <small class="form-text text-muted">(Escaneado)</small></label>
-  <input type="text" class="form-control {{ bsIsInvalidClass('numero_rastreo_salida') }}" id="numeroRastreoMexInput" name="numero_rastreo_salida" value="{{ old('numero_rastreo_salida', $guia->numero_rastreo_salida) }}">
-  <x-invalid-feedback name="numero_rastreo_salida" />
+  <label for="registroSalidaInput" class="form-label">Registro de salida <small class="text-secondary">(Escaneado o ingresado)</small></label>
+  <input type="text" class="form-control {{ bsIsInvalidClass('registro_salida') }}" id="registroSalidaInput" name="registro_salida" value="{{ old('registro_salida', $guia->registro_salida) }}">
+  <x-invalid-feedback name="registro_salida" />
 </div>
 <div class="mb-3">
   <label for="transportadoraInput" class="form-label">Transportadora</label>

@@ -12,10 +12,10 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item {{ request()->routeIs('registros.usa.*') ? 'active' : '' }}" href="{{ route('registros.usa.create') }}">Estados Unidos</a>
+              <a class="dropdown-item {{ request()->routeIs('registros.usa.*') ? 'disabled' : '' }}" href="{{ route('registros.usa.create') }}">Estados Unidos</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">México</a>
+              <a class="dropdown-item {{ request()->routeIs('registros.mex.*') ? 'disabled' : '' }}" href="{{ route('registros.mex.search') }}">México</a>
             </li>
           </ul>
         </li>
