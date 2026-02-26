@@ -5,13 +5,13 @@
         <form action="{{ route('registros.usa.store') }}" method="post" autocomplete="off">
             @csrf
             <div class="mb-3">
-                <label for="numeroRastreoUsaInput" class="form-label">Ingresa o escanea el número de rastreo en USA</label>
+                <label for="numeroRastreoUsaInput" class="form-label">Escanea o ingresa el número de rastreo en USA</label>
                 <input type="text" class="form-control {{ bsIsInvalidClass('numero_rastreo_usa') }}" id="numeroRastreoUsaInput" name="numero_rastreo_usa" value="{{ old('numero_rastreo_usa') }}" autofocus required>
                 <x-invalid-feedback name="numero_rastreo" />
             </div>
             <div class="mb-3">
                 <label for="numeroRastreoOrigenInput" class="form-label">
-                    Ingresa o escanea el número de rastreo de origen
+                    Escanea o ingresa el número de rastreo de origen
                     <span class="text-secondary">(Opcional)</span>
                 </label>
                 <input type="text" class="form-control {{ bsIsInvalidClass('numero_rastreo_origen') }}" id="numeroRastreoOrigenInput" name="numero_rastreo_origen" value="{{ old('numero_rastreo_origen') }}">
