@@ -18,12 +18,15 @@ class GuiaController extends Controller
         $guiasQuery = Guia::with(['direccion.cliente', 'transportadora']);
 
         if( $request->has('rastreo') )
-        {      
+        {
+            $buscar = $request->get('rastreo');
+
             $guias = $guiasQuery
-            ->where('numero_rastreo_origen', 'like', '%' . $request->get('rastreo') . '%')
-            ->orWhere('numero_rastreo_usa', 'like', '%' . $request->get('rastreo') . '%')
-            ->orWhere('numero_rastreo_mex', 'like', '%' . $request->get('rastreo') . '%')
-            ->get();  
+            ->where('numero_rastreo_origen', 'like', "%{$buscar}%")
+            ->orWhere('numero_rastreo_usa', 'like', "%{$buscar}%")
+            ->orWhere('numero_rastreo_mex', 'like', "%{$buscar}%")
+            ->orWhere('registro_salida', 'like', "%{$buscar}%")
+            ->get();
         } else {
             $statusInitials = $request->filled('status') ? [$request->get('status')] : [GuiaStatusEnum::DEFAULT];
             $guias = $guiasQuery->whereIn('status', $statusInitials)->get();
