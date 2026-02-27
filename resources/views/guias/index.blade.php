@@ -20,6 +20,7 @@
             <tr>
                 <th>#</th>
                 <th style="min-width: 248px;">Direccion</th>
+                <th>Código Postal</th>
                 <th class="text-nowrap">Rastreo Origen</th>
                 <th class="text-nowrap">Rastreo USA</th>
                 <th class="text-nowrap">Rastreo MEX</th>
@@ -35,8 +36,13 @@
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
             <td>
-                @includeWhen($guia->direccion, 'direcciones.inc.info-horizontal-sin-referencias', ['direccion' => $guia->direccion])
+                @if ($guia->tieneDireccion())
+                <span>{{ $guia->direccion->calle }}</span>, 
+                <span>{{ $guia->direccion->ciudad }}</span>, 
+                <span>{{ $guia->direccion->estado }}</span>
+                @endif
             </td>
+            <td>{{ $guia->direccion->codigo_postal }}</span></td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_mex ?? '') !!}</td>
