@@ -84,6 +84,11 @@ class Guia extends Model
         return $this->puedeTenerStatusTransito() && $this->statusEs(GuiaStatusEnum::TRANSITO);
     }
 
+    public function puedeTenerRegistroSalida(): bool
+    {
+        return $this->tieneDireccion() && $this->tieneTransportadora() && isset($this->numero_rastreo_mex);
+    }
+
     public function tieneStatusEntregado(): bool
     {
         return $this->statusEs(GuiaStatusEnum::ENTREGADO);

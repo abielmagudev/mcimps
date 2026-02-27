@@ -37,6 +37,7 @@
         </div>
     </div>
 
+    @if ($guia->puedeTenerRegistroSalida())
     <x-card>
         <form action="{{ route('registros.mex.update', $guia) }}" method="post" autocomplete="off">
             @csrf
@@ -49,5 +50,13 @@
             <button type="submit" class="btn btn-success w-100">Registrar salida de guía</button>
         </form>
     </x-card>
+
+    @else
+    <div class="alert alert-danger text-center">
+        <strong>No se puede registrar la salida de la guía por falta de información</strong><br>
+        <a href="{{ route('registros.mex.search') }}" class="link-primary">Registra otra guía</a>
+    </div>
+
+    @endif
 </div>
 @endsection
