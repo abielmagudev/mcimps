@@ -6,7 +6,7 @@
             <label class="form-label">Dirección o nombre del cliente</label>
             <input type="text" class="form-control" name="seleccionar-direccion" value="{{ $request->get('seleccionar-direccion') }}" autofocus required>
         </div>
-        <button type="submit" class="btn btn-primary">Buscar dirección</button>
+        <button type="submit" class="btn btn-primary">Buscar dirección o cliente</button>
         <a href="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" class="btn btn-outline-secondary">Cancelar</a>
     </form>
 </x-card>
