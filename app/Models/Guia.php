@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Guia\GuiaStatusEnum;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -45,5 +46,46 @@ class Guia extends Model
     public function salidaPorUsuario(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tieneDireccion(): bool
+    {
+        return $this->direccion instanceof Direccion;
+    }
+
+    public function tieneTransportadora(): bool
+    {
+        return $this->transportadora instanceof Transportadora;
+    }
+
+    public function statusEs(GuiaStatusEnum $statusEnum): bool
+    {
+        return $this->status == $statusEnum->value;
+    }
+
+    public function asignarStatus(GuiaStatusEnum $statusEnum): self
+    {
+        $this->status = $statusEnum->value;
+        return $this;
+    }
+
+    public function puedeTenerStatusPendiente(): bool
+    {
+        return $this->tieneDireccion() && $this->tieneTransportadora();
+    }
+
+    public function puedeTenerStatusTransito(): bool
+    {
+        return $this->puedeTenerStatusPendiente() && isset($this->numero_rastreo_mex) && isset($this->registro_salida);
+    }
+
+    public function puedeTenerStatusEntregado(): bool
+    {
+        return $this->puedeTenerStatusTransito() && $this->statusEs(GuiaStatusEnum::TRANSITO);
+    }
+
+    public function tieneStatusEntregado(): bool
+    {
+        return $this->statusEs(GuiaStatusEnum::ENTREGADO);
     }
 }
