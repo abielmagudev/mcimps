@@ -7,7 +7,7 @@
         </div>
 
         <div>
-            <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar</a>
+            <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar guía</a>
         </div>
     </div>
 
@@ -15,30 +15,48 @@
         <!-- Destino -->
         <div class="col-md col-md-4">
             <h6>Destino</h6>
+            @if ( $guia->tieneDireccion() )      
             <address>
                 @include('direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
             </address>
             <small class="text-muted">Cliente:</small><br>
             <span>{{ $guia->direccion->cliente->nombre_completo }}</span><br>
             <span>({{ $guia->direccion->cliente->telefono }})</span>
+
+            @else
+            <p class="fst-italic">* Sin dirección...</p>
+
+            @endif
         </div>
 
         <!-- Transportadora -->
         <div class="col-md">
             <hr class="d-block d-md-none">
             <h6>Transportadora</h6>
+            @if ( $guia->tieneTransportadora() )
             <div class="mb-2">
                 <span>{{ $guia->transportadora->nombre }}</span><br>
                 <small>{{ $guia->transportadora->telefono }} |</small>
                 <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary small">Sitio Web</a>
             </div>
 
+            @else
+            <p class="fst-italic">* Sin transportadora...</p>
+
+            @endif
+
             <x-info title="Número de rastreo">
                 <span>{{ $guia->numero_rastreo_mex }}</span>    
             </x-info>
 
             <x-info title="Cobertura">
-                <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>    
+                @if( $guia->tieneDireccion() )
+                <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
+                
+                @else
+                <span class="fst-italic">* Requiere dirección...</span>  
+
+                @endif
             </x-info>
 
             @isset($guia->observaciones)
