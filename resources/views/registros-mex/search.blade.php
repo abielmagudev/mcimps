@@ -1,4 +1,4 @@
-@extends('app', ['pageTitle' => 'Registro en México'])
+@extends('app', ['pageTitle' => 'Registro de salidas (México)'])
 @section('content')
 <div style="max-width: 1024px" class="mx-auto">
     <x-card class="mb-3">
