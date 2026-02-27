@@ -42,7 +42,7 @@
                 <span>{{ $guia->direccion->estado }}</span>
                 @endif
             </td>
-            <td>{{ $guia->direccion->codigo_postal }}</span></td>
+            <td>{{ $guia->direccion->codigo_postal ?? '' }}</span></td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_mex ?? '') !!}</td>
