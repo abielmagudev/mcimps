@@ -15,7 +15,7 @@
         @endforeach
     </p>
 
-    <x-table class="table-sm table-hover">
+    <x-table class="table-sm table-hover small">
         <x-slot name="thead">
             <tr>
                 <th>#</th>
