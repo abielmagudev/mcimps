@@ -20,7 +20,7 @@
             <tr>
                 <th>#</th>
                 <th style="min-width: 248px;">Direccion</th>
-                <th>Código Postal</th>
+                <th class="text-nowrap">Código Postal</th>
                 <th class="text-nowrap">Rastreo Origen</th>
                 <th class="text-nowrap">Rastreo USA</th>
                 <th class="text-nowrap">Rastreo MEX</th>
