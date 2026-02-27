@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="table {{ $attributes->get('class', 'table-hover') }}">
         @isset($caption)
         <caption>{{ $caption }}</caption>
         @endisset
