@@ -15,7 +15,7 @@
               <a class="dropdown-item {{ request()->routeIs('registros.usa.*') ? 'disabled' : '' }}" href="{{ route('registros.usa.create') }}">Estados Unidos</a>
             </li>
             <li>
-              <a class="dropdown-item {{ request()->routeIs('registros.mex.*') ? 'disabled' : '' }}" href="{{ route('registros.mex.search') }}">México</a>
+              <a class="dropdown-item {{ request()->routeIs('registros.mex.*') ? 'disabled' : '' }}" href="{{ route('registros.mex.search') }}">Salidas (México)</a>
             </li>
           </ul>
         </li>

@@ -1,4 +1,4 @@
-@extends('app', ['pageTitle' => 'Registro en México'])
+@extends('app', ['pageTitle' => 'Registro de salidas (México)'])
 @section('content')
 <div style="max-width: 1024px" class="mx-auto">
     <div class="alert alert-secondary mb-3">
@@ -59,7 +59,7 @@
 
     @else
     <div class="alert alert-danger text-center">
-        <strong>Guía con información INCOMPLETA. No se puede registrar salida.</strong>
+        <strong>Guía con información INCOMPLETA. No se puede registrar salida.</strong><br>
         <a href="{{ route('registros.mex.search') }}" class="link-primary">Registra otra guía</a>
     </div>
 
