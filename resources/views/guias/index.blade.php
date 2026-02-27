@@ -30,9 +30,9 @@
             </tr>
         </x-slot>
 
-        @foreach ($guias as $guia)
+        @foreach ($guias as $index =>$guia)
         <tr>
-            <td>{{ $guia->id }}</td>
+            <td class="small text-muted">{{ ($index+1) }}</td>
             <td>
                 @includeWhen($guia->direccion, 'direcciones.inc.info-horizontal-sin-referencias', ['direccion' => $guia->direccion])
             </td>
