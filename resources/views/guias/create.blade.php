@@ -1,14 +1,25 @@
 @extends('app', ['pageTitle' => 'Nueva guía'])
 @section('content')
-
-<div class="alert alert-secondary mb-3">
-    <h5 class="alert-heading mb-3">Destino</h5>
-    @include('guias.inc.destino')
-</div>
-
 <x-card>
-    <form action="{{ route('guias.store', [$cliente, $direccion]) }}" method="post">
+    <form action="{{ route('guias.store') }}" method="post">
         @csrf
+        <div class="mb-3">
+            <label for="direccionInput" class="form-label">Dirección</label>
+            <div class="form-control">
+                @if( $direccion->exists )
+                <input type="hidden" name="direccion_id" value="{{ $direccion->id }}">
+                <p>
+                    @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])<br>
+                    @include('direcciones.inc.info-completa-horizontal', ['direccion' => $direccion])
+                </p>
+                <a href="{{ route('guias.create', ['seleccionar-direccion']) }}" class="link-primary">Cambiar dirección</a>
+                
+                @else
+                <a href="{{ route('guias.create', ['seleccionar-direccion']) }}" class="link-primary">Seleccionar dirección</a>
+                
+                @endif
+            </div>
+        </div>
         @include('guias._form')
         <button type="submit" class="btn btn-success">Crear guia</button>
         <a href="{{ route('guias.index') }}" class="btn btn-secondary">Cancelar</a>

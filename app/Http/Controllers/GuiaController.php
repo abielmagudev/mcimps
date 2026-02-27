@@ -41,57 +41,27 @@ class GuiaController extends Controller
         ]);
     }
 
-    public function create(Request $request, Cliente|null $cliente, Direccion|null $direccion)
+    public function create(Request $request)
     {
-        if( $cliente->id && $direccion->id )
-        {
-            if(! $cliente->direcciones->contains($direccion) ) {
-                return abort(404);
-            }
-
-            return view('guias.create', [
-                'guia' => new Guia(),
-                'cliente' => $cliente,
-                'direccion' => $direccion,
-                'transportadoras' => Transportadora::all(),
-            ]);
-        }
-    
-        if( $cliente->id && $direccion->id == null )
-        {
-            return view('guias.create.seleccion-direccion', [
-                'cliente' => $cliente,
-                'request' => $request,
-            ]);
+        if( $request->has('seleccionar-direccion') ) {
+           return $this->seleccionarDireccion($request, new Guia);
         }
 
-        $clientes = collect();
-
-        if ( $request->has('cliente') ) {
-            $clientes = Cliente::where('nombre_completo', 'like', '%' . $request->get('cliente') . '%')->get();
-        }
-
-        return view('guias.create.seleccion-cliente', [
-            'clientes' => $clientes,
+        return view('guias.create', [
+            'direccion' => Direccion::find($request->get('direccion')) ?? new Direccion,
+            'guia' => new Guia,
             'request' => $request,
+            'transportadoras' => Transportadora::all(),
         ]);
     }
 
-    public function store(StoreGuiaRequest $request, Cliente $cliente, Direccion $direccion)
-    {
-        if(! $cliente->direcciones->contains($direccion) ) {
-            return abort(404);
+    public function store(StoreGuiaRequest $request)
+    {    
+        if(! $guia = Guia::create($request->validated()) ) {
+            return back()->withErrors($guia->errors())->with('error', 'Error al crear la nueva guía');
         }
 
-        $validated = $request->validated();
-        $validated['direccion_id'] = $direccion->id;
-        $validated['transportadora_id'] = $request->input('transportadora');
-    
-        if(! $guia = Guia::create($validated) ) {
-            return back()->withErrors($guia->errors())->with('error', 'Error al crear la guía');
-        }
-
-        return redirect()->route('guias.index')->with('success', 'Guía creada exitosamente');
+        return redirect()->route('guias.index')->with('success', sprintf('Nueva guía #%s creada con éxito', $guia->id));
     }
 
     public function show(Guia $guia)
@@ -101,24 +71,48 @@ class GuiaController extends Controller
         ]);
     }
 
-    public function edit(Guia $guia)
+    public function edit(Request $request, Guia $guia)
     {
+        if( $request->has('seleccionar-direccion') ) {
+           return $this->seleccionarDireccion($request, $guia);
+        }
+
         return view('guias.edit', [
+            'direccion' => Direccion::find($request->get('direccion')) ?? new Direccion,
             'guia' => $guia,
-            'cliente' => $guia->direccion->cliente,
-            'direccion' => $guia->direccion,
             'transportadoras' => Transportadora::all(),
-            'statuses' => GuiaStatusEnum::cases(),
         ]);
     }
 
     public function update(UpdateGuiaRequest $request, Guia $guia)
     {
-        if(! $guia->update($request->validated())) {
+        if(! $guia->update($request->validated()) ) {
             return back()->withErrors($guia->errors())->with('error', 'Error al actualizar la guía');
         }
 
-        return back()->with('success', 'Guía actualizada exitosamente');
+        $guia->refresh();
+
+        if(! $guia->puedeTenerStatusPendiente() ) {
+            $guia->asignarStatus(GuiaStatusEnum::RECIBIDO);
+        }
+
+        if( $guia->puedeTenerStatusPendiente() ) {
+            $guia->asignarStatus(GuiaStatusEnum::PENDIENTE);
+        }
+
+        if( $guia->puedeTenerStatusTransito() ) {
+            $guia->asignarStatus(GuiaStatusEnum::TRANSITO);
+        }
+
+        if( $guia->puedeTenerStatusEntregado() && $request->filled('status_entregado') ) {
+            $guia->asignarStatus(GuiaStatusEnum::ENTREGADO);
+        }
+
+        if( $guia->isDirty() &&! $guia->save() ) {
+            return back()->withErrors($guia->errors())->with('error', 'Error al actualizar status de la guía');
+        }
+
+        return redirect()->route('guias.edit', $guia)->with('success', 'Guía actualizada con éxito');
     }
 
     /**
@@ -127,5 +121,30 @@ class GuiaController extends Controller
     public function destroy(Guia $guia)
     {
         //
+    }
+
+    public function seleccionarDireccion(Request $request, Guia $guia)
+    {
+        $data = [
+            'guia' => $guia,
+            'request' => $request,
+        ];
+
+        if( $request->filled('seleccionar-direccion') ) 
+        {
+            $buscar = $request->get('seleccionar-direccion');
+
+            $data['direcciones'] = Direccion::join('clientes', 'direcciones.cliente_id', '=', 'clientes.id')
+            ->select('direcciones.*', 'clientes.nombre_completo') // Evita colisión de IDs
+            ->where(function ($query) use ($buscar) {
+                $query->where('direcciones.calle', 'like', "%{$buscar}%")
+                    ->orWhere('clientes.nombre_completo', 'like', "%{$buscar}%");
+            })
+            ->with('cliente')
+            ->limit(50)
+            ->get();
+        }
+
+        return view('guias.seleccionar-direccion', $data);
     }
 }

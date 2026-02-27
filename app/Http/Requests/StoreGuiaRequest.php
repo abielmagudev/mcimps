@@ -6,28 +6,37 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreGuiaRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request. |numeric|digits_between:8,8
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            'numero_rastreo_origen' => 'required',
+            'numero_rastreo_origen' => 'nullable',
             'numero_rastreo_usa' => 'required',
-            'numero_rastreo_mex' => 'required',
-            'registro_salida' => 'required',
-            'observaciones' => 'required',
-            'transportadora' => 'required|exists:transportadoras,id',
+            'numero_rastreo_mex' => 'nullable',
+            'registro_salida' => 'nullable',
+            'observaciones' => 'nullable',
+            'direccion_id' => [
+                'bail',
+                'nullable',
+                'exists:direcciones,id',
+            ],
+            'transportadora_id' => [
+                'bail',
+                'nullable',
+                'exists:transportadoras,id',
+            ],
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'direccion_id' => 'dirección',
+            'transportadora_id' => 'transportadora',
         ];
     }
 }

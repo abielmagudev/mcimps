@@ -3,32 +3,43 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateGuiaRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            'numero_rastreo_origen' => 'required',
+            'numero_rastreo_origen' => 'nullable',
             'numero_rastreo_usa' => 'required',
-            'numero_rastreo_mex' => 'required',
-            'registro_salida' => 'required',
-            'observaciones' => 'required',
-            'transportadora' => 'required|exists:transportadoras,id',
-            'status' => 'required',
+            'numero_rastreo_mex' => 'nullable',
+            'registro_salida' => 'nullable',
+            'observaciones' => 'nullable',
+            'direccion_id' => [
+                'nullable',
+                'exists:direcciones,id',
+            ],
+            'transportadora_id' => [
+                'nullable',
+                'exists:transportadoras,id',
+            ],
+            'status_entregado' => [
+                'sometimes', 
+                'boolean',
+            ],
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'direccion_id' => 'dirección',
+            'transportadora_id' => 'transportadora',
         ];
     }
 }

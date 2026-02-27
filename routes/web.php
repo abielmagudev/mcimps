@@ -14,10 +14,7 @@ Route::resource('clientes.direcciones', \App\Http\Controllers\DireccionControlle
 
 Route::resource('transportadoras', \App\Http\Controllers\TransportadoraController::class)->except(['show']);
 
-// Route::resource('guias', \App\Http\Controllers\GuiaController::class);
-Route::resource('guias', \App\Http\Controllers\GuiaController::class)->except(['create', 'store']);
-Route::get('guias/create/{cliente?}/{direccion?}', \App\Http\Controllers\GuiaController::class . '@create')->name('guias.create');
-Route::post('guias/store/{cliente}/{direccion}', \App\Http\Controllers\GuiaController::class . '@store')->name('guias.store');
+Route::resource('guias', \App\Http\Controllers\GuiaController::class);
 
 Route::get('registros/usa', [\App\Http\Controllers\RegistroUsa::class, 'create'])->name('registros.usa.create');
 Route::post('registros/usa', [\App\Http\Controllers\RegistroUsa::class, 'store'])->name('registros.usa.store');

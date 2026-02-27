@@ -1,25 +1,66 @@
 @extends('app', ['pageTitle' => 'Editar guía #' . $guia->id])
 @section('content')
-
-<div class="alert alert-secondary mb-3">
-    <h5 class="alert-heading mb-3">Destino</h5>
-    @include('guias.inc.destino')
-</div>
-
 <x-card>
+    <p class="text-end">
+        <a href="{{ route('guias.show', $guia) }}" class="link-primary">Ver guía</a>
+    </p>
     <form action="{{ route('guias.update', $guia) }}" method="post">
         @csrf
         @method('put')
-        @include('guias._form')
+
         <div class="mb-3">
-            <label for="statusSelect" class="form-label">Status</label>
-            <select class="form-select text-capitalize {{ bsIsInvalidClass('status') }}" id="statusSelect" name="status" required>
-                @foreach ($statuses as $status)
-                <option value="{{ $status->value }}" @selected( old('status', $guia->status) == $status->value)>{{ $status->value }}</option>
-                @endforeach
-            </select>
-            <x-invalid-feedback name="status" />
+            <label for="direccionInput" class="form-label">Dirección</label>
+            <div class="form-control">
+                @if( $direccion->exists )
+                <input type="hidden" name="direccion_id" value="{{ $direccion->id }}">
+                <p>
+                    @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])<br>
+                    @include('direcciones.inc.info-completa-horizontal')
+                </p>
+                <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion']) }}" class="link-primary">Cambiar dirección</a>
+                <span class="text-secondary mx-1">|</span>
+                <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Cancelar cambio de dirección</a>
+
+                @elseif ( $guia->tieneDireccion() )
+                <p>
+                    @include('clientes.inc.info-horizontal', ['cliente' => $guia->direccion->cliente])<br>
+                    @include('direcciones.inc.info-completa-horizontal', ['direccion' => $guia->direccion])
+                </p>
+                <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion']) }}" class="link-primary">Cambiar dirección</a>
+                
+                @else
+                <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion']) }}" class="link-primary">Seleccionar dirección</a>
+
+                @endif
+            </div>
+            <x-invalid-feedback name="direccion_id" />
         </div>
+
+        @include('guias._form')
+
+        @if ( $guia->puedeTenerStatusEntregado() || $guia->tieneStatusEntregado() )
+        <label class="form-label">Status</label>
+        <div class="form-control mb-3">
+            @include('guias.inc.etiqueta-status')
+        </div>
+        <div class="form-control mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="status_entregado" value="1" id="statusEntregadoInput" @checked($guia->tieneStatusEntregado())>
+                <label class="form-check-label" for="statusEntregadoInput">
+                    <b>ENTREGADO</b>: Activa la casilla para confirmar que la guía ha llegado a su destino.
+                </label>
+            </div>
+        </div>
+
+        @else
+        <div class="mb-3">
+            <label class="form-label">Status</label>
+            <div class="form-control">
+                @include('guias.inc.etiqueta-status')
+            </div>
+        </div>
+
+        @endif
 
         <button type="submit" class="btn btn-success">Actualizar guia</button>
         <a href="{{ route('guias.index') }}" class="btn btn-secondary">Cancelar</a>

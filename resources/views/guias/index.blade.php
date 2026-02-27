@@ -48,11 +48,9 @@
             <td>
                 @include('guias.inc.etiqueta-status')
             </td>
-            <td>
-                <div class="d-flex justify-content-between flex-nowrap gap-1">
-                    <a href="{{ route('guias.show', $guia) }}" class="link-primary">Ver</a>
-                    <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar</a>
-                </div>
+            <td class="text-nowrap text-end" style="width:1%">
+                <a href="{{ route('guias.show', $guia) }}" class="link-primary me-1">Ver</a>
+                <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar</a>
             </td>
         </tr>         
         @endforeach
