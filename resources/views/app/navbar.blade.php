@@ -37,7 +37,7 @@
       
       <form action="{{ route('guias.index') }}" class="d-flex" role="search">
         <div class="input-group">
-          <input type="search" class="form-control" name="rastreo" value="{{ request('rastreo') }}" placeholder="Número de rastreo">
+          <input type="search" class="form-control" name="rastreo" value="{{ request('rastreo') }}" placeholder="Buscar guias por algún número">
           <button type="submit" class="btn btn-outline-primary">
             &#128269;
             {{-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
