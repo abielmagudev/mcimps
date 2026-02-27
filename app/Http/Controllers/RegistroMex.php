@@ -23,7 +23,9 @@ class RegistroMex extends Controller
             }
         }
 
-        return view('registros-mex.search');
+        return view('registros-mex.search', [
+            'request' => $request,
+        ]);
     }
 
     public function edit(Guia $guia)
