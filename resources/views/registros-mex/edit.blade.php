@@ -7,13 +7,13 @@
             <div class="col-md">
                 <h6>Destino</h6>
                 <div class="mb-1">
-                    @include('direcciones.inc.info-vertical', ['direccion' => $guia->direccion])<br>
+                    @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-vertical', ['direccion' => $guia->direccion])<br>
                 </div>
-                <small class="text-capitalize">Cobertura: {{ $guia->direccion->cobertura }}</small>
+                <small class="text-capitalize">Cobertura: {{ $guia->direccion?->cobertura }}</small>
             </div>
             <div class="col-md">
                 <h6>Transportadora</h6>
-                @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
+                @includeWhen($guia->tieneTransportadora(), 'transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
             </div>
             <div class="col-md">
                 <h6>Números de rastreo</h6>
