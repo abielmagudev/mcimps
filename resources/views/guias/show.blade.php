@@ -71,7 +71,8 @@
             <hr class="d-block d-md-none">
             <h6>Proceso</h6>
             <x-info title="Recibido">
-                <span>{{ $guia->created_at->format('d/m/Y') }}</span>   
+                <span>{{ $guia->created_at }}</span><br>   
+                <span>{{ $guia->creado_por_usuario }}</span>   
             </x-info>
 
             @isset($guia->numero_rastreo_origen)
@@ -86,11 +87,11 @@
 
             <x-info title="Registro de salida">
                 <span>{{ $guia->registro_salida }}</span><br>
-                <small>{{ $guia->fecha_salida }}</small><br>
-                <small>{{ $guia->salida_por_usuario }}</small>
+                <span>{{ $guia->fecha_salida }}</span><br>
+                <span>{{ $guia->salida_por_usuario }}</span>
             </x-info>
         </div>
     </div>
 </x-card>
-<div class="mt-3 text-end text-secondary small">Actualizado: {{ $guia->updated_at->format('d/m/Y H:i') }}</div>
+<div class="mt-3 text-end text-secondary small">Actualizado: {{ $guia->updated_at }} <br> {{ $guia->actualizado_por_usuario }}</div>
 @endsection
