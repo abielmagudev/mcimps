@@ -31,7 +31,9 @@ class ClienteController extends Controller
             return back()->with('error', 'Error al guardar el cliente, intente nuevamente');
         }
 
-        return redirect()->route('clientes.direcciones.create', $cliente)->with('success', sprintf('Cliente %s guardado', $cliente->nombre_completo));
+        $parameters = [$cliente, ...$request->query()];
+
+        return redirect()->route('clientes.direcciones.create', $parameters)->with('success', sprintf('Cliente %s guardado', $cliente->nombre_completo));
     }
 
     public function show(Cliente $cliente)

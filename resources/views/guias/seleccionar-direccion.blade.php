@@ -65,6 +65,7 @@
 @endisset
 
 <nav class="text-end">
-    <a href="{{ route('clientes.create') }}" class="link-primary">Agregar nuevo cliente</a>
+    <?php $parametros_retorno_guia_despues_crear_cliente_direccion = $guia->exists ? ['guia' => $guia->id] : []; ?>
+    <a href="{{ route('clientes.create', $parametros_retorno_guia_despues_crear_cliente_direccion) }}" class="link-primary">Agregar nuevo cliente</a>
 </nav>
 @endsection

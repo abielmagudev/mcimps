@@ -6,6 +6,7 @@ use App\Http\Requests\StoreDireccionRequest;
 use App\Http\Requests\UpdateDireccionRequest;
 use App\Models\Cliente;
 use App\Models\Direccion;
+use App\Models\Guia;
 use GuzzleHttp\Client;
 
 class DireccionController extends Controller
@@ -34,7 +35,13 @@ class DireccionController extends Controller
             return back()->with('error', 'Error al guardar la dirección, intente nuevamente');
         }
 
-        return redirect()->route('guias.create', [$cliente, $direccion])->with('success', sprintf('Dirección %s guardada', $direccion->calle));
+        $guia = Guia::find($request->get('guia'));
+
+        $url = $guia instanceof Guia ? 
+        route('guias.edit', [$guia, 'direccion' => $direccion->id]) : 
+        route('guias.create', ['direccion' => $direccion->id]);
+
+        return redirect($url)->with('success', sprintf('Dirección %s guardada para cliente %s', $direccion->calle, $cliente->nombre_completo));
     }
 
     /**

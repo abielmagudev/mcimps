@@ -2,7 +2,7 @@
 @section('content')
 @include('clientes.inc.bloque-info')
 <x-card>
-    <form action="{{ route('clientes.direcciones.store', $cliente) }}" method="post">
+    <form action="{{ route('clientes.direcciones.store', [$cliente, ...request()->query()]) }}" method="post">
         @csrf
         @include('direcciones._form')
         <button type="submit" class="btn btn-success">Agregar dirección</button>
