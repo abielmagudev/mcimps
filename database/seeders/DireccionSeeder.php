@@ -14,8 +14,8 @@ class DireccionSeeder extends Seeder
     {
         $clientes = \App\Models\Cliente::all();
 
-        \App\Models\Direccion::factory(10)->create([
-            'cliente_id' => fn () =>$clientes->random()->id,
+        \App\Models\Direccion::factory(30)->create([
+            'cliente_id' => fn () => $clientes->random()->id,
         ]);
     }
 }
