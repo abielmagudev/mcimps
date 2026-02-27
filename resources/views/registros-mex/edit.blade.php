@@ -53,7 +53,7 @@
 
     @else
     <div class="alert alert-danger text-center">
-        <strong>No se puede registrar la salida de la guía por falta de información</strong><br>
+        <strong>Guía con información INCOMPLETA. No se puede registrar salida.</strong>
         <a href="{{ route('registros.mex.search') }}" class="link-primary">Registra otra guía</a>
     </div>
 
