@@ -92,5 +92,5 @@
         </div>
     </div>
 </x-card>
-<div class="mt-3 text-end text-secondary small">Actualizado: {{ $guia->updated_at->format('d/m/Y') }}</div>
+<div class="mt-3 text-end text-secondary small">Actualizado: {{ $guia->updated_at->format('d/m/Y H:i') }}</div>
 @endsection
