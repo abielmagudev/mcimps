@@ -23,6 +23,7 @@
                 <th class="text-nowrap">Rastreo Origen</th>
                 <th class="text-nowrap">Rastreo USA</th>
                 <th class="text-nowrap">Rastreo MEX</th>
+                <th class="text-nowrap">Salida</th>
                 <th>Transportadora</th>
                 <th>Cobertura</th>
                 <th>Status</th>
@@ -39,6 +40,7 @@
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_mex ?? '') !!}</td>
+            <td>{!! marker(request('rastreo', ''), $guia->registro_salida ?? '') !!}</td>
             <td>
                 @isset($guia->transportadora)
                 <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadora->nombre }}</a>
