@@ -25,6 +25,7 @@ class RegistroMex extends Controller
 
         return view('registros-mex.search', [
             'request' => $request,
+            'guia' => isset($guia) ? $guia : new Guia,
         ]);
     }
 

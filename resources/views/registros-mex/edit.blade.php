@@ -2,7 +2,7 @@
 @section('content')
 <div style="max-width: 1024px" class="mx-auto">
     <div class="alert alert-secondary mb-3">
-        <h5 class="alert-heading mb-3">Guia #{{ $guia->id }}</h5>
+        <h5 class="alert-heading mb-3">Guia</h5>
         <div class="row">
             <div class="col-md">
                 <h6>Destino</h6>
@@ -37,7 +37,13 @@
         </div>
     </div>
 
-    @if ($guia->puedeTenerRegistroSalida())
+    @if ( $guia->tieneStatusEntregado() )
+    <div class="alert alert-success text-center">
+        <strong>Guía registrada con salida</strong><br>
+        <a href="{{ route('registros.mex.search') }}" class="link-primary">Registra otra guía</a>
+    </div>
+
+    @elseif ( $guia->puedeTenerRegistroSalida() )
     <x-card>
         <form action="{{ route('registros.mex.update', $guia) }}" method="post" autocomplete="off">
             @csrf
