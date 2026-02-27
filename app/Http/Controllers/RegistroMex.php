@@ -13,10 +13,12 @@ class RegistroMex extends Controller
     {
         if( $request->has('guia') )
         {
-            $guia = Guia::where('numero_rastreo_usa', $request->input('guia'))
-            ->orWhere('numero_rastreo_mex', $request->input('guia'))
-            ->orWhere('numero_rastreo_origen', $request->input('guia'))
-            ->first();
+            // $guia = Guia::where('numero_rastreo_usa', $request->input('guia'))
+            // ->orWhere('numero_rastreo_mex', $request->input('guia'))
+            // ->orWhere('numero_rastreo_origen', $request->input('guia'))
+            // ->first();
+
+            $guia = Guia::where('numero_rastreo_usa', $request->input('guia'))->first();
 
             if( $guia ) {
                 return redirect()->route('registros.mex.edit', $guia);
