@@ -1,4 +1,4 @@
-@extends('app', ['pageTitle' => $guia->exists ? sprintf('Cambiar dirección de la guía #%s', $guia->id) : 'Seleccionar dirección para nueva guía'])
+@extends('app', ['pageTitle' => $guia->exists ? 'Cambiar dirección de esta guía' : 'Seleccionar dirección para nueva guía'])
 @section('content')
 <x-card class="mb-3">
     <form action="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" method="get">

@@ -1,4 +1,4 @@
-@extends('app', ['pageTitle' => 'Editar guía #' . $guia->id])
+@extends('app', ['pageTitle' => 'Editar guía'])
 @section('content')
 <x-card>
     <p class="text-end">

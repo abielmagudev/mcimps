@@ -1,4 +1,4 @@
-@extends('app', ['pageTitle' => 'Guía #' . $guia->id])
+@extends('app', ['pageTitle' => 'Guía'])
 @section('content')
 <x-card>
     <div class="d-flex justify-content-between mb-3">
