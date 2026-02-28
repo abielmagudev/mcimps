@@ -15,10 +15,10 @@ return new class extends Migration
             $table->string('codigo_postal')->index();
             $table->string('ciudad')->index();
             $table->string('estado')->index();
+            $table->string('cobertura');
             $table->string('nombre_contacto')->nullable();
             $table->string('telefono_contacto')->nullable();
             $table->text('referencias')->nullable();
-            $table->string('cobertura');
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamps();
