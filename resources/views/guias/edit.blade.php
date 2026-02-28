@@ -16,6 +16,7 @@
                 <p>
                     @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])<br>
                     @include('direcciones.inc.info-completa-horizontal')
+                    <small class="text-secondary">Cobertura: {{ $direccion->cobertura }}</small>
                 </p>
                 <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
                 <span class="text-secondary mx-1">|</span>
@@ -27,6 +28,7 @@
                 <p>
                     @include('clientes.inc.info-horizontal', ['cliente' => $guia->direccion->cliente])<br>
                     @include('direcciones.inc.info-completa-horizontal', ['direccion' => $guia->direccion])
+                    <small class="text-secondary">Cobertura: {{ $guiadireccion->cobertura }}</small>
                 </p>
                 <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $guia->direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
                 <span class="text-secondary mx-1">|</span>
