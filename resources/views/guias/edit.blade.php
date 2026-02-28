@@ -19,7 +19,9 @@
                 </p>
                 <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion']) }}" class="link-primary">Cambiar dirección</a>
                 <span class="text-secondary mx-1">|</span>
-                <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Cancelar cambio de dirección</a>
+                <a href="{{ route('clientes.direcciones.create', [$direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
+                <span class="text-secondary mx-1">|</span>
+                <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Cancelar</a>
 
                 @elseif ( $guia->tieneDireccion() )
                 <p>
@@ -27,6 +29,8 @@
                     @include('direcciones.inc.info-completa-horizontal', ['direccion' => $guia->direccion])
                 </p>
                 <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion']) }}" class="link-primary">Cambiar dirección</a>
+                <span class="text-secondary mx-1">|</span>
+                <a href="{{ route('clientes.direcciones.create', [$guia->direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
                 
                 @else
                 <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion']) }}" class="link-primary">Seleccionar dirección</a>
