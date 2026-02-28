@@ -10,8 +10,8 @@
                 <input type="hidden" name="direccion_id" value="{{ $direccion->id }}">
                 <p>
                     @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])<br>
-                    @include('direcciones.inc.info-completa-horizontal', ['direccion' => $direccion])
-                    <small class="text-secondary">Cobertura: {{ $direccion->cobertura }}</small>
+                    @include('direcciones.inc.info-completa-horizontal', ['direccion' => $direccion])<br>
+                    <small class="text-secondary">Cobertura:</small> <span class="text-capitalize">{{ $direccion->cobertura }}</span>
                 </p>
                 <a href="{{ route('guias.create', ['seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
                 <span class="text-secondary mx-1">|</span>
