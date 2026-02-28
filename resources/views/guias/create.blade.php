@@ -12,10 +12,12 @@
                     @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])<br>
                     @include('direcciones.inc.info-completa-horizontal', ['direccion' => $direccion])
                 </p>
-                <a href="{{ route('guias.create', ['seleccionar-direccion']) }}" class="link-primary">Cambiar dirección</a>
-                
+                <a href="{{ route('guias.create', ['seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
+                <span class="text-secondary mx-1">|</span>
+                <a href="{{ route('clientes.direcciones.create', [$direccion->cliente]) }}" class="link-primary">Nueva dirección</a>
+
                 @else
-                <a href="{{ route('guias.create', ['seleccionar-direccion']) }}" class="link-primary">Seleccionar dirección</a>
+                <a href="{{ route('guias.create', ['seleccionar-direccion']) }}" class="link-primary">Seleccionar cliente y dirección</a>
                 
                 @endif
             </div>
