@@ -9,16 +9,12 @@
         @method('put')
 
         <div class="mb-3">
-            <label for="direccionInput" class="form-label">Dirección</label>
+            <label for="direccionInput" class="form-label">Destino</label>
             <div class="form-control">
 
                 @if( $direccion->exists )
                 <input type="hidden" name="direccion_id" value="{{ $direccion->id }}">
-                <p>
-                    @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])<br>
-                    @include('direcciones.inc.info-completa-horizontal')<br>
-                    <small class="text-secondary">Cobertura:</small> <span class="text-capitalize">{{ $direccion->cobertura }}</span>
-                </p>
+                @include('guias.inc.destino')
                 <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
                 <span class="text-secondary mx-1">|</span>
                 <a href="{{ route('clientes.direcciones.create', [$direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
@@ -26,11 +22,7 @@
                 <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Cancelar</a>
 
                 @elseif ( $guia->tieneDireccion() )
-                <p>
-                    @include('clientes.inc.info-horizontal', ['cliente' => $guia->direccion->cliente])<br>
-                    @include('direcciones.inc.info-completa-horizontal', ['direccion' => $guia->direccion])<br>
-                    <small class="text-secondary">Cobertura:</small> <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>
-                </p>
+                @include('guias.inc.destino', ['direccion' => $guia->direccion])
                 <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $guia->direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
                 <span class="text-secondary mx-1">|</span>
                 <a href="{{ route('clientes.direcciones.create', [$guia->direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
