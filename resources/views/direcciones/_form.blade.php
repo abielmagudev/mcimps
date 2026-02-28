@@ -19,6 +19,13 @@
   <input type="text" class="form-control" id="estadoInput" name="estado" value="{{ $direccion->estado }}" required>
 </div>
 <div class="mb-3">
+  <label for="coberturaSelect" class="form-label">Cobertura</label>
+  <select class="form-select" id="coberturaSelect" name="cobertura" required>
+    <option value="domicilio" @selected($direccion->cobertura == 'domicilio')>Domicilio</option>
+    <option value="ocurre" @selected($direccion->cobertura == 'ocurre')>Ocurre</option>
+  </select>
+</div>
+<div class="mb-3">
   <label for="nombreContactoInput" class="form-label">Nombre del contacto <small class="form-text text-muted">(Opcional)</small></label>
   <input type="text" class="form-control" id="nombreContactoInput" name="nombre_contacto" value="{{ $direccion->nombre_contacto }}">
 </div>
@@ -29,11 +36,4 @@
 <div class="mb-3">
   <label for="referenciasInput" class="form-label">Referencias</label>
   <textarea class="form-control" id="referenciasInput" name="referencias" rows="3">{{ $direccion->referencias }}</textarea>
-</div>
-<div class="mb-3">
-  <label for="coberturaSelect" class="form-label">Cobertura</label>
-  <select class="form-select" id="coberturaSelect" name="cobertura" required>
-    <option value="domicilio" @selected($direccion->cobertura == 'domicilio')>Domicilio</option>
-    <option value="ocurre" @selected($direccion->cobertura == 'ocurre')>Ocurre</option>
-  </select>
 </div>
