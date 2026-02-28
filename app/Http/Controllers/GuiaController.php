@@ -161,6 +161,8 @@ class GuiaController extends Controller
             ->with('cliente')
             ->limit(50)
             ->get();
+
+            $data['clientesDirecciones'] = $data['direcciones']->groupBy('cliente_id');
         }
 
         return view('guias.seleccionar-direccion', $data);

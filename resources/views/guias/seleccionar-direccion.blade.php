@@ -1,14 +1,17 @@
 @extends('app', ['pageTitle' => $guia->exists ? 'Cambiar dirección de esta guía' : 'Seleccionar dirección para nueva guía'])
 @section('content')
 <x-card class="mb-3">
-    <form action="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" method="get">
+    <form action="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" method="get" class="mb-3">
         <div class="mb-3">
-            <label class="form-label">Dirección o nombre del cliente</label>
+            <label class="form-label">Escribe la calle de la dirección o el nombre del cliente</label>
             <input type="text" class="form-control" name="seleccionar-direccion" value="{{ $request->get('seleccionar-direccion') }}" autofocus required>
         </div>
-        <button type="submit" class="btn btn-primary">Buscar dirección o cliente</button>
+        <button type="submit" class="btn btn-primary">Buscar</button>
         <a href="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" class="btn btn-outline-secondary">Cancelar</a>
     </form>
+    <div class="text-end">
+        <a href="{{ route('clientes.create', $guia->exists ? ['guia' => $guia->id] : []) }}" class="link-primary">Nuevo cliente</a>
+    </div>
 </x-card>
 
 @isset($direcciones)
@@ -54,6 +57,19 @@
             @endforeach
         </tbody>
     </x-table>
+
+    @if ($clientesDirecciones->count() == 1)
+    <?php
+        $parametros = [$direcciones->first()->cliente];
+
+        if( $guia->exists ) {
+            $parametros['guia'] = $guia->id;
+        }
+    ?>
+    <div class="text-end">
+        <a href="{{ route('clientes.direcciones.create', $parametros) }}" class="link-primary">Nueva dirección</a>
+    </div>
+    @endif
 </x-card>
 
 @else
@@ -64,8 +80,4 @@
 @endif
 @endisset
 
-<nav class="text-end">
-    <?php $parametros_retorno_guia_despues_crear_cliente_direccion = $guia->exists ? ['guia' => $guia->id] : []; ?>
-    <a href="{{ route('clientes.create', $parametros_retorno_guia_despues_crear_cliente_direccion) }}" class="link-primary">Agregar nuevo cliente</a>
-</nav>
 @endsection
