@@ -1,7 +1,10 @@
 @extends('app', ['pageTitle' => 'Editar dirección'])
 @section('content')
-@include('clientes.inc.bloque-info')
 <x-card>
+    <div class="mb-3">
+        <label class="form-label">Cliente</label>
+        <input class="form-control" value="{{ $cliente->nombre_completo }} ({{ $cliente->telefono }})" disabled>
+    </div>
     <form action="{{ route('clientes.direcciones.update', [$cliente, $direccion]) }}" method="post">
         @csrf
         @method('put')
