@@ -1,20 +1,47 @@
 @extends('app', ['pageTitle' => 'Guías'])
 @section('content')
+<div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+    <div>
+        <div class="d-flex flex-wrap gap-3 mb-3 mb-md-0">
+            {{-- Fecha --}}
+            <form action="{{ route('guias.index') }}" method="get">
+                <input type="date" class="form-control" name="fecha" value="{{ $request->get('fecha') }}" placeholder="Fecha" onchange="this.form.submit()" required>
+            </form>   
+
+            {{-- Trasnportadora --}}
+            <form action="{{ route('guias.index') }}" method="get">
+                <select class="form-select" name="transportadora" onchange="this.form.submit()" required>
+                    <option label="Transportadoras"></option>
+                    @foreach ($transportadoras as $transportadora)
+                    <option value="{{ $transportadora->id }}" @selected($request->get('transportadora') == $transportadora->id)>{{ $transportadora->nombre }}</option>
+                    @endforeach
+                </select>
+            </form>   
+            
+            {{-- Status --}}
+            <form action="{{ route('guias.index') }}" method="get">
+                <select class="form-select text-capitalize" name="status" onchange="this.form.submit()" required>
+                    @foreach ($statuses as $status)
+                    <option value="{{ $status->value }}" @selected($request->get('status') == $status->value)>
+                        {{ $status->value }}
+                        ({{ $contadores[$status->value] }})
+                    </option>
+                    @endforeach
+                </select>
+            </form>   
+        </div>
+    </div>
+    <div>
+        <a href="{{ route('guias.create') }}" class="link-primary">Nueva guia</a>
+    </div>
+</div>
 
 @if ( $guias->count() )
-<nav class="text-end mb-3">
-    <a href="{{ route('guias.create') }}" class="link-primary">Nueva guia</a>
-</nav>
 <x-card>
     <p>
-        @foreach ($statuses as $status)
-        <a href="{{ route('guias.index', ['status' => $status]) }}" class="link-primary me-2">
-            <span>({{ $contadores[$status->value] }})</span>
-            {{ ucfirst($status->value) }}
-        </a>
-        @endforeach
+        <span class="badge bg-dark">{{ $guias->count() }}</span>
+        <span class="align-middle">Guías encontradas</span>   
     </p>
-
     <x-table class="table-sm table-hover">
         <x-slot name="thead">
             <tr>

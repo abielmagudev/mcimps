@@ -19,28 +19,43 @@ class GuiaController extends Controller
 
         if( $request->has('rastreo') )
         {
-            $buscar = $request->get('rastreo');
-
-            $guias = $guiasQuery
-            ->where('numero_rastreo_origen', 'like', "%{$buscar}%")
-            ->orWhere('numero_rastreo_usa', 'like', "%{$buscar}%")
-            ->orWhere('numero_rastreo_mex', 'like', "%{$buscar}%")
-            ->orWhere('registro_salida', 'like', "%{$buscar}%")
-            ->get();
-        } else {
-            $statusInitials = $request->filled('status') ? [$request->get('status')] : [GuiaStatusEnum::DEFAULT];
-            $guias = $guiasQuery->whereIn('status', $statusInitials)->get();
+            $guiasQuery = $guiasQuery
+            ->where('numero_rastreo_origen', 'like', "%{$request->get('rastreo')}%")
+            ->orWhere('numero_rastreo_usa', 'like', "%{$request->get('rastreo')}%")
+            ->orWhere('numero_rastreo_mex', 'like', "%{$request->get('rastreo')}%")
+            ->orWhere('registro_salida', 'like', "%{$request->get('rastreo')}%");
+        } 
+        elseif( $request->filled('fecha') )
+        {
+            $guiasQuery = $guiasQuery->whereDate('created_at', '=', $request->get('fecha'));
         }
+        elseif( $request->filled('transportadora') )
+        {
+            $guiasQuery = $guiasQuery->where('transportadora_id', $request->get('transportadora'));
+        }
+        elseif( $request->filled('status') )
+        {
+            $guiasQuery = $guiasQuery->where('status', $request->get('status'));
+        }
+        else {
+            $guiasQuery = $guiasQuery->where('status', GuiaStatusEnum::RECIBIDO);
+        }
+
+        $guias = $guiasQuery->get();
+
+        $contadores = [
+            'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),
+            'pendiente' => Guia::where('status', GuiaStatusEnum::PENDIENTE)->count(),
+            'transito' => Guia::where('status', GuiaStatusEnum::TRANSITO)->count(),
+            'entregado' => Guia::where('status', GuiaStatusEnum::ENTREGADO)->count(),
+        ];
 
         return view('guias.index', [
             'guias' => $guias,
-            'contadores' => [
-                'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),
-                'pendiente' => Guia::where('status', GuiaStatusEnum::PENDIENTE)->count(),
-                'transito' => Guia::where('status', GuiaStatusEnum::TRANSITO)->count(),
-                'entregado' => Guia::where('status', GuiaStatusEnum::ENTREGADO)->count(),
-            ],
+            'contadores' => $contadores,
+            'transportadoras' => Transportadora::all(),
             'statuses' => GuiaStatusEnum::cases(),
+            'request' => $request,
         ]);
     }
 
