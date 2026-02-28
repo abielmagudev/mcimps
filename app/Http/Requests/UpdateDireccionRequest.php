@@ -24,12 +24,15 @@ class UpdateDireccionRequest extends FormRequest
         return [
             'calle' => 'required',
             'colonia' => 'required',
-            'codigo_postal' => 'required',
+            'codigo_postal' => [
+                'required',
+                'integer',
+            ],
             'ciudad' => 'required',
             'estado' => 'required',
+            'cobertura' => ['required', 'in:domicilio,ocurre'],
             'nombre_contacto' => 'nullable',
             'telefono_contacto' => 'nullable',
-            'cobertura' => ['required', 'in:domicilio,ocurre'],
             'referencias' => 'nullable',
         ];
     }

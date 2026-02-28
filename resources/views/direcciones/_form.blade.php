@@ -8,7 +8,12 @@
 </div>
 <div class="mb-3">
   <label for="codigoPostalInput" class="form-label">Código Postal</label>
-  <input type="text" class="form-control" id="codigoPostalInput" name="codigo_postal" value="{{ $direccion->codigo_postal }}" required>
+  <input type="text" class="form-control" id="codigoPostalInput" name="codigo_postal" value="{{ $direccion->codigo_postal }}" 
+  pattern="[0-9]+" 
+  inputmode="numeric" 
+  title="Por favor, ingresa solo números"
+  placeholder="Ej: 123456"
+  required>
 </div>
 <div class="mb-3">
   <label for="ciudadInput" class="form-label">Ciudad</label>
