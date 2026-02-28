@@ -45,7 +45,7 @@
     <x-table class="table-sm table-hover">
         <x-slot name="thead">
             <tr>
-                <th>#</th>
+                <th></th>
                 <th style="min-width: 248px;">Direccion</th>
                 <th class="text-nowrap">Código Postal</th>
                 <th class="text-nowrap">Rastreo Origen</th>
@@ -98,6 +98,5 @@
     <a href="{{ route('guias.create') }}" class="link-primary">Crear nueva guia</a>
 </div>
 @endif
-
 
 @endsection
