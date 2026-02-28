@@ -1,3 +1,16 @@
+<div class="mb-3 alert alert-warning">
+  <label class="form-label">Nombre del contacto</label>
+    <input 
+      type="text" 
+      class="form-control {{ bsIsInvalidClass('nombre_contacto') }}" 
+      id="nombreContactoInput" 
+      name="nombre_contacto" 
+      value="{{ old('nombre_contacto', ($guia->direccion?->nombre_contacto ?? $direccion->nombre_contacto) ) }}"
+    >
+    <x-invalid-feedback name="nombre_contacto" />
+</div>
+
+
 <div class="mb-3">
   <label for="numeroRastreoOrigenInput" class="form-label">Número de rastreo de origen <small class="text-secondary">(Opcional)</small></label>
   <input type="text" class="form-control {{ bsIsInvalidClass('numero_rastreo_origen') }}" id="numeroRastreoOrigenInput" name="numero_rastreo_origen" value="{{ old('numero_rastreo_origen', $guia->numero_rastreo_origen) }}">
