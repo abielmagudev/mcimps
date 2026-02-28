@@ -5,7 +5,7 @@
       class="form-control {{ bsIsInvalidClass('nombre_contacto') }}" 
       id="nombreContactoInput" 
       name="nombre_contacto" 
-      value="{{ old('nombre_contacto', ($guia->direccion?->nombre_contacto ?? $direccion->nombre_contacto) ) }}"
+      value="{{ old('nombre_contacto', ($direccion->nombre_contacto ?? $guia->direccion?->nombre_contacto) ) }}"
     >
     <x-invalid-feedback name="nombre_contacto" />
 </div>
