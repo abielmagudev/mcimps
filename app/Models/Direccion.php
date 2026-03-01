@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Models\Guia\Traits\RelacionGuias;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+#[ObservedBy('App\Observers\DireccionObserver')]
 class Direccion extends Model
 {
     use RelacionGuias;

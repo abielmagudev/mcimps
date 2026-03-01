@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Models\Guia\Traits\RelacionGuias;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+#[ObservedBy('App\Observers\TransportadoraObserver')]
 class Transportadora extends Model
 {
     use RelacionGuias;
