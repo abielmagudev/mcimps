@@ -1,7 +1,7 @@
 @extends('app', ['pageTitle' => 'Editar dirección'])
 @section('content')
 <x-card>
-    @include('direcciones._input-cliente-disabled')
+    @include('direcciones.inc._pseudo-input-cliente')
     <form action="{{ route('clientes.direcciones.update', [$cliente, $direccion]) }}" method="post">
         @csrf
         @method('put')

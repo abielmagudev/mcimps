@@ -1,7 +1,7 @@
 @extends('app', ['pageTitle' => 'Agregar dirección'])
 @section('content')
 <x-card>
-    @include('direcciones._input-cliente-disabled')
+    @include('direcciones.inc._pseudo-input-cliente')
     <form action="{{ route('clientes.direcciones.store', [$cliente, ...request()->query()]) }}" method="post">
         @csrf
         @include('direcciones._form')
