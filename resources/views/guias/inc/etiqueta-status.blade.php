@@ -1,7 +1,7 @@
 <?php 
 $colors = [
     'recibido' => 'text-bg-primary',
-    'pendiente' => 'text-bg-warning fst-italic',
+    'pendiente' => 'text-bg-warning fst-italic fw-normal',
     'transito' => 'text-bg-warning',
     'entregado' => 'text-bg-success',
 ];
