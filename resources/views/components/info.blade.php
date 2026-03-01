@@ -3,5 +3,5 @@
     <small class="d-block text-secondary">{{ $title }}</small>
     @endisset
 
-    <span>{{ $slot }}</span>
+    {{ $slot }}
 </div>
