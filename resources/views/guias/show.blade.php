@@ -98,7 +98,7 @@
             <x-info title="Salida">
                 <span>{{ $guia->registro_salida }}</span><br>
                 <span>{{ $guia->fecha_salida }}</span><br>
-                <span>{{ $guia->salida_por_usuario }}</span>
+                <span>{{ $guia->salidaPorUsuario?->name }}</span>
             </x-info>
         </div>
     </div>

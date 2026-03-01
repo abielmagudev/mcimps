@@ -53,7 +53,7 @@ class Guia extends Model
 
     public function salidaPorUsuario(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'salida_por_usuario');
     }
 
     public function tieneDireccion(): bool
