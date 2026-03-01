@@ -9,7 +9,7 @@
 </div>
 <div class="mb-3">
   <label for="nameInput" class="form-label">Nombre</label>
-  <input type="text" class="form-control {{ bsIsInvalidClass('name') }}" id="nameInput" name="name" value="{{ old('name', $user->name) }}" required>
+  <input type="text" class="form-control {{ bsIsInvalidClass('name') }}" id="nameInput" name="name" value="{{ old('name', $user->name) }}" placeholder="Solo letras, números, puntos y guiones" required>
   <x-invalid-feedback name="name" />
 </div>
 <div class="mb-3">
