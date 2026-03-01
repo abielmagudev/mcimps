@@ -6,6 +6,12 @@ use App\Models\Cliente;
 
 class ClienteObserver
 {
+    public function creating(Cliente $cliente): void
+    {
+        $cliente->creado_por_usuario = mt_rand(1,11);
+        $cliente->actualizado_por_usuario = mt_rand(1,11);
+    }
+
     /**
      * Handle the Cliente "created" event.
      */
@@ -14,6 +20,11 @@ class ClienteObserver
         //
     }
 
+    public function updating(Cliente $cliente): void
+    {
+        $cliente->actualizado_por_usuario = mt_rand(1,11);
+    }
+    
     /**
      * Handle the Cliente "updated" event.
      */
@@ -22,6 +33,11 @@ class ClienteObserver
         //
     }
 
+    public function deleting(Cliente $cliente): void
+    {
+        $cliente->eliminado_por_usuario = mt_rand(1,11);
+    }
+    
     /**
      * Handle the Cliente "deleted" event.
      */

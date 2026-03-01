@@ -19,6 +19,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->unsignedBigInteger('creado_por_usuario');
+            $table->unsignedBigInteger('actualizado_por_usuario');
+            $table->unsignedBigInteger('eliminado_por_usuario')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

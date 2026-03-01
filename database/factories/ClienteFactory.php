@@ -19,6 +19,8 @@ class ClienteFactory extends Factory
         return [
             'nombre_completo' => $this->faker->unique()->name(),
             'telefono' => $this->faker->phoneNumber(),
+            'creado_por_usuario' => $this->faker->randomElement([1, 2]),
+            'actualizado_por_usuario' => $this->faker->randomElement([1, 2]),
         ];
     }
 }

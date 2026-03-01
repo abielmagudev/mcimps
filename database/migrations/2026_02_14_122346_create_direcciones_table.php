@@ -19,7 +19,10 @@ return new class extends Migration
             $table->text('referencias')->nullable();
             $table->text('prellenados')->nullable();
             $table->unsignedBigInteger('cliente_id');
-            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            // $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->unsignedBigInteger('creado_por_usuario');
+            $table->unsignedBigInteger('actualizado_por_usuario');
             $table->timestamps();
         });
     }

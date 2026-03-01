@@ -28,6 +28,8 @@ class DireccionFactory extends Factory
                 'nombre_contacto' => $this->faker->optional()->name(),
                 'telefono_contacto' => $this->faker->optional()->phoneNumber(),
             ],
+            'creado_por_usuario' => $this->faker->randomElement([1, 2]),
+            'actualizado_por_usuario' => $this->faker->randomElement([1, 2]),
         ];
     }
 }

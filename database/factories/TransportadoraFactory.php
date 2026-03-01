@@ -21,6 +21,8 @@ class TransportadoraFactory extends Factory
             'nombre' => $this->faker->unique()->randomElement(['DHL', 'FedEx', 'UPS', 'Correos']),
             'sitio_web' => $this->faker->domainName(),
             'telefono' => $this->faker->phoneNumber(),
+            'creado_por_usuario' => $this->faker->randomElement([1, 2]),
+            'actualizado_por_usuario' => $this->faker->randomElement([1, 2]),
         ];
     }
 }

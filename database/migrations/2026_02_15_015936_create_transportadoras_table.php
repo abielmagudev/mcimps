@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('sitio_web');
             $table->string('telefono');
             $table->boolean('disponible')->default(true);
+            $table->unsignedBigInteger('creado_por_usuario');
+            $table->unsignedBigInteger('actualizado_por_usuario');
+            $table->unsignedBigInteger('eliminado_por_usuario')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

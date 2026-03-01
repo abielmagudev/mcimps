@@ -6,12 +6,23 @@ use App\Models\User;
 
 class UserObserver
 {
+    public function creating(User $user): void
+    {
+        $user->creado_por_usuario = mt_rand(1,11);
+        $user->actualizado_por_usuario = mt_rand(1,11);
+    }
+
     /**
      * Handle the User "created" event.
      */
     public function created(User $user): void
     {
         //
+    }
+
+    public function updating(User $user): void
+    {
+        $user->actualizado_por_usuario = mt_rand(1,11);
     }
 
     /**
@@ -22,6 +33,11 @@ class UserObserver
         //
     }
 
+    public function deleting(User $user): void
+    {
+        $user->eliminado_por_usuario = mt_rand(1,11);
+    }
+    
     /**
      * Handle the User "deleted" event.
      */

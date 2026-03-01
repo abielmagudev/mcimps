@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_completo')->unique();
             $table->string('telefono');
+            $table->unsignedBigInteger('creado_por_usuario');
+            $table->unsignedBigInteger('actualizado_por_usuario');
+            $table->unsignedBigInteger('eliminado_por_usuario')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
