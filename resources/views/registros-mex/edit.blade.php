@@ -4,35 +4,44 @@
     <div class="alert alert-secondary mb-3">
         <h5 class="alert-heading mb-3">Guia</h5>
         <div class="row">
-            <div class="col-md">
+            <div class="col-lg">
                 <h6>Destino</h6>
-                <div class="mb-1">
-                    @includeWhen($guia->tieneDireccion(), 'direcciones.inc.direccion-vertical', ['direccion' => $guia->direccion])<br>
+                <div class="mb-3">
+                    @includeWhen($guia->tieneDireccion(), 'direcciones.inc.direccion-completa-vertical', ['direccion' => $guia->direccion])<br>
                 </div>
-                <small class="text-capitalize">Cobertura: {{ $guia->direccion?->cobertura }}</small>
             </div>
-            <div class="col-md">
+            <div class="col-lg">
+                <h6>Cliente</h6>
+                <div class="mb-3">
+                    @includeWhen($guia->tieneDireccion(), 'clientes.inc.info-vertical', ['cliente' => $guia->direccion->cliente])
+                </div>
+                <x-info title="Contacto">
+                    <span>{{ $guia->nombre_contacto }}</span><br>
+                    <span>{{ $guia->telefono_contacto }}</span>
+                </x-info>
+            </div>
+            <div class="col-lg">
                 <h6>Transportadora</h6>
-                @includeWhen($guia->tieneTransportadora(), 'transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
+                <div class="mb-3">
+                    @includeWhen($guia->tieneTransportadora(), 'transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
+                </div>
+                <x-info title="Cobertura">
+                    <span class="text-capitalize">{{ $guia->direccion?->cobertura }}</span>  
+                </x-info>
             </div>
-            <div class="col-md">
+            <div class="col-lg">
                 <h6>Números de rastreo</h6>
-                <table class="table table-borderless table-sm">
-                    <tbody>
-                        <tr>
-                            <td class="bg-transparent" style="width:1%">Origen</td>
-                            <td class="bg-transparent">{{ $guia->numero_rastreo_origen }}</td>
-                        </tr>
-                        <tr>
-                            <td class="bg-transparent" style="width:1%">USA</td>
-                            <td class="bg-transparent">{{ $guia->numero_rastreo_usa }}</td>
-                        </tr>
-                        <tr>
-                            <td class="bg-transparent" style="width:1%">MEX</td>
-                            <td class="bg-transparent">{{ $guia->numero_rastreo_mex }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <x-info title="Origen">
+                    {{ $guia->numero_rastreo_origen }}
+                </x-info>
+
+                <x-info title="Estados Unidos">
+                    {{ $guia->numero_rastreo_usa }}
+                </x-info>
+
+                <x-info title="México">
+                    {{ $guia->numero_rastreo_mex }}
+                </x-info>
             </div>
         </div>
     </div>
