@@ -4,8 +4,7 @@
     <div class="col-lg col-lg-3 mb-3">
         <x-card>
             <div>
-                <span class="fw-bold">{{ $cliente->nombre_completo }}</span><br>
-                <span>{{ $cliente->telefono }}</span>
+                @include('clientes.inc.info-vertical')
             </div>
             <div class="text-end">
                 <a href="{{ route('clientes.edit', $cliente->id) }}" class="link-primary">Editar</a>

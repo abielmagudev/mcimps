@@ -1,2 +1,3 @@
 <span>{{ $cliente->nombre_completo }}</span>
-<span>({{ $cliente->telefono }})</span>
+<span class="mx-1">|</span>
+<span>{{ $cliente->telefono }}</span>
