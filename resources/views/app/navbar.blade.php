@@ -12,7 +12,7 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item {{ request()->routeIs('registros.usa.*') ? '' : 'text-muted' }}" href="{{ route('registros.usa.create') }}">Estados Unidos</a>
+              <a class="dropdown-item {{ request()->routeIs('registros.usa.*') ? '' : 'text-muted' }}" href="{{ route('registros.usa.create') }}">Entradas (Estados Unidos)</a>
             </li>
             <li>
               <a class="dropdown-item {{ request()->routeIs('registros.mex.*') ? '' : 'text-muted' }}" href="{{ route('registros.mex.search') }}">Salidas (México)</a>
