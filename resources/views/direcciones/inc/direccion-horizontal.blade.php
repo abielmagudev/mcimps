@@ -5,7 +5,8 @@
 C.P. {{ $direccion->codigo_postal }}
 
 @isset($direccion->referencias) 
-<br>
-<small>Referencias:</small> 
-<span>{{ $direccion->referencias }}</span>
+<div>
+    <small class="text-secondary">Referencias:</small> 
+    <small>{{ $direccion->referencias }}</small>
+</div>
 @endisset   

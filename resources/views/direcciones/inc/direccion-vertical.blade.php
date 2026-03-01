@@ -6,6 +6,6 @@ C.P. {{ $direccion->codigo_postal }}
 
 @isset($direccion->referencias) 
 <br>
-<small>Referencias:</small><br>
-<span>{{ $direccion->referencias }}</span>
+<small class="text-secondary">Referencias:</small><br>
+<small>{{ $direccion->referencias }}</small>
 @endisset   
