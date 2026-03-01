@@ -3,11 +3,11 @@
 <div class="row">
     <div class="col-lg col-lg-3 mb-3">
         <x-card>
-            <div>
-                @include('clientes.inc.info-vertical')
-            </div>
             <div class="text-end">
                 <a href="{{ route('clientes.edit', $cliente->id) }}" class="link-primary">Editar</a>
+            </div>
+            <div>
+                @include('clientes.inc.info-vertical')
             </div>
         </x-card>
     </div>
@@ -19,7 +19,7 @@
                     <h1 class="fs-5">Direcciones</h1>
                 </div>
                 <div class="col text-end">
-                    <a href="{{ route('clientes.direcciones.create', $cliente) }}">Nueva</a>
+                    <a href="{{ route('clientes.direcciones.create', $cliente) }}">Nueva dirección</a>
                 </div>
             </div>
 
@@ -28,8 +28,8 @@
                 <x-slot name="thead">
                     <tr>
                         <th>Dirección</th>
+                        <th>Código Postal</th>
                         <th>Cobertura</th>
-                        <th>Contacto</th>
                         <th></th>
                     </tr>
                 </x-slot>
@@ -39,16 +39,8 @@
                     <td class="text-nowrap">
                         @include('direcciones.inc.direccion-horizontal')
                     </td>
+                    <td>{{ $direccion->codigo_postal }}</td>
                     <td class="text-capitalize">{{ $direccion->cobertura }}</td>
-                    <td>
-                        @isset($direccion->nombre_contacto)
-                        <span class="d-block">{{ $direccion->nombre_contacto }}</span>
-                        @endisset
-
-                        @isset($direccion->telefono_contacto)
-                        <span>{{ $direccion->telefono_contacto }}</span>
-                        @endisset
-                    </td>
                     <td class="text-end">
                         <a href="{{ route('clientes.direcciones.edit', [$cliente, $direccion]) }}" class="link-primary">Editar</a>
                     </td>
