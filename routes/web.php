@@ -21,3 +21,6 @@ Route::post('registros/usa', [\App\Http\Controllers\RegistroUsa::class, 'store']
 Route::get('registros/mex', [\App\Http\Controllers\RegistroMex::class, 'search'])->name('registros.mex.search');
 Route::get('registros/mex/{guia}', [\App\Http\Controllers\RegistroMex::class, 'edit'])->name('registros.mex.edit');
 Route::match(['put', 'patch'], 'registros/mex/{guia}', [\App\Http\Controllers\RegistroMex::class, 'update'])->name('registros.mex.update');
+
+Route::resource('usuarios', \App\Http\Controllers\UsuarioController::class)->parameter('usuarios', 'user');
+Route::get('usuarios/{user}/confirmar-eliminacion', [\App\Http\Controllers\UsuarioController::class, 'confirmarEliminacion'])->name('usuarios.confirmar-eliminacion');

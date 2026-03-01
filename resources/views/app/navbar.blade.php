@@ -29,7 +29,7 @@
           <a class="nav-link {{ request()->routeIs('transportadoras.*') ? 'active' : '' }}" href="{{ route('transportadoras.index') }}">Transportadoras</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Usuarios</a>
+          <a class="nav-link {{ request()->routeIs('usuarios.*') ? 'active' : '' }}" href="{{ route('usuarios.index') }}">Usuarios</a>
         </li>
       </ul>
     </div>
