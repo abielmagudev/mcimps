@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Guia\Traits\RelacionGuias;
+use App\Models\Guia\Traits\RelacionGuiasTrait;
 use App\ModelTraits\ActualizadoPorUsuarioTrait;
 use App\ModelTraits\CreadoPorUsuarioTrait;
-use App\ModelTraits\EliminadoPorUsuarioTrait;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +16,7 @@ class Direccion extends Model
     /** @use HasFactory<\Database\Factories\DireccionFactory> */
     use HasFactory;
 
-    use RelacionGuias;
+    use RelacionGuiasTrait;
     use CreadoPorUsuarioTrait;
     use ActualizadoPorUsuarioTrait;
     

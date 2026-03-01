@@ -2,7 +2,9 @@
 
 namespace App\Models\Guia\Traits;
 
-trait RelacionGuias
+use App\Models\Guia;
+
+trait RelacionGuiasTrait
 {
     public function guias(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

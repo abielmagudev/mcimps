@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Guia\Traits\RelacionGuias;
+use App\Models\Guia\Traits\RelacionGuiasTrait;
 use App\ModelTraits\ActualizadoPorUsuarioTrait;
 use App\ModelTraits\CreadoPorUsuarioTrait;
 use App\ModelTraits\EliminadoPorUsuarioTrait;
@@ -18,7 +18,7 @@ class Transportadora extends Model
     use HasFactory;
     use SoftDeletes;
 
-    use RelacionGuias;
+    use RelacionGuiasTrait;
     use CreadoPorUsuarioTrait;
     use ActualizadoPorUsuarioTrait;
     use EliminadoPorUsuarioTrait;
