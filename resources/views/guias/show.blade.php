@@ -92,7 +92,7 @@
             <h6>Proceso</h6>
             <x-info title="Recibido">
                 <span>{{ $guia->created_at }}</span><br>   
-                <span>{{ $guia->creado_por_usuario }}</span>   
+                <span>{{ $guia->creadoPorUsuario->name }}</span>
             </x-info>
 
             <x-info title="Salida">
@@ -103,5 +103,5 @@
         </div>
     </div>
 </x-card>
-<div class="mt-3 text-end text-secondary small">Actualizado: {{ $guia->updated_at }} <br> {{ $guia->actualizado_por_usuario }}</div>
+<div class="mt-3 text-end text-secondary small">Actualizado: {{ $guia->updated_at }} por {{ $guia->actualizadoPorUsuario->name }}</div>
 @endsection
