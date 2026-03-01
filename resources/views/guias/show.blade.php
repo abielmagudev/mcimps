@@ -5,87 +5,97 @@
         <div>
             @include('guias.inc.etiqueta-status')
         </div>
-
         <div>
             <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar guía</a>
         </div>
     </div>
 
     <div class="row">
-        <!-- Destino -->
-        <div class="col-md col-md-4">
-            <h6>Destino</h6>
+        <!-- Dirección -->
+        <div class="col-lg">
+            <h6>Dirección</h6>
             @if ( $guia->tieneDireccion() )      
             <address>
                 @include('direcciones.inc.direccion-completa-vertical', ['direccion' => $guia->direccion])
             </address>
-            <small class="text-muted">Cliente:</small><br>
-            <span>{{ $guia->direccion->cliente->nombre_completo }}</span><br>
-            <span>({{ $guia->direccion->cliente->telefono }})</span>
+
+            <x-info title="Cobertura">
+                <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
+            </x-info>
 
             @else
-            <p class="fst-italic">* Sin dirección...</p>
+            <p class="text-muted">* Pendiente</p>
+            
+            @endif
+        </div>
+        
+        {{-- Cliente y Contacto --}}
+        <div class="col-lg">
+            <hr class="d-block d-lg-none">
+            <h6>Cliente</h6>
+            @if ( $guia->tieneDireccion() )
+            <div class="mb-3">
+                @include('clientes.inc.info-vertical', ['cliente' => $guia->direccion->cliente])
+            </div>
+
+            <x-info title="Contacto">
+                <span>{{ $guia->nombre_contacto }}</span><br>
+                <span>{{ $guia->telefono_contacto }}</span>
+            </x-info>
+            @else  
+            <p class="text-muted">* Pendiente</p>
 
             @endif
         </div>
 
         <!-- Transportadora -->
-        <div class="col-md">
-            <hr class="d-block d-md-none">
+        <div class="col-lg">
+            <hr class="d-block d-lg-none">
             <h6>Transportadora</h6>
             @if ( $guia->tieneTransportadora() )
-            <div class="mb-2">
-                <span>{{ $guia->transportadora->nombre }}</span><br>
-                <small>{{ $guia->transportadora->telefono }} |</small>
-                <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary small">Sitio Web</a>
+            <div class="mb-3">
+                @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
             </div>
 
             @else
-            <p class="fst-italic">* Sin transportadora...</p>
+            <p class="text-muted">* Pendiente</p>
 
             @endif
 
-            <x-info title="Número de rastreo">
-                <span>{{ $guia->numero_rastreo_mex }}</span>    
-            </x-info>
-
-            <x-info title="Cobertura">
-                @if( $guia->tieneDireccion() )
-                <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
-                
-                @else
-                <span class="fst-italic">* Requiere dirección...</span>  
-
-                @endif
-            </x-info>
-
             @isset($guia->observaciones)
             <x-info title="Observaciones">
-                {{ $guia->observaciones }}    
+                {{ $guia->observaciones }}
             </x-info>
             @endisset
         </div>
 
+        {{-- Números de rastreo --}}
+        <div class="col-lg">
+            <hr class="d-block d-lg-none">
+            <h6>Números de rastreo</h6>
+            <x-info title="Origen">
+                {{ $guia->numero_rastreo_origen }}
+            </x-info>
+
+            <x-info title="Estados Unidos">
+                {{ $guia->numero_rastreo_usa }}
+            </x-info>
+
+            <x-info title="México">
+                {{ $guia->numero_rastreo_mex }}
+            </x-info>
+        </div>
+
         <!-- Proceso -->
-        <div class="col-md">
-            <hr class="d-block d-md-none">
+        <div class="col-lg">
+            <hr class="d-block d-lg-none">
             <h6>Proceso</h6>
             <x-info title="Recibido">
                 <span>{{ $guia->created_at }}</span><br>   
                 <span>{{ $guia->creado_por_usuario }}</span>   
             </x-info>
 
-            @isset($guia->numero_rastreo_origen)
-            <x-info title="Número de rastreo de origen">
-                <span>{{ $guia->numero_rastreo_origen }}</span>   
-            </x-info>
-            @endisset
-
-            <x-info title="Número de rastreo en USA">
-                <span>{{ $guia->numero_rastreo_usa }}</span>   
-            </x-info>
-
-            <x-info title="Registro de salida">
+            <x-info title="Salida">
                 <span>{{ $guia->registro_salida }}</span><br>
                 <span>{{ $guia->fecha_salida }}</span><br>
                 <span>{{ $guia->salida_por_usuario }}</span>

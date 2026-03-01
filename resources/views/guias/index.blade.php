@@ -1,41 +1,7 @@
 @extends('app', ['pageTitle' => 'Guías'])
 @section('content')
-<div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
-    <div>
-        <div class="d-flex flex-wrap gap-3 mb-3 mb-md-0">
-            {{-- Fecha --}}
-            <form action="{{ route('guias.index') }}" method="get">
-                <input type="date" class="form-control" name="fecha" value="{{ $request->get('fecha') }}" placeholder="Fecha" onchange="this.form.submit()" required>
-            </form>   
 
-            {{-- Trasnportadora --}}
-            <form action="{{ route('guias.index') }}" method="get">
-                <select class="form-select" name="transportadora" onchange="this.form.submit()" required>
-                    <option label="Transportadoras"></option>
-                    @foreach ($transportadoras as $transportadora)
-                    <option value="{{ $transportadora->id }}" @selected($request->get('transportadora') == $transportadora->id)>{{ $transportadora->nombre }}</option>
-                    @endforeach
-                </select>
-            </form>   
-            
-            {{-- Status --}}
-            <form action="{{ route('guias.index') }}" method="get">
-                <select class="form-select text-capitalize" name="status" onchange="this.form.submit()" required>
-                    @foreach ($statuses as $status)
-                    <option value="{{ $status->value }}" @selected($request->get('status') == $status->value)>
-                        {{ $status->value }}
-                        ({{ $contadores[$status->value] }})
-                    </option>
-                    @endforeach
-                </select>
-            </form>   
-        </div>
-    </div>
-    <div>
-        <a href="{{ route('guias.create') }}" class="link-primary">Nueva guia</a>
-    </div>
-</div>
-
+@include('guias.index.barra-filtros-links')
 @if ( $guias->count() )
 <x-card>
     <p>
@@ -71,9 +37,9 @@
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_mex ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->registro_salida ?? '') !!}</td>
             <td>
-                @isset($guia->transportadora)
+                @if($guia->tieneTransportadora())
                 <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadora->nombre }}</a>
-                @endisset
+                @endif
             </td>
             <td class="text-capitalize">{{ $guia->direccion?->cobertura }}</td>
             <td>
