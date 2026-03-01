@@ -59,15 +59,11 @@
             </tr>
         </x-slot>
 
-        @foreach ($guias as $index =>$guia)
+        @foreach ($guias as $index => $guia)
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
             <td>
-                @if ($guia->tieneDireccion())
-                <span>{{ $guia->direccion->calle }}</span>, 
-                <span>{{ $guia->direccion->ciudad }}</span>, 
-                <span>{{ $guia->direccion->estado }}</span>
-                @endif
+                @includeWhen($guia->tieneDireccion(), 'direcciones.inc.direccion-horizontal', ['direccion' => $guia->direccion])
             </td>
             <td>{{ $guia->direccion->codigo_postal ?? '' }}</span></td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
