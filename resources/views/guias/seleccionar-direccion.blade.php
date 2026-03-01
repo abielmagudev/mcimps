@@ -24,8 +24,8 @@
     <x-table>
         <x-slot name="thead">
             <th>Información</th>
-            <th>Cobertura</th>
             <th>Cliente</th>
+            <th>Cobertura</th>
             <th></th>
         </x-slot>
         <tbody>
@@ -33,16 +33,15 @@
             <tr>
                 <td>
                     {!! marker($request->get('seleccionar-direccion'), $direccion->calle) !!}, 
-                    {{ $direccion->colonia }}, 
-                    col. {{ $direccion->ciudad }}, 
-                    {{ $direccion->estado }} 
-                    C.P. {{ $direccion->codigo_postal }}
-                </td>
-                <td>
-                    <span class="text-capitalize">{{ $direccion->cobertura }}</span>
+                    col {{ $direccion->colonia }}, 
+                    {{ $direccion->ciudad }}, 
+                    {{ $direccion->estado }}, 
                 </td>
                 <td>
                     {!! marker($request->get('seleccionar-direccion'), $direccion->cliente->nombre_completo) !!}
+                </td>
+                <td>
+                    <span class="text-capitalize">{{ $direccion->cobertura }}</span>
                 </td>
                 <td class="text-end">
                     @if( $guia->exists )

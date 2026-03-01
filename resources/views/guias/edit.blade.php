@@ -11,21 +11,36 @@
         <div class="mb-3">
             <label for="direccionInput" class="form-label">Destino</label>
             <div class="form-control">
-
                 @if( $direccion->exists )
+                <div class="mb-3">
+                    @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])
+                    @include('direcciones.inc.direccion-completa-vertical', ['direccion' => $direccion])
+                </div>
+                <x-info title="Cobertura">
+                    <span class="text-capitalize">{{ $direccion->cobertura }}</span>  
+                </x-info>
+                <div>
+                    <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
+                    <span class="text-secondary mx-1">|</span>
+                    <a href="{{ route('clientes.direcciones.create', [$direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
+                    <span class="text-secondary mx-1">|</span>
+                    <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Cancelar</a>
+                </div>
                 <input type="hidden" name="direccion_id" value="{{ $direccion->id }}">
-                @include('guias.inc.destino')
-                <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
-                <span class="text-secondary mx-1">|</span>
-                <a href="{{ route('clientes.direcciones.create', [$direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
-                <span class="text-secondary mx-1">|</span>
-                <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Cancelar</a>
 
                 @elseif ( $guia->tieneDireccion() )
-                @include('guias.inc.destino', ['direccion' => $guia->direccion])
-                <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $guia->direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
-                <span class="text-secondary mx-1">|</span>
-                <a href="{{ route('clientes.direcciones.create', [$guia->direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
+                <div class="mb-3">
+                    @include('clientes.inc.info-horizontal', ['cliente' => $guia->direccion->cliente])
+                    @include('direcciones.inc.direccion-completa-vertical', ['direccion' => $guia->direccion])
+                </div>
+                <x-info title="Cobertura">
+                    <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
+                </x-info>
+                <div>
+                    <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $guia->direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
+                    <span class="text-secondary mx-1">|</span>
+                    <a href="{{ route('clientes.direcciones.create', [$guia->direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
+                </div>
                 
                 @else
                 <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion']) }}" class="link-primary">Seleccionar cliente y dirección...</a>
