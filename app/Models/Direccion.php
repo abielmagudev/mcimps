@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Models\Guia\Traits\RelacionGuias;
+use App\ModelTraits\ActualizadoPorUsuarioTrait;
+use App\ModelTraits\CreadoPorUsuarioTrait;
+use App\ModelTraits\EliminadoPorUsuarioTrait;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,11 +14,13 @@ use Illuminate\Database\Eloquent\Model;
 #[ObservedBy('App\Observers\DireccionObserver')]
 class Direccion extends Model
 {
-    use RelacionGuias;
-    
     /** @use HasFactory<\Database\Factories\DireccionFactory> */
     use HasFactory;
 
+    use RelacionGuias;
+    use CreadoPorUsuarioTrait;
+    use ActualizadoPorUsuarioTrait;
+    
     protected $table = 'direcciones';
 
     protected $fillable = [
