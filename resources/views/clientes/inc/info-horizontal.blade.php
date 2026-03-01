@@ -1,2 +1,2 @@
 <span>{{ $cliente->nombre_completo }}</span>
-(<span>{{ $cliente->telefono }}</span>)
+<span>({{ $cliente->telefono }})</span>
