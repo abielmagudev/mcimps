@@ -20,6 +20,8 @@ class UpdateGuiaRequest extends FormRequest
             'numero_rastreo_mex' => 'nullable',
             'registro_salida' => 'nullable',
             'observaciones' => 'nullable',
+            'nombre_contacto' => 'nullable',
+            'telefono_contacto' => 'nullable',
             'direccion_id' => [
                 'nullable',
                 'exists:direcciones,id',

@@ -26,11 +26,13 @@ class GuiaFactory extends Factory
             'numero_rastreo_mex' => $numero_rastreo_mex,
             'registro_salida' => $registro_salida,
             'fecha_salida' => $fecha_salida,
+            // 'salida_por_usuario' => $this->faker->randomElement([1, 2]),
             'observaciones' => $this->faker->optional()->sentence(),
+            'nombre_contacto' => $this->faker->optional()->name(),
+            'telefono_contacto' => $this->faker->optional()->phoneNumber(),
             // 'status' => $this->faker->randomElement(GuiaStatusEnum::cases()),
             // 'direccion_id' => $this->faker->randomElement(factory(App\Models\Direccion::class)->count()),
             // 'transportadora_id' => $this->faker->randomElement(factory(App\Models\Transportadora::class)->count()),
-            // 'salida_por_usuario' => $this->faker->randomElement([1, 2]),
         ];
     }
 }

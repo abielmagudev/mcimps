@@ -22,6 +22,8 @@ return new class extends Migration
             $table->timestamp('fecha_salida')->nullable();
             $table->unsignedBigInteger('salida_por_usuario')->nullable();
             $table->text('observaciones')->nullable();
+            $table->string('nombre_contacto')->nullable();
+            $table->string('telefono_contacto')->nullable();
             $table->string('status')->default(GuiaStatusEnum::DEFAULT);
             $table->unsignedBigInteger('direccion_id')->nullable();
             $table->unsignedBigInteger('transportadora_id')->nullable();
