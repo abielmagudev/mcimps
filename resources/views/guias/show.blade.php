@@ -17,7 +17,7 @@
             <h6>Destino</h6>
             @if ( $guia->tieneDireccion() )      
             <address>
-                @include('direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
+                @include('direcciones.inc.direccion-vertical', ['direccion' => $guia->direccion])
             </address>
             <small class="text-muted">Cliente:</small><br>
             <span>{{ $guia->direccion->cliente->nombre_completo }}</span><br>

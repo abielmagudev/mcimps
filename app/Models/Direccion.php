@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Guia\Traits\RelacionGuias;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,25 +22,25 @@ class Direccion extends Model
         'codigo_postal',
         'ciudad',
         'estado',
-        'nombre_contacto',
-        'telefono_contacto',
-        'referencias',
         'cobertura',
+        'referencias',
+        'prellenados',
     ];
+
+    public function prellenados(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return json_decode($value, true);
+            },
+            set: function ($value) {
+                return json_encode($value);
+            },
+        );
+    }
 
     public function cliente(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Cliente::class);
-    }
-
-    public function getLinealAttribute(): string
-    {
-        return sprintf('%s, %s, %s, %s %s', 
-            $this->calle, 
-            $this->colonia, 
-            $this->ciudad, 
-            $this->estado, 
-            $this->codigo_postal
-        );
     }
 }

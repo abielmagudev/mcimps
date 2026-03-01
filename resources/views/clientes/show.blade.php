@@ -38,7 +38,7 @@
                 @foreach ($cliente->direcciones->reverse() as $direccion)
                 <tr>
                     <td class="text-nowrap">
-                        @include('direcciones.inc.info-horizontal')
+                        @include('direcciones.inc.direccion-horizontal')
                     </td>
                     <td class="text-capitalize">{{ $direccion->cobertura }}</td>
                     <td>

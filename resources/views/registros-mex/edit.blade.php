@@ -7,7 +7,7 @@
             <div class="col-md">
                 <h6>Destino</h6>
                 <div class="mb-1">
-                    @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-vertical', ['direccion' => $guia->direccion])<br>
+                    @includeWhen($guia->tieneDireccion(), 'direcciones.inc.direccion-vertical', ['direccion' => $guia->direccion])<br>
                 </div>
                 <small class="text-capitalize">Cobertura: {{ $guia->direccion?->cobertura }}</small>
             </div>

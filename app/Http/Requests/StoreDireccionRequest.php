@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Direccion\DireccionCoberturaEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreDireccionRequest extends FormRequest
 {
@@ -30,10 +32,15 @@ class StoreDireccionRequest extends FormRequest
             ],
             'ciudad' => 'required',
             'estado' => 'required',
-            'cobertura' => ['required', 'in:domicilio,ocurre'],
-            'nombre_contacto' => 'nullable',
-            'telefono_contacto' => 'nullable',
+            'cobertura' => [
+                'required', 
+                Rule::in(array_column(DireccionCoberturaEnum::cases(), 'value'))
+            ],
             'referencias' => 'nullable',
+            'prellenados' => [
+                'nullable', 
+                'array'
+            ],
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreDireccionRequest;
 use App\Http\Requests\UpdateDireccionRequest;
 use App\Models\Cliente;
 use App\Models\Direccion;
+use App\Models\Direccion\DireccionCoberturaEnum;
 use App\Models\Guia;
 use GuzzleHttp\Client;
 
@@ -24,6 +25,7 @@ class DireccionController extends Controller
         return view('direcciones.create', [
             'cliente' => $cliente,
             'direccion' => new Direccion,
+            'coberturas' => DireccionCoberturaEnum::cases(),
         ]);
     }
 
@@ -57,6 +59,7 @@ class DireccionController extends Controller
         return view('direcciones.edit', [
             'cliente' => $cliente,
             'direccion' => $direccion,
+            'coberturas' => DireccionCoberturaEnum::cases(),
         ]);
     }
 

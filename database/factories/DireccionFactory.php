@@ -22,10 +22,12 @@ class DireccionFactory extends Factory
             'codigo_postal' => $this->faker->postcode(),
             'ciudad' => $this->faker->city(),
             'estado' => $this->faker->state(),
-            'nombre_contacto' => $this->faker->optional()->name(),
-            'telefono_contacto' => $this->faker->optional()->phoneNumber(),
             'cobertura' => $this->faker->randomElement(['domicilio', 'ocurre']),
             'referencias' => $this->faker->optional()->sentence(),
+            'prellenados' => [
+                'nombre_contacto' => $this->faker->optional()->name(),
+                'telefono_contacto' => $this->faker->optional()->phoneNumber(),
+            ],
         ];
     }
 }
