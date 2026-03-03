@@ -4,16 +4,21 @@ namespace App\Policies;
 
 use App\Models\Direccion;
 use App\Models\User;
+use App\Models\User\UserTypeEnum;
 use Illuminate\Auth\Access\Response;
 
 class DireccionPolicy
 {
+    private function basicPermission(User $user): bool
+    {
+        return $user->type == UserTypeEnum::DOCUMENTADOR->value;
+    }
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $this->basicPermission($user);
     }
 
     /**
@@ -21,7 +26,7 @@ class DireccionPolicy
      */
     public function view(User $user, Direccion $direccion): bool
     {
-        return false;
+        return $this->basicPermission($user);
     }
 
     /**
@@ -29,7 +34,7 @@ class DireccionPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $this->basicPermission($user);
     }
 
     /**
@@ -37,7 +42,7 @@ class DireccionPolicy
      */
     public function update(User $user, Direccion $direccion): bool
     {
-        return false;
+        return $this->basicPermission($user);
     }
 
     /**

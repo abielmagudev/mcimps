@@ -4,16 +4,22 @@ namespace App\Policies;
 
 use App\Models\Cliente;
 use App\Models\User;
+use App\Models\User\UserTypeEnum;
 use Illuminate\Auth\Access\Response;
 
 class ClientePolicy
 {
+    private function basicPermission(User $user): bool
+    {
+        return $user->type == UserTypeEnum::DOCUMENTADOR->value;
+    }
+
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $this->basicPermission($user);
     }
 
     /**
@@ -21,7 +27,7 @@ class ClientePolicy
      */
     public function view(User $user, Cliente $cliente): bool
     {
-        return false;
+        return $this->basicPermission($user);
     }
 
     /**
@@ -29,7 +35,7 @@ class ClientePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $this->basicPermission($user);
     }
 
     /**
@@ -37,7 +43,7 @@ class ClientePolicy
      */
     public function update(User $user, Cliente $cliente): bool
     {
-        return false;
+        return $this->basicPermission($user);
     }
 
     /**

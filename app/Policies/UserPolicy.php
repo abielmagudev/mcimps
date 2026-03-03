@@ -2,32 +2,25 @@
 
 namespace App\Policies;
 
-use App\Models\Transportadora;
 use App\Models\User;
-use App\Models\User\UserTypeEnum;
 use Illuminate\Auth\Access\Response;
 
-class TransportadoraPolicy
+class UserPolicy
 {
-    private function basicPermission(User $user): bool
-    {
-        return $user->type == UserTypeEnum::DOCUMENTADOR->value;
-    }
-
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return $this->basicPermission($user);
+        return false;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Transportadora $transportadora): bool
+    public function view(User $user, User $model): bool
     {
-        return $this->basicPermission($user);
+        return false;
     }
 
     /**
@@ -35,21 +28,21 @@ class TransportadoraPolicy
      */
     public function create(User $user): bool
     {
-        return $this->basicPermission($user);
+        return false;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Transportadora $transportadora): bool
+    public function update(User $user, User $model): bool
     {
-        return $this->basicPermission($user);
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Transportadora $transportadora): bool
+    public function delete(User $user, User $model): bool
     {
         return false;
     }
@@ -57,7 +50,7 @@ class TransportadoraPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Transportadora $transportadora): bool
+    public function restore(User $user, User $model): bool
     {
         return false;
     }
@@ -65,7 +58,7 @@ class TransportadoraPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Transportadora $transportadora): bool
+    public function forceDelete(User $user, User $model): bool
     {
         return false;
     }

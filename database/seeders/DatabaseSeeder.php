@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'superadmin',
             'email' => 'superadmin@mail.com',
             'password' => bcrypt('password'),
-            'type' => UserTypeEnum::ADMINNISTRADOR,
+            'type' => UserTypeEnum::ADMINISTRADOR,
             'creado_por_usuario' => 1,
             'actualizado_por_usuario' => 1,
         ]);
