@@ -6,7 +6,7 @@ use BenSampo\Enum\Enum;
 
 enum UserTypeEnum: string
 {
-    case ADMINNISTRADOR = 'administrador';
+    case ADMINISTRADOR = 'administrador';
     case DOCUMENTADOR = 'documentador';
     case ALMACEN = 'almacen';
     case ALMACEN_USA = 'almacen_usa';
@@ -15,7 +15,7 @@ enum UserTypeEnum: string
     public function titulo(): string
     {
         return match ($this) {
-            self::ADMINNISTRADOR => 'Administrador',
+            self::ADMINISTRADOR => 'Administrador',
             self::DOCUMENTADOR => 'Documentador',
             self::ALMACEN => 'Almacén en Estados Unidos y México',
             self::ALMACEN_USA => 'Almacén en Estados Unidos',
@@ -26,7 +26,7 @@ enum UserTypeEnum: string
     public function routePaginaInicial(): string
     {
         return match ($this) {
-            self::ADMINNISTRADOR => 'guias.index',
+            self::ADMINISTRADOR => 'guias.index',
             self::DOCUMENTADOR => 'guias.index',
             self::ALMACEN => 'guias.index',
             self::ALMACEN_USA => 'registros.usa.create',
