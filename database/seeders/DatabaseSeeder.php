@@ -17,16 +17,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create([
-            'creado_por_usuario' => 1,
-            'actualizado_por_usuario' => 1,
-        ]);
-
         User::factory()->create([
             'name' => 'superadmin',
             'email' => 'superadmin@mail.com',
             'password' => bcrypt('password'),
             'type' => UserTypeEnum::ADMINISTRADOR,
+            'creado_por_usuario' => 1,
+            'actualizado_por_usuario' => 1,
+        ]);
+
+        if( env('APP_ENV') === 'production' ) {
+            return;
+        }
+
+        User::factory(10)->create([
             'creado_por_usuario' => 1,
             'actualizado_por_usuario' => 1,
         ]);
