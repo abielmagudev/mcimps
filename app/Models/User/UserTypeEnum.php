@@ -29,8 +29,8 @@ enum UserTypeEnum: string
             self::ADMINNISTRADOR => 'guias.index',
             self::DOCUMENTADOR => 'guias.index',
             self::ALMACEN => 'guias.index',
-            self::ALMACEN_USA => 'registros-usa.index',
-            self::ALMACEN_MEX => 'registros-mex.index',
+            self::ALMACEN_USA => 'registros.usa.create',
+            self::ALMACEN_MEX => 'registros.mex.search',
         };
     }
     
