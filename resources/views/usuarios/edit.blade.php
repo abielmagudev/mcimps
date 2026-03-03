@@ -9,7 +9,4 @@
         <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </x-card>
-<div class="text-end">
-    <a href="{{ route('usuarios.confirmar-eliminacion', $user) }}" class="link-danger">Eliminar usuario</a>
-</div>
 @endsection

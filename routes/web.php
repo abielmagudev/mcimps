@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
-    Route::get('usuarios/{user}/confirmar-eliminacion', [\App\Http\Controllers\UsuarioController::class, 'confirmarEliminacion'])
-    ->name('usuarios.confirmar-eliminacion')
-    ->middleware('can:viewAny,App\Models\Usuario');
+    // Route::get('usuarios/{user}/confirmar-eliminacion', [\App\Http\Controllers\UsuarioController::class, 'confirmarEliminacion'])
+    // ->name('usuarios.confirmar-eliminacion')
+    // ->middleware('can:viewAny,App\Models\Usuario');
     Route::resource('usuarios', \App\Http\Controllers\UsuarioController::class)->parameter('usuarios', 'user')
     ->middleware('can:viewAny,App\Models\Usuario');
 
