@@ -3,13 +3,14 @@
 namespace App\Observers;
 
 use App\Models\Guia;
+use Illuminate\Support\Facades\Auth;
 
 class GuiaObserver
 {
     public function creating(Guia $guia): void
     {
-        $guia->creado_por_usuario = mt_rand(1,10);
-        $guia->actualizado_por_usuario = mt_rand(1,10);
+        $guia->creado_por_usuario = Auth::id();
+        $guia->actualizado_por_usuario = Auth::id();
     }
 
     /**
@@ -22,7 +23,7 @@ class GuiaObserver
 
     public function updating(Guia $guia): void
     {
-        $guia->actualizado_por_usuario = mt_rand(1,10);
+        $guia->actualizado_por_usuario = Auth::id();
     }
 
     /**

@@ -3,13 +3,14 @@
 namespace App\Observers;
 
 use App\Models\Transportadora;
+use Illuminate\Support\Facades\Auth;
 
 class TransportadoraObserver
 {
     public function creating(Transportadora $transportadora): void
     {
-        $transportadora->creado_por_usuario = mt_rand(1,11);
-        $transportadora->actualizado_por_usuario = mt_rand(1,11);
+        $transportadora->creado_por_usuario = Auth::id();
+        $transportadora->actualizado_por_usuario = Auth::id();
     }
 
     /**
@@ -22,7 +23,7 @@ class TransportadoraObserver
 
     public function updating(Transportadora $transportadora): void
     {
-        $transportadora->actualizado_por_usuario = mt_rand(1,11);
+        $transportadora->actualizado_por_usuario = Auth::id();
     }
     
     /**
@@ -35,7 +36,7 @@ class TransportadoraObserver
 
     public function deleting(Transportadora $transportadora): void
     {
-        $transportadora->eliminado_por_usuario = mt_rand(1,11);
+        $transportadora->eliminado_por_usuario = Auth::id();
     }
     
     /**

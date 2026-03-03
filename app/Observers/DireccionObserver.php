@@ -3,13 +3,14 @@
 namespace App\Observers;
 
 use App\Models\Direccion;
+use Illuminate\Support\Facades\Auth;
 
 class DireccionObserver
 {
     public function creating(Direccion $direccion): void
     {
-        $direccion->creado_por_usuario = mt_rand(1,11);
-        $direccion->actualizado_por_usuario = mt_rand(1,11);
+        $direccion->creado_por_usuario = Auth::id();
+        $direccion->actualizado_por_usuario = Auth::id();
     }
 
     /**
@@ -22,7 +23,7 @@ class DireccionObserver
 
     public function updating(Direccion $direccion): void
     {
-        $direccion->actualizado_por_usuario = mt_rand(1,11);
+        $direccion->actualizado_por_usuario = Auth::id();
     }
 
     /**
@@ -35,7 +36,7 @@ class DireccionObserver
 
     public function deleting(Direccion $direccion): void
     {
-        $direccion->eliminado_por_usuario = mt_rand(1,11);
+        $direccion->eliminado_por_usuario = Auth::id();
     }
     
     /**

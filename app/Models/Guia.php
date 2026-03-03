@@ -31,7 +31,7 @@ class Guia extends Model
         'status',
         'direccion_id',
         'transportadora_id',
-        'salida_por_usuario',
+        // 'salida_por_usuario',
         // 'creado_por_usuario',
         // 'actualizado_por_usuario',
     ];

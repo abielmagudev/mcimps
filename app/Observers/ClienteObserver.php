@@ -3,13 +3,14 @@
 namespace App\Observers;
 
 use App\Models\Cliente;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteObserver
 {
     public function creating(Cliente $cliente): void
     {
-        $cliente->creado_por_usuario = mt_rand(1,11);
-        $cliente->actualizado_por_usuario = mt_rand(1,11);
+        $cliente->creado_por_usuario = Auth::id();
+        $cliente->actualizado_por_usuario = Auth::id();
     }
 
     /**
@@ -22,7 +23,7 @@ class ClienteObserver
 
     public function updating(Cliente $cliente): void
     {
-        $cliente->actualizado_por_usuario = mt_rand(1,11);
+        $cliente->actualizado_por_usuario = Auth::id();
     }
     
     /**
@@ -35,7 +36,7 @@ class ClienteObserver
 
     public function deleting(Cliente $cliente): void
     {
-        $cliente->eliminado_por_usuario = mt_rand(1,11);
+        $cliente->eliminado_por_usuario = Auth::id();
     }
     
     /**

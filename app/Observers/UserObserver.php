@@ -3,13 +3,14 @@
 namespace App\Observers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserObserver
 {
     public function creating(User $user): void
     {
-        $user->creado_por_usuario = mt_rand(1,11);
-        $user->actualizado_por_usuario = mt_rand(1,11);
+        $user->creado_por_usuario = Auth::id();
+        $user->actualizado_por_usuario = Auth::id();
     }
 
     /**
@@ -22,7 +23,7 @@ class UserObserver
 
     public function updating(User $user): void
     {
-        $user->actualizado_por_usuario = mt_rand(1,11);
+        $user->actualizado_por_usuario = Auth::id();
     }
 
     /**
@@ -35,7 +36,7 @@ class UserObserver
 
     public function deleting(User $user): void
     {
-        $user->eliminado_por_usuario = mt_rand(1,11);
+        $user->eliminado_por_usuario = Auth::id();
     }
     
     /**

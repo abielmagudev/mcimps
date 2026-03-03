@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateRegistroMexRequest;
 use App\Models\Guia;
 use App\Models\Guia\GuiaStatusEnum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegistroMex extends Controller
 {
@@ -40,7 +41,7 @@ class RegistroMex extends Controller
     {
         $guia->registro_salida = $request->input('registro_salida');
         $guia->fecha_salida = now();
-        $guia->salida_por_usuario = mt_rand(1,10);
+        $guia->salida_por_usuario = Auth::id();
         $guia->status = GuiaStatusEnum::TRANSITO;
 
         if(! $guia->save() ) {
