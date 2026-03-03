@@ -134,14 +134,6 @@ class GuiaController extends Controller
         return redirect()->route('guias.edit', $guia)->with('success', 'Guía actualizada con éxito');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Guia $guia)
-    {
-        //
-    }
-
     public function seleccionarDireccion(Request $request, Guia $guia)
     {
         $data = [
@@ -167,5 +159,19 @@ class GuiaController extends Controller
         }
 
         return view('guias.seleccionar-direccion', $data);
+    }
+
+    public function destroy(Guia $guia)
+    {
+        if(! $guia->delete() ) {
+            return back()->withErrors($guia->errors())->with('error', 'Error al eliminar la guía');
+        }
+
+        return redirect()->route('guias.index')->with('success', sprintf('Guía con rastreo #%s eliminada con éxito', $guia->numero_rastreo_usa));
+    }
+
+    public function confirmarEliminacion(Guia $guia)
+    {
+        return view('guias.confirmar-eliminacion')->with('guia', $guia);
     }
 }

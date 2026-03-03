@@ -1,6 +1,6 @@
 @extends('app', ['pageTitle' => 'Editar guía'])
 @section('content')
-<x-card>
+<x-card class="mb-3">
     <p class="text-end">
         <a href="{{ route('guias.show', $guia) }}" class="link-primary">Ver guía</a>
     </p>
@@ -80,4 +80,8 @@
         <a href="{{ route('guias.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </x-card>
+
+<div class="text-end">
+    <a href="{{ route('guias.confirmar-eliminacion', $guia) }}" class="link-danger">Eliminar guía</a>
+</div>
 @endsection
