@@ -12,13 +12,13 @@
             <label for="direccionInput" class="form-label">Destino</label>
             <div class="form-control">
                 @if( $direccion->exists )
+                <x-info title="Cobertura">
+                    <span class="text-capitalize">{{ $direccion->cobertura }}</span>  
+                </x-info>
                 <div class="mb-3">
                     @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])
                     @include('direcciones.inc.direccion-completa-vertical', ['direccion' => $direccion])
                 </div>
-                <x-info title="Cobertura">
-                    <span class="text-capitalize">{{ $direccion->cobertura }}</span>  
-                </x-info>
                 <div>
                     <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
                     <span class="text-secondary mx-1">|</span>
@@ -29,13 +29,13 @@
                 <input type="hidden" name="direccion_id" value="{{ $direccion->id }}">
 
                 @elseif ( $guia->tieneDireccion() )
+                <x-info title="Cobertura">
+                    <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
+                </x-info>
                 <div class="mb-3">
                     @include('clientes.inc.info-horizontal', ['cliente' => $guia->direccion->cliente])
                     @include('direcciones.inc.direccion-completa-vertical', ['direccion' => $guia->direccion])
                 </div>
-                <x-info title="Cobertura">
-                    <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
-                </x-info>
                 <div>
                     <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $guia->direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
                     <span class="text-secondary mx-1">|</span>
