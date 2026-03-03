@@ -12,7 +12,7 @@ class ClienteController extends Controller
     public function index()
     {
         return view('clientes.index', [
-            'clientes' => Cliente::all()->sortByDesc('id'),
+            'clientes' => Cliente::orderBy('id')->paginate(100),
         ]);
     }
 

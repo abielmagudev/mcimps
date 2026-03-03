@@ -3,7 +3,7 @@
 <nav class="text-end mb-3">
     <a href="{{ route('clientes.create') }}" class="link-primary">Nuevo cliente</a>
 </nav>
-<x-card>
+<x-card class="mb-3">
     <x-table>
         <x-slot name="thead">
             <tr>
@@ -24,4 +24,8 @@
         @endforeach
     </x-table>
 </x-card>
+
+<div class="d-flex justify-content-end">
+    <x-pagination :collection="$clientes" />
+</div>
 @endsection

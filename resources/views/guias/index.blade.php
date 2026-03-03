@@ -3,9 +3,9 @@
 
 @include('guias.index.barra-filtros-links')
 @if ( $guias->count() )
-<x-card>
+<x-card class="mb-3">
     <p>
-        <span class="badge bg-dark">{{ $guias->count() }}</span>
+        <span class="badge bg-dark">{{ $guias->total() }}</span>
         <span class="align-middle">Guías encontradas</span>   
     </p>
     <x-table class="table-sm table-hover">
@@ -53,6 +53,10 @@
         @endforeach
     </x-table>
 </x-card>
+
+<div class="d-flex justify-content-end">
+    <x-pagination :collection="$guias" />
+</div>
 
 @else
 <div class="text-center">
