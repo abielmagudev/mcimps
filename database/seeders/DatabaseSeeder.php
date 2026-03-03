@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Guia;
 use App\Models\User;
+use App\Models\User\UserTypeEnum;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,12 +22,14 @@ class DatabaseSeeder extends Seeder
             'actualizado_por_usuario' => 1,
         ]);
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        auth()->login(User::first());
+        User::factory()->create([
+            'name' => 'superadmin',
+            'email' => 'superadmin@mail.com',
+            'password' => bcrypt('password'),
+            'type' => UserTypeEnum::ADMINNISTRADOR,
+            'creado_por_usuario' => 1,
+            'actualizado_por_usuario' => 1,
+        ]);
 
         $this->call([
             ClienteSeeder::class,
@@ -34,7 +37,5 @@ class DatabaseSeeder extends Seeder
             TransportadoraSeeder::class,
             GuiaSeeder::class,
         ]);
-
-        auth()->logout();
     }
 }

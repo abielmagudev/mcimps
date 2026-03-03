@@ -31,6 +31,12 @@
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('usuarios.*') ? 'active' : '' }}" href="{{ route('usuarios.index') }}">Usuarios</a>
         </li>
+        <li class="nav-item">
+          <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit" class="nav-link link-danger">Salir</button>
+          </form>
+        </li>
       </ul>
     </div>
     <div>
