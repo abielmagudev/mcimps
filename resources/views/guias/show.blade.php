@@ -11,24 +11,6 @@
     </div>
 
     <div class="row">
-        <!-- Dirección -->
-        <div class="col-lg">
-            <h6>Dirección</h6>
-            @if ( $guia->tieneDireccion() )      
-            <address>
-                @include('direcciones.inc.direccion-completa-vertical', ['direccion' => $guia->direccion])
-            </address>
-
-            <x-info title="Cobertura">
-                <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
-            </x-info>
-
-            @else
-            <p class="text-muted">* Pendiente</p>
-            
-            @endif
-        </div>
-        
         {{-- Cliente y Contacto --}}
         <div class="col-lg">
             <hr class="d-block d-lg-none">
@@ -45,6 +27,24 @@
             @else  
             <p class="text-muted">* Pendiente</p>
 
+            @endif
+        </div>
+
+        <!-- Dirección -->
+        <div class="col-lg">
+            <h6>Dirección</h6>
+            @if ( $guia->tieneDireccion() )      
+            <address>
+                @include('direcciones.inc.direccion-completa-vertical', ['direccion' => $guia->direccion])
+            </address>
+
+            <x-info title="Cobertura">
+                <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
+            </x-info>
+
+            @else
+            <p class="text-muted">* Pendiente</p>
+            
             @endif
         </div>
 
