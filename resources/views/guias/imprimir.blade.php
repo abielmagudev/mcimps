@@ -1,6 +1,6 @@
 @extends('print')
 @section('content')
-<table class="table border-white">
+<table class="table border-light mb-3">
     <tbody>
         <tr>
             <td class="bg-body-secondary" style="width:1%">Rastreo USA</td>
@@ -40,4 +40,7 @@
         </tr>
     </tbody>
 </table>
+<div class="text-center">
+    {!! $barcode !!}
+</div>
 @endsection
