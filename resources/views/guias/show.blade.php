@@ -102,6 +102,10 @@
             </x-info>
         </div>
     </div>
+
+    <div class="text-end">
+        <a href="{{ route('guias.imprimir', $guia) }}" target="_blank" class="link-primary">Imprimir etiqueta</a>
+    </div>
 </x-card>
 <div class="mt-3 text-end text-secondary small">Actualizado: {{ $guia->updated_at }} por {{ $guia->actualizadoPorUsuario->name }}</div>
 @endsection

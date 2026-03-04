@@ -21,10 +21,13 @@ Route::middleware('auth')->group(function () {
     ->except(['show'])
     ->middleware('can:viewAny,App\Models\Transportadora');
 
-    Route::resource('guias', \App\Http\Controllers\GuiaController::class)
+    Route::get('guias/{guia}/imprimir', [\App\Http\Controllers\GuiaImpresionController::class, 'imprimir'])
+    ->name('guias.imprimir')
     ->middleware('can:viewAny,App\Models\Guia');
     Route::get('guias/{guia}/confirmar-eliminacion', [\App\Http\Controllers\GuiaController::class, 'confirmarEliminacion'])
     ->name('guias.confirmar-eliminacion')
+    ->middleware('can:viewAny,App\Models\Guia');
+    Route::resource('guias', \App\Http\Controllers\GuiaController::class)
     ->middleware('can:viewAny,App\Models\Guia');
 
     Route::get('registros/usa', [\App\Http\Controllers\RegistroUsa::class, 'create'])->name('registros.usa.create')
