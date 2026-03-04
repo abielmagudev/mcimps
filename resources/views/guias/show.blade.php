@@ -1,12 +1,12 @@
 @extends('app', ['pageTitle' => 'Guía'])
 @section('content')
-<x-card>
+<x-card class="mb-3">
     <div class="d-flex justify-content-between mb-3">
         <div>
             @include('guias.inc.etiqueta-status')
         </div>
         <div>
-            <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar guía</a>
+            <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar</a>
         </div>
     </div>
 
@@ -107,5 +107,5 @@
         <a href="{{ route('guias.imprimir', $guia) }}" target="_blank" class="link-primary">Imprimir etiqueta</a>
     </div>
 </x-card>
-<div class="mt-3 text-end text-secondary small">Actualizado: {{ $guia->updated_at }} por {{ $guia->actualizadoPorUsuario->name }}</div>
+<p class="text-end text-secondary small">Actualizado: {{ $guia->updated_at }} por {{ $guia->actualizadoPorUsuario->name }}</p>
 @endsection
