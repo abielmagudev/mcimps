@@ -7,7 +7,7 @@
             <td>{{ $guia->numero_rastreo_usa }}</td>
         </tr>
         <tr>
-            <td class="bg-body-secondary">Trasnportadora</td>
+            <td class="bg-body-secondary">Transportadora</td>
             <td>{{ $guia->transportadora?->nombre }}</td>
         </tr>
         <tr>
