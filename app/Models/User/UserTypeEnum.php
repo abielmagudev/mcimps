@@ -28,7 +28,7 @@ enum UserTypeEnum: string
         return match ($this) {
             self::ADMINISTRADOR => 'guias.index',
             self::DOCUMENTADOR => 'guias.index',
-            self::ALMACEN => 'guias.index',
+            self::ALMACEN => 'registros.usa.create',
             self::ALMACEN_USA => 'registros.usa.create',
             self::ALMACEN_MEX => 'registros.mex.search',
         };
