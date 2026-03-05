@@ -13,7 +13,9 @@
             <tr>
                 <th></th>
                 <th style="min-width: 248px;">Direccion</th>
+                @if ($request->has('rastreo'))
                 <th class="text-nowrap">Origen</th>
+                @endif
                 <th class="text-nowrap">Estados Unidos</th>
                 <th class="text-nowrap">México</th>
                 <th class="text-nowrap">Salida</th>
@@ -31,7 +33,9 @@
             <td>
                 @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
             </td>
+            @if ($request->has('rastreo'))
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
+            @endif
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_mex ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->registro_salida ?? '') !!}</td>
