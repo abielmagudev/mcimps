@@ -3,9 +3,9 @@
 /**
  * Bootstrao CSS helpers
  */
-if( ! function_exists('bsIsInvalidClass') )
+if( ! function_exists('bsInputInvalid') )
 {
-    function bsIsInvalidClass($key, $class = 'is-invalid')
+    function bsInputInvalid($key, $class = 'is-invalid')
     {
         $errors = session('errors');
         

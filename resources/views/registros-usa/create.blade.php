@@ -6,7 +6,7 @@
             @csrf
             <div class="mb-3">
                 <label for="numeroRastreoUsaInput" class="form-label">Escanea o ingresa el número de rastreo en USA</label>
-                <input type="text" class="form-control {{ bsIsInvalidClass('numero_rastreo_usa') }}" id="numeroRastreoUsaInput" name="numero_rastreo_usa" value="{{ old('numero_rastreo_usa') }}" autofocus required>
+                <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_usa') }}" id="numeroRastreoUsaInput" name="numero_rastreo_usa" value="{{ old('numero_rastreo_usa') }}" autofocus required>
                 <x-invalid-feedback name="numero_rastreo" />
             </div>
             <div class="mb-3">
@@ -14,7 +14,7 @@
                     Escanea o ingresa el número de rastreo de origen
                     <span class="text-secondary">(Opcional)</span>
                 </label>
-                <input type="text" class="form-control {{ bsIsInvalidClass('numero_rastreo_origen') }}" id="numeroRastreoOrigenInput" name="numero_rastreo_origen" value="{{ old('numero_rastreo_origen') }}">
+                <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_origen') }}" id="numeroRastreoOrigenInput" name="numero_rastreo_origen" value="{{ old('numero_rastreo_origen') }}">
                 <x-invalid-feedback name="numero_rastreo_origen" />
             </div>
             <button type="submit" class="btn btn-success w-100">Guardar entrada</button>

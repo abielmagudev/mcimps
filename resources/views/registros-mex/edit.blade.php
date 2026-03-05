@@ -59,7 +59,7 @@
             @method('put')
             <div class="mb-3">
                 <label for="registroSalidaInput" class="form-label">Escanea o ingresa el codigo para el registro de salida</label>
-                <input type="text" class="form-control {{ bsIsInvalidClass('registro_salida') }}" id="registroSalidaInput" name="registro_salida" value="{{ old('registro_salida') }}" autofocus required>
+                <input type="text" class="form-control {{ bsInputInvalid('registro_salida') }}" id="registroSalidaInput" name="registro_salida" value="{{ old('registro_salida') }}" autofocus required>
                 <x-invalid-feedback name="registro_salida" />
             </div>
             <button type="submit" class="btn btn-success w-100">Registrar salida de guía</button>
