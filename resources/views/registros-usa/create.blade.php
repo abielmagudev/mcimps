@@ -17,7 +17,7 @@
                 <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_origen') }}" id="numeroRastreoOrigenInput" name="numero_rastreo_origen" value="{{ old('numero_rastreo_origen') }}">
                 <x-invalid-feedback name="numero_rastreo_origen" />
             </div>
-            <button type="submit" class="btn btn-success w-100">Guardar entrada</button>
+            <button type="submit" class="btn btn-success w-100">Guardar guía recibida</button>
         </form>
     </x-card>
 </div>
