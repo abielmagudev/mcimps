@@ -31,7 +31,7 @@
 
                 @isset( $guia->numero_rastreo_usa )
                 <div casa="mb-3">
-                    <x-info title="Rastreo en Estados Unidos">
+                    <x-info title="Rastreo en USA">
                         {{ $guia->numero_rastreo_usa }}
                     </x-info>
                 </div>
@@ -42,6 +42,12 @@
             <p class="text-muted">* Pendiente</p>
 
             @endif
+
+            @isset($guia->observaciones)
+            <x-info title="Observaciones">
+                {{ $guia->observaciones }}
+            </x-info>
+            @endisset
         </div>
 
         <!-- Dirección -->
@@ -50,8 +56,11 @@
             @if ( $guia->tieneDireccion() )      
             <address>
                 @isset($guia->nombre_contacto)
-                <span>{{ $guia->nombre_contacto }}, {{ $guia->telefono_contacto }}</span><br>
+                <x-info title="Contacto">
+                    <span>{{ $guia->nombre_contacto }}, {{ $guia->telefono_contacto }}</span><br>
+                </x-info>
                 @endisset
+                
                 @include('direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
             </address>
 
@@ -84,12 +93,6 @@
             <p class="text-muted">* Pendiente</p>
 
             @endif
-
-            @isset($guia->observaciones)
-            <x-info title="Observaciones">
-                {{ $guia->observaciones }}
-            </x-info>
-            @endisset
         </div>
 
         <!-- Proceso -->
