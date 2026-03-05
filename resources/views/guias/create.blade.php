@@ -8,13 +8,12 @@
             <label for="direccionInput" class="form-label">Dirección</label>
             <div class="form-control">
                 @if( $direccion->exists )
+                <div class="mb-3">
+                    @include('direcciones.inc.info-completa-vertical', ['direccion' => $direccion])
+                </div>
                 <x-info title="Cobertura">
                     <span class="text-capitalize">{{ $direccion->cobertura }}</span>  
                 </x-info>
-                <div class="mb-3">
-                    @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])
-                    @include('direcciones.inc.direccion-completa-vertical', ['direccion' => $direccion])
-                </div>
                 <div>
                     <a href="{{ route('guias.create', ['seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
                     <span class="text-secondary mx-1">|</span>

@@ -23,8 +23,8 @@
     </div>
     <x-table>
         <x-slot name="thead">
-            <th>Información</th>
             <th>Cliente</th>
+            <th>Dirección</th>
             <th>Cobertura</th>
             <th></th>
         </x-slot>
@@ -32,13 +32,16 @@
             @foreach ($direcciones as $direccion)
             <tr>
                 <td>
+                    {!! marker($request->get('seleccionar-direccion'), $direccion->cliente->nombre_completo) !!}
+                </td>         
+                <td>
+                    @isset($direccion->prellenados['nombre_completo'])
+                    {{ $direccion->prellenados['nombre_completo'] }},
+                    @endisset
                     {!! marker($request->get('seleccionar-direccion'), $direccion->calle) !!}, 
-                    col {{ $direccion->colonia }}, 
+                    {{ $direccion->colonia }}, 
                     {{ $direccion->ciudad }}, 
                     {{ $direccion->estado }}, 
-                </td>
-                <td>
-                    {!! marker($request->get('seleccionar-direccion'), $direccion->cliente->nombre_completo) !!}
                 </td>
                 <td>
                     <span class="text-capitalize">{{ $direccion->cobertura }}</span>

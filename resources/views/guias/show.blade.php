@@ -17,13 +17,27 @@
             <h6>Cliente</h6>
             @if ( $guia->tieneDireccion() )
             <div class="mb-3">
-                @include('clientes.inc.info-vertical', ['cliente' => $guia->direccion->cliente])
+                <div class="mb-3">
+                    @include('clientes.inc.info-vertical', ['cliente' => $guia->direccion->cliente])
+                </div>
+
+                @isset( $guia->numero_rastreo_origen )
+                <div class="mb-3">
+                    <x-info title="Rastreo de Origen">
+                        {{ $guia->numero_rastreo_origen }}
+                    </x-info>
+                </div>
+                @endisset
+
+                @isset( $guia->numero_rastreo_usa )
+                <div casa="mb-3">
+                    <x-info title="Rastreo en Estados Unidos">
+                        {{ $guia->numero_rastreo_usa }}
+                    </x-info>
+                </div>
+                @endisset
             </div>
 
-            <x-info title="Contacto">
-                <span>{{ $guia->nombre_contacto }}</span><br>
-                <span>{{ $guia->telefono_contacto }}</span>
-            </x-info>
             @else  
             <p class="text-muted">* Pendiente</p>
 
@@ -35,7 +49,10 @@
             <h6>Dirección</h6>
             @if ( $guia->tieneDireccion() )      
             <address>
-                @include('direcciones.inc.direccion-completa-vertical', ['direccion' => $guia->direccion])
+                @isset($guia->nombre_contacto)
+                <span>{{ $guia->nombre_contacto }}, {{ $guia->telefono_contacto }}</span><br>
+                @endisset
+                @include('direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
             </address>
 
             <x-info title="Cobertura">
@@ -54,7 +71,13 @@
             <h6>Transportadora</h6>
             @if ( $guia->tieneTransportadora() )
             <div class="mb-3">
-                @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
+                <div class="mb-3">
+                    @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
+                </div>
+                
+                <x-info title="Rastreo en México">
+                    {{ $guia->numero_rastreo_mex }}
+                </x-info>
             </div>
 
             @else
@@ -67,23 +90,6 @@
                 {{ $guia->observaciones }}
             </x-info>
             @endisset
-        </div>
-
-        {{-- Números de rastreo --}}
-        <div class="col-lg">
-            <hr class="d-block d-lg-none">
-            <h6>Números de rastreo</h6>
-            <x-info title="Origen">
-                {{ $guia->numero_rastreo_origen }}
-            </x-info>
-
-            <x-info title="Estados Unidos">
-                {{ $guia->numero_rastreo_usa }}
-            </x-info>
-
-            <x-info title="México">
-                {{ $guia->numero_rastreo_mex }}
-            </x-info>
         </div>
 
         <!-- Proceso -->

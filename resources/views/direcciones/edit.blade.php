@@ -1,7 +1,10 @@
 @extends('app', ['pageTitle' => 'Editar dirección'])
 @section('content')
+<x-info title="Cliente">
+    <span>{{ $cliente->nombre_completo }}</span>
+</x-info>
+
 <x-card>
-    @include('direcciones.inc._pseudo-input-cliente')
     <form action="{{ route('clientes.direcciones.update', [$cliente, $direccion]) }}" method="post">
         @csrf
         @method('put')

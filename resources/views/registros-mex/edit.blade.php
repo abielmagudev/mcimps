@@ -4,33 +4,32 @@
     <div class="alert alert-secondary mb-3">
         <h5 class="alert-heading mb-3">Guia</h5>
         <div class="row">
+
+            {{-- Destino --}}
             <div class="col-lg">
                 <h6>Destino</h6>
                 <div class="mb-3">
-                    @includeWhen($guia->tieneDireccion(), 'direcciones.inc.direccion-completa-vertical', ['direccion' => $guia->direccion])<br>
+                    @isset($guia->nombre_contacto)
+                    <div class="mb-1">
+                        <span>{{ $guia->nombre_contacto }}</span>, 
+                        <span>{{ $guia->telefono_contacto }}</span>
+                    </div>
+                    @endisset
+                    <div class="mb-3">
+                        @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
+                    </div>
+                    <x-info title="Cobertura">
+                        <span class="text-capitalize">{{ $guia->direccion?->cobertura }}</span>  
+                    </x-info>
                 </div>
             </div>
+
+            {{-- Cliente --}}
             <div class="col-lg">
                 <h6>Cliente</h6>
                 <div class="mb-3">
                     @includeWhen($guia->tieneDireccion(), 'clientes.inc.info-vertical', ['cliente' => $guia->direccion->cliente])
                 </div>
-                <x-info title="Contacto">
-                    <span>{{ $guia->nombre_contacto }}</span><br>
-                    <span>{{ $guia->telefono_contacto }}</span>
-                </x-info>
-            </div>
-            <div class="col-lg">
-                <h6>Transportadora</h6>
-                <div class="mb-3">
-                    @includeWhen($guia->tieneTransportadora(), 'transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
-                </div>
-                <x-info title="Cobertura">
-                    <span class="text-capitalize">{{ $guia->direccion?->cobertura }}</span>  
-                </x-info>
-            </div>
-            <div class="col-lg">
-                <h6>Números de rastreo</h6>
                 <x-info title="Origen">
                     {{ $guia->numero_rastreo_origen }}
                 </x-info>
@@ -38,8 +37,15 @@
                 <x-info title="Estados Unidos">
                     {{ $guia->numero_rastreo_usa }}
                 </x-info>
+            </div>
 
-                <x-info title="México">
+            {{-- Transportadora --}}
+            <div class="col-lg">
+                <h6>Transportadora</h6>
+                <div class="mb-3">
+                    @includeWhen($guia->tieneTransportadora(), 'transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
+                </div>
+                <x-info title="Rastreo en México">
                     {{ $guia->numero_rastreo_mex }}
                 </x-info>
             </div>

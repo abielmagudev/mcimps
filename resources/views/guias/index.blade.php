@@ -13,10 +13,10 @@
             <tr>
                 <th></th>
                 <th style="min-width: 248px;">Direccion</th>
-                <th class="text-nowrap">Código Postal</th>
-                <th class="text-nowrap">Rastreo Origen</th>
-                <th class="text-nowrap">Rastreo USA</th>
-                <th class="text-nowrap">Rastreo MEX</th>
+                <th class="text-nowrap">C.P.</th>
+                <th class="text-nowrap">Origen</th>
+                <th class="text-nowrap">USA</th>
+                <th class="text-nowrap">MEX</th>
                 <th class="text-nowrap">Salida</th>
                 <th>Transportadora</th>
                 <th>Cobertura</th>
@@ -28,8 +28,9 @@
         @foreach ($guias as $index => $guia)
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
+
             <td>
-                @includeWhen($guia->tieneDireccion(), 'direcciones.inc.direccion-horizontal', ['direccion' => $guia->direccion])
+                @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
             </td>
             <td>{{ $guia->direccion->codigo_postal ?? '' }}</span></td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>

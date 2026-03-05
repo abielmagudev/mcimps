@@ -4,7 +4,7 @@
   <x-invalid-feedback name="numero_rastreo_origen" />
 </div>
 <div class="mb-3">
-  <label for="numeroRastreoUsaInput" class="form-label">Número de rastreo en Estados Unidos {{ $guia->numero_rastreo_usa ?: '(Requerido)' }}</label>
+  <label for="numeroRastreoUsaInput" class="form-label">Número de rastreo en Estados Unidos {{ isset($guia->numero_rastreo_usa) ? '' : '(Requerido)' }}</label>
   <input type="text" class="form-control {{ bsIsInvalidClass('numero_rastreo_usa') }}" id="numeroRastreoUsaInput" name="numero_rastreo_usa" value="{{ old('numero_rastreo_usa', $guia->numero_rastreo_usa) }}" @if(!$guia->exists) autofocus @endif required>
   <x-invalid-feedback name="numero_rastreo_usa" />
 </div>

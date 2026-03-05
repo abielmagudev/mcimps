@@ -27,6 +27,7 @@
             <x-table>
                 <x-slot name="thead">
                     <tr>
+                        <th>Contacto</th>
                         <th>Dirección</th>
                         <th>Código Postal</th>
                         <th>Cobertura</th>
@@ -36,8 +37,13 @@
 
                 @foreach ($cliente->direcciones->reverse() as $direccion)
                 <tr>
-                    <td class="text-nowrap">
-                        @include('direcciones.inc.direccion-horizontal')
+                    <td>
+                        <span>{{ $direccion->prellenados['nombre_contacto'] }}</span>
+                    </td>
+                    <td>
+                        <div class="text-nowrap">
+                            @include('direcciones.inc.info-basica-horizontal', ['direccion' => $direccion])
+                        </div>
                     </td>
                     <td>{{ $direccion->codigo_postal }}</td>
                     <td class="text-capitalize">{{ $direccion->cobertura }}</td>

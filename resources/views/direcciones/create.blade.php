@@ -1,7 +1,10 @@
 @extends('app', ['pageTitle' => 'Agregar dirección'])
 @section('content')
+<x-info title="Cliente">
+    <span>{{ $cliente->nombre_completo }}</span>
+</x-info>
+
 <x-card>
-    @include('direcciones.inc._pseudo-input-cliente')
     <form action="{{ route('clientes.direcciones.store', [$cliente, ...request()->query()]) }}" method="post">
         @csrf
         @include('direcciones._form')
