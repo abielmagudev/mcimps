@@ -50,9 +50,9 @@
             @endisset
         </div>
 
-        <!-- Dirección -->
+        <!-- Destino -->
         <div class="col-lg">
-            <h6>Dirección</h6>
+            <h6>Destino</h6>
             @if ( $guia->tieneDireccion() )      
             @include('guias.inc.destino')
 

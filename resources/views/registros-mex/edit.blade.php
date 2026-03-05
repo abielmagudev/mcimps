@@ -8,35 +8,38 @@
             {{-- Cliente --}}
             <div class="col-lg">
                 <h6>Cliente</h6>
-                <div class="mb-3">
-                    @includeWhen($guia->tieneDireccion(), 'clientes.inc.info-vertical', ['cliente' => $guia->direccion->cliente])
-                </div>
-                @isset($guia->numero_rastreo_origen)               
-                <x-info title="Origen">
-                    {{ $guia->numero_rastreo_origen }}
-                </x-info>
-                @endisset
-
-                <x-info title="Rastreo en USA">
-                    {{ $guia->numero_rastreo_usa }}
-                </x-info>
+                <div class="mb-3">{{ $guia->direccion?->cliente->nombre_completo }}</div>
             </div>
 
             {{-- Destino --}}
             <div class="col-lg">
                 <h6>Destino</h6>
-                @includeWhen($guia->tieneDireccion(), 'guias.inc.destino')
+                @if ($guia->tieneDireccion())              
+                <address>
+                    @isset($guia->nombre_contacto)
+                    <x-info title="Contacto">
+                        <span>{{ $guia->nombre_contacto }}</span>
+                    </x-info>
+                    @endisset
+                    
+                    @include('direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
+                </address>
+
+                @endif
             </div>
 
             {{-- Transportadora --}}
             <div class="col-lg">
                 <h6>Transportadora</h6>
                 <div class="mb-3">
-                    @includeWhen($guia->tieneTransportadora(), 'transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
+                    @if ($guia->tieneTransportadora())
+                    <span>{{ $guia->transportadora->nombre }}</span>
+                    @endif
+                    
+                    <x-info title="Rastreo en México">
+                        {{ $guia->numero_rastreo_mex }}
+                    </x-info>
                 </div>
-                <x-info title="Rastreo en México">
-                    {{ $guia->numero_rastreo_mex }}
-                </x-info>
             </div>
         </div>
     </div>
