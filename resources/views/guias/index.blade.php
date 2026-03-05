@@ -38,7 +38,7 @@
                 <div>
                     @include('direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
                 </div>
-                <small>C.P. {{ $guia->direccion->codigo_postal ?? '' }} <strong>({{ $guia->direccion->cobertura }})</strong></small>
+                <small>C.P. {{ $guia->direccion->codigo_postal ?? '' }} <strong class="text-capitalize">({{ $guia->direccion->cobertura }})</strong></small>
                 @endif
             </td>
             <td>
