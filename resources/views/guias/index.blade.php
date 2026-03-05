@@ -36,7 +36,7 @@
             <td>
                 @if( $guia->tieneDireccion() )
                 @include('direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
-                <small>{{ $guia->direccion->codigo_postal ?? '' }} ({{ $guia->direccion->cobertura }})</small>
+                <small>{{ $guia->direccion->codigo_postal ?? '' }} ({{ ucfirst($guia->direccion->cobertura) }})</small>
                 @endif
             </td>
             <td>
