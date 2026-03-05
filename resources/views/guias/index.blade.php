@@ -31,7 +31,7 @@
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
             <td class="text-nowrap">
-                <span>{{ $guia->nombre_contacto ?? '' }}</span><br>
+                <span class="d-block">{{ $guia->nombre_contacto ?? '' }}</span>
                 <span>{{ $guia->telefono_contacto ?? '' }}</span>
             </td>
             <td>
