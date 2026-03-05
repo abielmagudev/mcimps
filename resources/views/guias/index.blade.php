@@ -14,11 +14,11 @@
                 <th></th>
                 <th style="min-width: 248px;">Direccion</th>
                 @if ($request->has('rastreo'))
-                <th class="text-nowrap">Origen</th>
+                <th class="text-nowrap">Rastreo de origen</th>
                 @endif
-                <th class="text-nowrap">Estados Unidos</th>
-                <th class="text-nowrap">México</th>
-                <th class="text-nowrap">Salida</th>
+                <th class="text-nowrap">Rastreo en Estados Unidos</th>
+                <th class="text-nowrap">Rastreo en México</th>
+                <th class="text-nowrap">Registrso de salida</th>
                 <th>Transportadora</th>
                 <th>Cobertura</th>
                 <th>Status</th>
