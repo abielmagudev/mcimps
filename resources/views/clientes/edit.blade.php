@@ -1,7 +1,7 @@
 @extends('app', ['pageTitle' => 'Editar cliente'])
 @section('content')
 <x-card>
-    <form action="{{ route('clientes.update', $cliente) }}" method="post">
+    <form action="{{ route('clientes.update', $cliente) }}" method="post" autocomplete="off">
         @csrf
         @method('put')
         @include('clientes._form')

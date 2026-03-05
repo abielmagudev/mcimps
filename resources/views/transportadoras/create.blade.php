@@ -1,7 +1,7 @@
 @extends('app', ['pageTitle' => 'Nuevo transportadora'])
 @section('content')
 <x-card>
-    <form action="{{ route('transportadoras.store') }}" method="post">
+    <form action="{{ route('transportadoras.store') }}" method="post" autocomplete="off">
         @csrf
         @include('transportadoras._form')
         <button type="submit" class="btn btn-success">Guardar transportadora</button>

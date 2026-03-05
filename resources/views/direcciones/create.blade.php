@@ -5,7 +5,7 @@
 </x-info>
 
 <x-card>
-    <form action="{{ route('clientes.direcciones.store', [$cliente, ...request()->query()]) }}" method="post">
+    <form action="{{ route('clientes.direcciones.store', [$cliente, ...request()->query()]) }}" method="post" autocomplete="off">
         @csrf
         @include('direcciones._form')
         <button type="submit" class="btn btn-success">Agregar dirección</button>

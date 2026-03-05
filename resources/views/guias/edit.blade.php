@@ -4,7 +4,7 @@
     <p class="text-end">
         <a href="{{ route('guias.show', $guia) }}" class="link-primary">Ver guía</a>
     </p>
-    <form action="{{ route('guias.update', $guia) }}" method="post">
+    <form action="{{ route('guias.update', $guia) }}" method="post" autocomplete="off">
         @csrf
         @method('put')
 

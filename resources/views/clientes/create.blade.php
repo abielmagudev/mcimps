@@ -1,7 +1,7 @@
 @extends('app', ['pageTitle' => 'Nuevo cliente'])
 @section('content')
 <x-card>
-    <form action="{{ route('clientes.store', request()->query()) }}" method="post">
+    <form action="{{ route('clientes.store', request()->query()) }}" method="post" autocomplete="off">
         @csrf
         @include('clientes._form')
         <button type="submit" class="btn btn-success">Guardar cliente</button>

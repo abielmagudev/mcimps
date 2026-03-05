@@ -1,7 +1,7 @@
 @extends('app', ['pageTitle' => 'Nueva guía'])
 @section('content')
 <x-card>
-    <form action="{{ route('guias.store') }}" method="post">
+    <form action="{{ route('guias.store') }}" method="post" autocomplete="off">
         @csrf
 
         <div class="mb-3">

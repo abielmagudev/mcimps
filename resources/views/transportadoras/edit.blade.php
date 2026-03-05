@@ -1,7 +1,7 @@
 @extends('app', ['pageTitle' => 'Editar transportadora'])
 @section('content')
 <x-card>
-    <form action="{{ route('transportadoras.update', $transportadora) }}" method="post">
+    <form action="{{ route('transportadoras.update', $transportadora) }}" method="post" autocomplete="off">
         @csrf
         @method('put')
         @include('transportadoras._form')
