@@ -12,15 +12,16 @@
         <x-slot name="thead">
             <tr>
                 <th></th>
+                <th>Contacto</th>
                 <th style="min-width: 248px;">Direccion</th>
+                <th>Cobertura</th>
+                <th>Transportadora</th>
                 @if ($request->has('rastreo'))
                 <th class="text-nowrap">Rastreo de origen</th>
                 @endif
                 <th class="text-nowrap">Rastreo en Estados Unidos</th>
                 <th class="text-nowrap">Rastreo en México</th>
                 <th class="text-nowrap">Registro de salida</th>
-                <th>Transportadora</th>
-                <th>Cobertura</th>
                 <th>Status</th>
                 <th></th>
             </tr>
@@ -29,7 +30,17 @@
         @foreach ($guias as $index => $guia)
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
-
+            <td>
+                @isset ($guia->nombre_contacto)
+                {{ $guia->nombre_contacto }}
+                @endisset
+            </td>
+            <td class="text-capitalize">{{ $guia->direccion?->cobertura }}</td>
+            <td>
+                @if($guia->tieneTransportadora())
+                <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadora->nombre }}</a>
+                @endif
+            </td>
             <td>
                 @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
             </td>
@@ -39,12 +50,6 @@
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_mex ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->registro_salida ?? '') !!}</td>
-            <td>
-                @if($guia->tieneTransportadora())
-                <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadora->nombre }}</a>
-                @endif
-            </td>
-            <td class="text-capitalize">{{ $guia->direccion?->cobertura }}</td>
             <td>
                 @include('guias.inc.etiqueta-status')
             </td>
