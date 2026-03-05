@@ -41,7 +41,7 @@ class GuiaController extends Controller
             $guiasQuery = $guiasQuery->where('status', GuiaStatusEnum::RECIBIDO);
         }
 
-        $guias = $guiasQuery->paginate(100);
+        $guias = $guiasQuery->orderBy('updated_at', 'ASC')->paginate(100);
         // dd( get_class_methods($guias) );
 
         $contadores = [
