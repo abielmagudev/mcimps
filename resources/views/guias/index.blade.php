@@ -35,14 +35,14 @@
                 {{ $guia->nombre_contacto }}
                 @endisset
             </td>
+            <td>
+                @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
+            </td>
             <td class="text-capitalize">{{ $guia->direccion?->cobertura }}</td>
             <td>
                 @if($guia->tieneTransportadora())
                 <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadora->nombre }}</a>
                 @endif
-            </td>
-            <td>
-                @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
             </td>
             @if ($request->has('rastreo'))
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
