@@ -18,7 +18,7 @@
                 @endif
                 <th class="text-nowrap">Rastreo en Estados Unidos</th>
                 <th class="text-nowrap">Rastreo en México</th>
-                <th class="text-nowrap">Registrso de salida</th>
+                <th class="text-nowrap">Registro de salida</th>
                 <th>Transportadora</th>
                 <th>Cobertura</th>
                 <th>Status</th>
