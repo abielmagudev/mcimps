@@ -1,6 +1,6 @@
 @extends('app', ['pageTitle' => 'Registro de salidas (México)'])
 @section('content')
-<div style="max-width: 1024px" class="mx-auto">
+<div class="mx-auto">
     <x-card class="mb-3">
         <form action="{{ route('registros.mex.search') }}" method="get" autocomplete="off">
             <div class="mb-3">

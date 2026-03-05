@@ -1,6 +1,6 @@
 @extends('app', ['pageTitle' => 'Registro en Estados Unidos'])
 @section('content')
-<div style="max-width: 1024px" class="mx-auto">
+<div class="mx-auto">
     <x-card>
         <form action="{{ route('registros.usa.store') }}" method="post" autocomplete="off">
             @csrf

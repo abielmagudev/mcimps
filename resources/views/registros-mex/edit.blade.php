@@ -1,6 +1,6 @@
 @extends('app', ['pageTitle' => 'Registro de salidas (México)'])
 @section('content')
-<div style="max-width: 1024px" class="mx-auto">
+<div class="mx-auto">
     <div class="alert alert-secondary mb-3">
         <h5 class="alert-heading mb-3">Guia</h5>
         <div class="row">
