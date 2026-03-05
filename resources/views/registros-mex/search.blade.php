@@ -5,7 +5,7 @@
         <form action="{{ route('registros.mex.search') }}" method="get" autocomplete="off">
             <div class="mb-3">
                 <label for="guiaInput" class="form-label">Escanea o ingresa el número de guía</label>
-                <input type="text" class="form-control" id="guiaInput" name="guia" value="{{ old('guia') }}" autofocus required>
+                <input type="text" class="form-control" id="guiaInput" name="guia" value="{{ request()->get('guia') }}" autofocus required>
             </div>
             <button type="submit" class="btn btn-primary w-100">Buscar guía para registrar salida</button>
         </form>

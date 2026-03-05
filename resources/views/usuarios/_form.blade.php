@@ -2,7 +2,7 @@
   <label for="typeInput" class="form-label">Tipo</label>
   <select class="form-select {{ bsInputInvalid('type') }}" id="typeInput" name="type" required>
     @foreach ($types as $type)
-    <option value="{{ $type }}" @selected($user->type == $type->value)>{{ $type->titulo() }}</option>
+    <option value="{{ $type }}" @selected(old('type', $user->type) === $type)>{{ $type }}</option>
     @endforeach
   </select>
   <x-invalid-feedback name="type" />
