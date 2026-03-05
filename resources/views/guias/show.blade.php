@@ -30,11 +30,9 @@
                 @endisset
 
                 @isset( $guia->numero_rastreo_usa )
-                <div casa="mb-3">
-                    <x-info title="Rastreo en USA">
-                        {{ $guia->numero_rastreo_usa }}
-                    </x-info>
-                </div>
+                <x-info title="Rastreo en USA">
+                    {{ $guia->numero_rastreo_usa }}
+                </x-info>
                 @endisset
             </div>
 
@@ -68,14 +66,11 @@
             <h6>Transportadora</h6>
             @if ( $guia->tieneTransportadora() )
             <div class="mb-3">
-                <div class="mb-3">
-                    @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
-                </div>
-                
-                <x-info title="Rastreo en México">
-                    {{ $guia->numero_rastreo_mex }}
-                </x-info>
+                @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
             </div>
+            <x-info title="Rastreo en México">
+                {{ $guia->numero_rastreo_mex }}
+            </x-info>
 
             @else
             <p class="text-muted">* Pendiente</p>

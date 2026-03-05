@@ -9,6 +9,9 @@
             <div class="col-lg">
                 <h6>Cliente</h6>
                 <div class="mb-3">{{ $guia->direccion?->cliente->nombre_completo }}</div>
+                <x-info title="Rastreo en USA">
+                    {{ $guia->numero_rastreo_usa }}
+                </x-info>
             </div>
 
             {{-- Destino --}}
@@ -35,7 +38,7 @@
                     @if ($guia->tieneTransportadora())
                     <span>{{ $guia->transportadora->nombre }}</span>
                     @endif
-                    
+
                     <x-info title="Rastreo en México">
                         {{ $guia->numero_rastreo_mex }}
                     </x-info>
