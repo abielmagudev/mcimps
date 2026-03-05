@@ -25,7 +25,7 @@
             {{-- Destino --}}
             <div class="col-lg">
                 <h6>Destino</h6>
-                @includeWhen($guia->tieneDireccion, 'guias.inc.destino')
+                @includeWhen($guia->tieneDireccion(), 'guias.inc.destino')
             </div>
 
             {{-- Transportadora --}}
