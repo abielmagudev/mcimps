@@ -30,7 +30,10 @@
         @foreach ($guias as $index => $guia)
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
-            <td class="text-nowrap">{{ $guia->nombre_contacto ?? '' }}</td>
+            <td class="text-nowrap">
+                <span>{{ $guia->nombre_contacto ?? '' }}</span><br>
+                <span>{{ $guia->telefono_contacto ?? '' }}</span>
+            </td>
             <td>
                 @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
             </td>
