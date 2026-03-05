@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\Xcode;
+namespace App\ModelFeatures\Abstracts;
 
 use Illuminate\Database\Eloquent\Builder;
 

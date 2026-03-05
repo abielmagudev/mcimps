@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Guia\GuiaStatusEnum;
-use App\ModelTraits\ActualizadoPorUsuarioTrait;
-use App\ModelTraits\CreadoPorUsuarioTrait;
+use App\ModelFeatures\Traits\ActualizadoPorUsuarioTrait;
+use App\ModelFeatures\Traits\CreadoPorUsuarioTrait;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

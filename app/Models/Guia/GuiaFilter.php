@@ -2,8 +2,7 @@
 
 namespace App\Models\Guia;
 
-use App\Helpers\Xcode\ModelFilter;
-use App\Models\Guia;
+use App\ModelFeatures\Abstracts\ModelFilter;
 
 class GuiaFilter extends ModelFilter
 {

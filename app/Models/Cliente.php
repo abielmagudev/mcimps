@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\ModelTraits\ActualizadoPorUsuarioTrait;
-use App\ModelTraits\CreadoPorUsuarioTrait;
-use App\ModelTraits\EliminadoPorUsuarioTrait;
+use App\ModelFeatures\Traits\ActualizadoPorUsuarioTrait;
+use App\ModelFeatures\Traits\CreadoPorUsuarioTrait;
+use App\ModelFeatures\Traits\EliminadoPorUsuarioTrait;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
