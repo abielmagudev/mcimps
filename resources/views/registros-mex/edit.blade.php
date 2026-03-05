@@ -49,7 +49,7 @@
     @if ( $guia->tieneStatusEntregado() )
     <div class="alert alert-success text-center">
         <strong>Guía registrada con salida</strong><br>
-        <a href="{{ route('registros.mex.search') }}" class="link-primary">Registra otra guía</a>
+        <a href="{{ route('registros.mex.search') }}" class="link-primary">Registra salida deotra guía</a>
     </div>
 
     @elseif ( $guia->puedeTenerRegistroSalida() )
