@@ -16,13 +16,13 @@ class GuiaFactory extends Factory
      */
     public function definition(): array
     {
-        $numero_rastreo_mex = $this->faker->optional()->numberBetween(1000, 9999);
-        $registro_salida = $numero_rastreo_mex ? $this->faker->optional()->numberBetween(1000, 9999) : null;
+        $numero_rastreo_mex = $this->faker->optional()->bothify('**********************');
+        $registro_salida = $numero_rastreo_mex ? $this->faker->optional()->bothify('**********************') : null;
         $fecha_salida = $registro_salida ? $this->faker->dateTime() : null;
 
         return [
-            'numero_rastreo_origen' => $this->faker->optional()->numberBetween(1000, 9999),
-            'numero_rastreo_usa' => $this->faker->numberBetween(1000, 9999),
+            'numero_rastreo_origen' => $this->faker->optional()->numberBetween(10000000, 99999999),
+            'numero_rastreo_usa' => $this->faker->bothify('**********************'),
             'numero_rastreo_mex' => $numero_rastreo_mex,
             'registro_salida' => $registro_salida,
             'fecha_salida' => $fecha_salida,

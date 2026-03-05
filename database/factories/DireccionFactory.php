@@ -19,7 +19,8 @@ class DireccionFactory extends Factory
         return [
             'calle' => $this->faker->unique()->streetAddress(),
             'colonia' => ucfirst($this->faker->word()),
-            'codigo_postal' => $this->faker->postcode(),
+            // 'codigo_postal' => $this->faker->postcode(),
+            'codigo_postal' => $this->faker->unique()->numberBetween(10000, 99999),
             'ciudad' => $this->faker->city(),
             'estado' => $this->faker->state(),
             'cobertura' => $this->faker->randomElement(['domicilio', 'ocurre']),
