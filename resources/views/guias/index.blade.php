@@ -14,7 +14,6 @@
                 <th></th>
                 <th>Contacto</th>
                 <th style="min-width: 248px;">Direccion</th>
-                <th>Cobertura</th>
                 <th>Transportadora</th>
                 @if ($request->has('rastreo'))
                 <th class="text-nowrap">Rastreo de origen</th>
@@ -32,12 +31,12 @@
             <td class="small text-muted">{{ ($index+1) }}</td>
             <td class="text-nowrap">
                 <span class="d-block">{{ $guia->nombre_contacto ?? '' }}</span>
-                <span>{{ $guia->telefono_contacto ?? '' }}</span>
+                <small>{{ $guia->telefono_contacto ?? '' }}</small>
             </td>
             <td>
                 @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
+                <small>{{ $guia->direccion->codigo_postal ?? '' }} ({{ $guia->direccion->cobertura }})</small>
             </td>
-            <td class="text-capitalize">{{ $guia->direccion?->cobertura }}</td>
             <td>
                 @if($guia->tieneTransportadora())
                 <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadora->nombre }}</a>
