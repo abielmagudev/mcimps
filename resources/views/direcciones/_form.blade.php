@@ -10,12 +10,12 @@
 </div>
 <div class="mb-3">
   <label for="ciudadInput" class="form-label">Ciudad</label>
-  <input type="text" class="form-control {{ bsInputInvalid('ciudad') }}" id="ciudadInput" name="ciudad" value="{{ old('ciudad', $direccion->ciudad) }}" required>
+  <input type="text" class="form-control {{ bsInputInvalid('ciudad') }}" id="ciudadInput" name="ciudad" value="{{ old('ciudad', $direccion->ciudad) }}" autocomplete="on" required>
   <x-invalid-feedback name="ciudad" />
 </div>
 <div class="mb-3">
   <label for="estadoInput" class="form-label">Estado</label>
-  <input type="text" class="form-control {{ bsInputInvalid('estado') }}" id="estadoInput" name="estado" value="{{ old('estado', $direccion->estado) }}" required>
+  <input type="text" class="form-control {{ bsInputInvalid('estado') }}" id="estadoInput" name="estado" value="{{ old('estado', $direccion->estado) }}" autocomplete="on" required>
   <x-invalid-feedback name="estado" />
 </div>
 <div class="mb-3">

@@ -2,6 +2,8 @@
 @section('content')
 <x-info title="Cliente">
     <span>{{ $cliente->nombre_completo }}</span>
+    <span class="text-secondary mx-1">|</span>
+    <a href="{{ route('clientes.show', $cliente) }}" class="link-primary">Ver cliente</a>
 </x-info>
 
 <x-card>
