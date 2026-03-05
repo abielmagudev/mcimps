@@ -13,7 +13,6 @@
             <tr>
                 <th></th>
                 <th style="min-width: 248px;">Direccion</th>
-                <th class="text-nowrap">C.P.</th>
                 <th class="text-nowrap">Origen</th>
                 <th class="text-nowrap">USA</th>
                 <th class="text-nowrap">MEX</th>
@@ -32,7 +31,6 @@
             <td>
                 @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
             </td>
-            <td>{{ $guia->direccion->codigo_postal ?? '' }}</span></td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_mex ?? '') !!}</td>
