@@ -54,19 +54,7 @@
         <div class="col-lg">
             <h6>Dirección</h6>
             @if ( $guia->tieneDireccion() )      
-            <address>
-                @isset($guia->nombre_contacto)
-                <x-info title="Contacto">
-                    <span>{{ $guia->nombre_contacto }}, {{ $guia->telefono_contacto }}</span><br>
-                </x-info>
-                @endisset
-                
-                @include('direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
-            </address>
-
-            <x-info title="Cobertura">
-                <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
-            </x-info>
+            @include('guias.inc.destino')
 
             @else
             <p class="text-muted">* Pendiente</p>

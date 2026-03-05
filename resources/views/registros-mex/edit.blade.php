@@ -5,38 +5,27 @@
         <h5 class="alert-heading mb-3">Guia</h5>
         <div class="row">
 
-            {{-- Destino --}}
-            <div class="col-lg">
-                <h6>Destino</h6>
-                <div class="mb-3">
-                    @isset($guia->nombre_contacto)
-                    <div class="mb-1">
-                        <span>{{ $guia->nombre_contacto }}</span>, 
-                        <span>{{ $guia->telefono_contacto }}</span>
-                    </div>
-                    @endisset
-                    <div class="mb-3">
-                        @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
-                    </div>
-                    <x-info title="Cobertura">
-                        <span class="text-capitalize">{{ $guia->direccion?->cobertura }}</span>  
-                    </x-info>
-                </div>
-            </div>
-
             {{-- Cliente --}}
             <div class="col-lg">
                 <h6>Cliente</h6>
                 <div class="mb-3">
                     @includeWhen($guia->tieneDireccion(), 'clientes.inc.info-vertical', ['cliente' => $guia->direccion->cliente])
                 </div>
+                @isset($guia->numero_rastreo_origen)               
                 <x-info title="Origen">
                     {{ $guia->numero_rastreo_origen }}
                 </x-info>
+                @endisset
 
-                <x-info title="Estados Unidos">
+                <x-info title="Rastreo en USA">
                     {{ $guia->numero_rastreo_usa }}
                 </x-info>
+            </div>
+
+            {{-- Destino --}}
+            <div class="col-lg">
+                <h6>Destino</h6>
+                @includeWhen($guia->tieneDireccion, 'guias.inc.destino')
             </div>
 
             {{-- Transportadora --}}
