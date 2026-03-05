@@ -33,9 +33,11 @@
                 <span class="d-block">{{ $guia->nombre_contacto ?? '' }}</span>
                 <small>{{ $guia->telefono_contacto ?? '' }}</small>
             </td>
-            <td>
+            <td class="text-nowrap">
                 @if( $guia->tieneDireccion() )
-                @include('direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
+                <div>
+                    @include('direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
+                </div>
                 <small>{{ $guia->direccion->codigo_postal ?? '' }} ({{ ucfirst($guia->direccion->cobertura) }})</small>
                 @endif
             </td>
