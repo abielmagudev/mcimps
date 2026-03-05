@@ -12,7 +12,7 @@
         <x-slot name="thead">
             <tr>
                 <th></th>
-                <th class="text-nowrap">Contacto</th>
+                <th>Contacto</th>
                 <th style="min-width: 248px;">Direccion</th>
                 <th>Cobertura</th>
                 <th>Transportadora</th>
@@ -30,11 +30,7 @@
         @foreach ($guias as $index => $guia)
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
-            <td>
-                @isset ($guia->nombre_contacto)
-                {{ $guia->nombre_contacto }}
-                @endisset
-            </td>
+            <td class="text-nowrap">{{ $guia->nombre_contacto ?? '' }}</td>
             <td>
                 @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
             </td>
