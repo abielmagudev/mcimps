@@ -18,7 +18,7 @@
                 @if ($request->has('rastreo'))
                 <th class="text-nowrap">Rastreo de origen</th>
                 @endif
-                <th class="text-nowrap">Rastreo en Estados Unidos</th>
+                <th class="text-nowrap">Rastreo en USA</th>
                 <th class="text-nowrap">Rastreo en México</th>
                 <th class="text-nowrap">Registro de salida</th>
                 <th>Status</th>
@@ -34,8 +34,10 @@
                 <small>{{ $guia->telefono_contacto ?? '' }}</small>
             </td>
             <td>
-                @includeWhen($guia->tieneDireccion(), 'direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
+                @if( $guia->tieneDireccion() )
+                @include('direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
                 <small>{{ $guia->direccion->codigo_postal ?? '' }} ({{ $guia->direccion->cobertura }})</small>
+                @endif
             </td>
             <td>
                 @if($guia->tieneTransportadora())
