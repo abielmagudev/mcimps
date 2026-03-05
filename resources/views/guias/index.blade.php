@@ -12,7 +12,7 @@
         <x-slot name="thead">
             <tr>
                 <th></th>
-                <th>Contacto</th>
+                <th class="text-nowrap">Contacto</th>
                 <th style="min-width: 248px;">Direccion</th>
                 <th>Cobertura</th>
                 <th>Transportadora</th>
