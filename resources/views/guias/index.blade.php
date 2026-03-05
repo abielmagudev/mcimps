@@ -14,8 +14,8 @@
                 <th></th>
                 <th style="min-width: 248px;">Direccion</th>
                 <th class="text-nowrap">Origen</th>
-                <th class="text-nowrap">USA</th>
-                <th class="text-nowrap">MEX</th>
+                <th class="text-nowrap">Estados Unidos</th>
+                <th class="text-nowrap">México</th>
                 <th class="text-nowrap">Salida</th>
                 <th>Transportadora</th>
                 <th>Cobertura</th>
