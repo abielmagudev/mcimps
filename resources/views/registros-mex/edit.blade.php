@@ -36,13 +36,12 @@
                 <h6>Transportadora</h6>
                 <div class="mb-3">
                     @if ($guia->tieneTransportadora())
-                    <span>{{ $guia->transportadora->nombre }}</span>
+                    {{ $guia->transportadora->nombre }}
                     @endif
-
-                    <x-info title="Rastreo en México">
-                        {{ $guia->numero_rastreo_mex }}
-                    </x-info>
                 </div>
+                <x-info title="Rastreo en México">
+                    {{ $guia->numero_rastreo_mex }}
+                </x-info>
             </div>
         </div>
     </div>
