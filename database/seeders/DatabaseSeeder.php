@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Guia;
 use App\Models\User;
 use App\Models\User\UserTypeEnum;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -36,7 +35,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            ClienteSeeder::class,
+            SocioSeeder::class,
             DireccionSeeder::class,
             TransportadoraSeeder::class,
             GuiaSeeder::class,

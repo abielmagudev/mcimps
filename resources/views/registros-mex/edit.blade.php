@@ -5,10 +5,10 @@
         <h5 class="alert-heading mb-3">Guia</h5>
         <div class="row">
 
-            {{-- Cliente --}}
+            {{-- Socio --}}
             <div class="col-lg">
-                <h6>Cliente</h6>
-                <div class="mb-3">{{ $guia->direccion?->cliente->nombre_completo }}</div>
+                <h6>Socio</h6>
+                <div class="mb-3">{{ $guia->direccion?->socio->nombre }}</div>
                 <x-info title="Rastreo en USA">
                     {{ $guia->numero_rastreo_usa }}
                 </x-info>

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('cobertura');
             $table->text('referencias')->nullable();
             $table->text('prellenados')->nullable();
-            $table->unsignedBigInteger('cliente_id');
-            // $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->unsignedBigInteger('socio_id');
+            // $table->foreign('socio_id')->references('id')->on('socios')->onDelete('cascade');
+            $table->foreign('socio_id')->references('id')->on('socios');
             $table->unsignedBigInteger('creado_por_usuario');
             $table->unsignedBigInteger('actualizado_por_usuario');
             $table->timestamps();

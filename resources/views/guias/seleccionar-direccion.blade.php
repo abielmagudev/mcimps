@@ -3,14 +3,14 @@
 <x-card class="mb-3">
     <form action="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" method="get" class="mb-3">
         <div class="mb-3">
-            <label class="form-label">Escribe la calle de la dirección o el nombre del cliente</label>
+            <label class="form-label">Escribe la calle de la dirección o el nombre del Socio</label>
             <input type="text" class="form-control" name="seleccionar-direccion" value="{{ $request->get('seleccionar-direccion') }}" autofocus required>
         </div>
         <button type="submit" class="btn btn-primary">Buscar</button>
         <a href="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" class="btn btn-outline-secondary">Cancelar</a>
     </form>
     <div class="text-end">
-        <a href="{{ route('clientes.create', $guia->exists ? ['guia' => $guia->id] : []) }}" class="link-primary">Nuevo cliente</a>
+        <a href="{{ route('socios.create', $guia->exists ? ['guia' => $guia->id] : []) }}" class="link-primary">Nuevo Socio</a>
     </div>
 </x-card>
 
@@ -23,7 +23,7 @@
     </div>
     <x-table>
         <x-slot name="thead">
-            <th>Cliente</th>
+            <th>Socio</th>
             <th>Dirección</th>
             <th>Cobertura</th>
             <th></th>
@@ -32,11 +32,11 @@
             @foreach ($direcciones as $direccion)
             <tr>
                 <td>
-                    {!! marker($request->get('seleccionar-direccion'), $direccion->cliente->nombre_completo) !!}
+                    {!! marker($request->get('seleccionar-direccion'), $direccion->socio->nombre) !!}
                 </td>         
                 <td>
-                    @isset($direccion->prellenados['nombre_completo'])
-                    {{ $direccion->prellenados['nombre_completo'] }},
+                    @isset($direccion->prellenados['nombre'])
+                    {{ $direccion->prellenados['nombre'] }},
                     @endisset
                     {!! marker($request->get('seleccionar-direccion'), $direccion->calle) !!}, 
                     {{ $direccion->colonia }}, 
@@ -60,23 +60,23 @@
         </tbody>
     </x-table>
 
-    @if ($clientesDirecciones->count() == 1)
+    @if ($sociosDirecciones->count() == 1)
     <?php
-        $parametros = [$direcciones->first()->cliente];
+        $parametros = [$direcciones->first()->socio];
 
         if( $guia->exists ) {
             $parametros['guia'] = $guia->id;
         }
     ?>
     <div class="text-end">
-        <a href="{{ route('clientes.direcciones.create', $parametros) }}" class="link-primary">Nueva dirección</a>
+        <a href="{{ route('socios.direcciones.create', $parametros) }}" class="link-primary">Nueva dirección</a>
     </div>
     @endif
 </x-card>
 
 @else
 <div class="alert alert-warning text-center">
-    <span>No hay direcciones ni clientes: <strong><em>"{{ $request->get('seleccionar-direccion') }}"</em></strong></span><br>
+    <span>No hay direcciones ni Socios: <strong><em>"{{ $request->get('seleccionar-direccion') }}"</em></strong></span><br>
 </div>  
 
 @endif

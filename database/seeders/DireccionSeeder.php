@@ -12,10 +12,10 @@ class DireccionSeeder extends Seeder
      */
     public function run(): void
     {
-        $clientes = \App\Models\Cliente::all();
+        $socios = \App\Models\Socio::all();
 
         \App\Models\Direccion::factory(30)->create([
-            'cliente_id' => fn () => $clientes->random()->id,
+            'socio_id' => fn () => $socios->random()->id,
         ]);
     }
 }

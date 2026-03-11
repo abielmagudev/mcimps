@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[ObservedBy('App\Observers\ClienteObserver')]
-class Cliente extends Model
+#[ObservedBy('App\Observers\SocioObserver')]
+class Socio extends Model
 {
-    /** @use HasFactory<\Database\Factories\ClienteFactory> */
+    /** @use HasFactory<\Database\Factories\SocioFactory> */
     use HasFactory;
     use SoftDeletes;
 
@@ -22,10 +22,10 @@ class Cliente extends Model
     use ActualizadoPorUsuarioTrait;
     use EliminadoPorUsuarioTrait;
 
-    protected $table = 'clientes';
+    protected $table = 'socios';
 
     protected $fillable = [
-        'nombre_completo',
+        'nombre',
         'telefono',
     ];
 

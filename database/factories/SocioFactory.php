@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Cliente>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Socio>
  */
-class ClienteFactory extends Factory
+class SocioFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class ClienteFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre_completo' => $this->faker->unique()->name(),
+            'nombre' => $this->faker->unique()->name(),
             'telefono' => $this->faker->phoneNumber(),
             'creado_por_usuario' => $this->faker->randomElement([1, 2]),
             'actualizado_por_usuario' => $this->faker->randomElement([1, 2]),

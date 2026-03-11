@@ -9,10 +9,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('usuarios', \App\Http\Controllers\UsuarioController::class)->parameter('usuarios', 'user')
     ->middleware('can:viewAny,App\Models\Usuario');
 
-    Route::resource('clientes', \App\Http\Controllers\ClienteController::class)
-    ->middleware('can:viewAny,App\Models\Cliente');
+    Route::resource('socios', \App\Http\Controllers\SocioController::class)
+    ->middleware('can:viewAny,App\Models\Socio');
 
-    Route::resource('clientes.direcciones', \App\Http\Controllers\DireccionController::class)
+    Route::resource('socios.direcciones', \App\Http\Controllers\DireccionController::class)
     ->middleware('can:viewAny,App\Models\Direccion')
     ->parameters(['direcciones' => 'direccion'])
     ->except(['show']);

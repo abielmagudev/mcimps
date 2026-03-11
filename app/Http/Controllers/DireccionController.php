@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDireccionRequest;
 use App\Http\Requests\UpdateDireccionRequest;
-use App\Models\Cliente;
+use App\Models\Socio;
 use App\Models\Direccion;
 use App\Models\Direccion\DireccionCoberturaEnum;
 use App\Models\Guia;
@@ -20,18 +20,18 @@ class DireccionController extends Controller
         //
     }
 
-    public function create(Cliente $cliente)
+    public function create(Socio $socio)
     {
         return view('direcciones.create', [
-            'cliente' => $cliente,
+            'socio' => $socio,
             'direccion' => new Direccion,
             'coberturas' => DireccionCoberturaEnum::cases(),
         ]);
     }
 
-    public function store(StoreDireccionRequest $request, Cliente $cliente)
+    public function store(StoreDireccionRequest $request, Socio $socio)
     {
-        $direccion = $cliente->direcciones()->create($request->validated());
+        $direccion = $socio->direcciones()->create($request->validated());
 
         if(! $direccion instanceof Direccion ) {
             return back()->with('error', 'Error al guardar la dirección, intente nuevamente');
@@ -43,27 +43,27 @@ class DireccionController extends Controller
         route('guias.edit', [$guia, 'direccion' => $direccion->id]) : 
         route('guias.create', ['direccion' => $direccion->id]);
 
-        return redirect($url)->with('success', sprintf('Dirección %s guardada para cliente %s', $direccion->calle, $cliente->nombre_completo));
+        return redirect($url)->with('success', sprintf('Dirección %s guardada para Socio %s', $direccion->calle, $socio->nombre));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Cliente $cliente, Direccion $direccion)
+    public function show(Socio $socio, Direccion $direccion)
     {
         //
     }
 
-    public function edit(Cliente $cliente, Direccion $direccion)
+    public function edit(Socio $socio, Direccion $direccion)
     {
         return view('direcciones.edit', [
-            'cliente' => $cliente,
+            'socio' => $socio,
             'direccion' => $direccion,
             'coberturas' => DireccionCoberturaEnum::cases(),
         ]);
     }
 
-    public function update(UpdateDireccionRequest $request, Cliente $cliente, Direccion $direccion)
+    public function update(UpdateDireccionRequest $request, Socio $socio, Direccion $direccion)
     {
         if(! $direccion->update($request->validated()) ) {
             return back()->with('error', 'Error al actualizar la dirección, intente nuevamente');
@@ -75,7 +75,7 @@ class DireccionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cliente $cliente, Direccion $direccion)
+    public function destroy(Socio $socio, Direccion $direccion)
     {
         //
     }

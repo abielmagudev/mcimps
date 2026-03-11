@@ -15,14 +15,14 @@
                     <span class="text-capitalize">{{ $direccion->cobertura }}</span>  
                 </x-info>
                 <div>
-                    <a href="{{ route('guias.create', ['seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
+                    <a href="{{ route('guias.create', ['seleccionar-direccion' => $direccion->socio->nombre]) }}" class="link-primary">Cambiar dirección</a>
                     <span class="text-secondary mx-1">|</span>
-                    <a href="{{ route('clientes.direcciones.create', [$direccion->cliente]) }}" class="link-primary">Nueva dirección</a>
+                    <a href="{{ route('socios.direcciones.create', [$direccion->socio]) }}" class="link-primary">Nueva dirección</a>
                 </div>
                 <input type="hidden" name="direccion_id" value="{{ $direccion->id }}">
 
                 @else
-                <a href="{{ route('guias.create', ['seleccionar-direccion']) }}" class="link-primary">Seleccionar cliente y dirección</a>
+                <a href="{{ route('guias.create', ['seleccionar-direccion']) }}" class="link-primary">Seleccionar Socio y dirección</a>
                 
                 @endif
             </div>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreClienteRequest extends FormRequest
+class UpdateSocioRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,7 +14,7 @@ class StoreClienteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre_completo' => 'required',
+            'nombre' => 'required',
             'telefono' => 'required',
         ];
     }

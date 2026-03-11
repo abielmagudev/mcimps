@@ -45,8 +45,8 @@ class Direccion extends Model
         );
     }
 
-    public function cliente(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function socio(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Socio::class);
     }
 }

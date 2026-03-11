@@ -11,14 +11,14 @@
     </div>
 
     <div class="row">
-        {{-- Cliente y Contacto --}}
+        {{-- Socio y Contacto --}}
         <div class="col-lg">
             <hr class="d-block d-lg-none">
-            <h6>Cliente</h6>
+            <h6>Socio</h6>
             @if ( $guia->tieneDireccion() )
             <div class="mb-3">
                 <div class="mb-3">
-                    @include('clientes.inc.info-vertical', ['cliente' => $guia->direccion->cliente])
+                    @include('socios.inc.info-vertical', ['socio' => $guia->direccion->socio])
                 </div>
 
                 @isset( $guia->numero_rastreo_origen )

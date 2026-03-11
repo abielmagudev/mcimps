@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGuiaRequest;
 use App\Http\Requests\UpdateGuiaRequest;
-use App\Models\Cliente;
+use App\Models\Socio;
 use App\Models\Direccion;
 use App\Models\Guia;
 use App\Models\Guia\GuiaStatusEnum;
@@ -15,7 +15,7 @@ class GuiaController extends Controller
 {
     public function index(Request $request)
     {
-        $guiasQuery = Guia::with(['direccion.cliente', 'transportadora']);
+        $guiasQuery = Guia::with(['direccion.Socio', 'transportadora']);
 
         if( $request->has('rastreo') )
         {
@@ -146,17 +146,17 @@ class GuiaController extends Controller
         {
             $buscar = $request->get('seleccionar-direccion');
 
-            $data['direcciones'] = Direccion::join('clientes', 'direcciones.cliente_id', '=', 'clientes.id')
-            ->select('direcciones.*', 'clientes.nombre_completo') // Evita colisión de IDs
+            $data['direcciones'] = Direccion::join('socios', 'direcciones.socio_id', '=', 'socios.id')
+            ->select('direcciones.*', 'socios.nombre') // Evita colisión de IDs
             ->where(function ($query) use ($buscar) {
                 $query->where('direcciones.calle', 'like', "%{$buscar}%")
-                    ->orWhere('clientes.nombre_completo', 'like', "%{$buscar}%");
+                    ->orWhere('socios.nombre', 'like', "%{$buscar}%");
             })
-            ->with('cliente')
+            ->with('socio')
             ->limit(50)
             ->get();
 
-            $data['clientesDirecciones'] = $data['direcciones']->groupBy('cliente_id');
+            $data['sociosDirecciones'] = $data['direcciones']->groupBy('socio_id');
         }
 
         return view('guias.seleccionar-direccion', $data);

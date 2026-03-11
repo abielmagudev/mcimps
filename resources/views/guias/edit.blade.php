@@ -15,16 +15,16 @@
                 {{-- Nueva direccion --}}
                 @if( $direccion->exists )
                 <div class="mb-3">
-                    @include('clientes.inc.info-horizontal', ['cliente' => $direccion->cliente])
+                    @include('socios.inc.info-horizontal', ['socio' => $direccion->socio])
                     @include('direcciones.inc.info-completa-vertical', ['direccion' => $direccion])
                 </div>
                 <x-info title="Cobertura">
                     <span class="text-capitalize">{{ $direccion->cobertura }}</span>  
                 </x-info>
                 <div>
-                    <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
+                    <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $direccion->socio->nombre]) }}" class="link-primary">Cambiar dirección</a>
                     <span class="text-secondary mx-1">|</span>
-                    <a href="{{ route('clientes.direcciones.create', [$direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
+                    <a href="{{ route('socios.direcciones.create', [$direccion->socio, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
                     <span class="text-secondary mx-1">|</span>
                     <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Cancelar</a>
                 </div>
@@ -34,21 +34,21 @@
                 @elseif ( $guia->tieneDireccion() )
 
                 <div class="mb-3">
-                    @include('clientes.inc.info-horizontal', ['cliente' => $guia->direccion->cliente])
+                    @include('socios.inc.info-horizontal', ['socio' => $guia->direccion->socio])
                     @include('direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
                 </div>
                 <x-info title="Cobertura">
                     <span class="text-capitalize">{{ $guia->direccion->cobertura }}</span>  
                 </x-info>
                 <div>
-                    <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $guia->direccion->cliente->nombre_completo]) }}" class="link-primary">Cambiar dirección</a>
+                    <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion' => $guia->direccion->socio->nombre]) }}" class="link-primary">Cambiar dirección</a>
                     <span class="text-secondary mx-1">|</span>
-                    <a href="{{ route('clientes.direcciones.create', [$guia->direccion->cliente, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
+                    <a href="{{ route('socios.direcciones.create', [$guia->direccion->socio, 'guia' => $guia->id]) }}" class="link-primary">Nueva dirección</a>
                 </div>
 
                 {{-- Sin direccion --}}
                 @else
-                <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion']) }}" class="link-primary">Seleccionar cliente y dirección...</a>
+                <a href="{{ route('guias.edit', [$guia, 'seleccionar-direccion']) }}" class="link-primary">Seleccionar Socio y dirección...</a>
 
                 @endif
             </div>

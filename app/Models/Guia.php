@@ -41,9 +41,9 @@ class Guia extends Model
         return $this->belongsTo(Direccion::class);
     }
 
-    public function cliente(): Cliente|null
+    public function socio(): Socio|null
     {
-        return $this->direccion->cliente;
+        return $this->direccion->socio;
     }
 
     public function transportadora(): \Illuminate\Database\Eloquent\Relations\BelongsTo

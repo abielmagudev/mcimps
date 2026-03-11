@@ -36,13 +36,13 @@
         </li>
         @endcan
 
-        @can('viewAny', \App\Models\Cliente::class)     
+        @can('viewAny', \App\Models\Socio::class)     
         <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('clientes.*') ? 'active' : '' }}" href="{{ route('clientes.index') }}">Clientes</a>
+          <a class="nav-link {{ request()->routeIs('socios.*') ? 'active' : '' }}" href="{{ route('socios.index') }}">Socios</a>
         </li>
         @endcan
 
-        @can('viewAny', \App\Models\Cliente::class)     
+        @can('viewAny', \App\Models\Socio::class)     
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('transportadoras.*') ? 'active' : '' }}" href="{{ route('transportadoras.index') }}">Transportadoras</a>
         </li>
