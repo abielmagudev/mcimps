@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTransportadoraRequest;
 use App\Http\Requests\UpdateTransportadoraRequest;
 use App\Models\Transportadora;
+use App\Models\Transportadora\TransportadoraNacionalidadEnum;
 
 class TransportadoraController extends Controller
 {
@@ -19,6 +20,7 @@ class TransportadoraController extends Controller
     {
         return view('transportadoras.create', [
             'transportadora' => new Transportadora,
+            'nacionalidades' => TransportadoraNacionalidadEnum::cases(),
         ]);
     }
 
@@ -44,6 +46,7 @@ class TransportadoraController extends Controller
     {
         return view('transportadoras.edit', [
             'transportadora' => $transportadora,
+            'nacionalidades' => TransportadoraNacionalidadEnum::cases(),
         ]);
     }
 

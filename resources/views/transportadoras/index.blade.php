@@ -10,6 +10,7 @@
                 <th>Nombre</th>
                 <th>Sitio Web</th>
                 <th>Teléfono</th>
+                <th>Nacionalidad</th>
                 <th></th>
             </tr>
         </x-slot>
@@ -21,6 +22,7 @@
                 <a href="{{ $transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $transportadora->sitio_web }}</a>
             </td>
             <td class="text-nowrap">{{ $transportadora->telefono }}</td>
+            <td class="text-capitalize">{{ $transportadora->nacionalidad }}</td>
             <td class="text-end">
                 <a href="{{ route('transportadoras.edit', $transportadora) }}" class="link-primary">Editar</a>
             </td>

@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\table;
+
 return new class extends Migration
 {
     /**
@@ -16,6 +18,7 @@ return new class extends Migration
             $table->string('nombre')->unique();
             $table->string('sitio_web');
             $table->string('telefono');
+            $table->string('nacionalidad');
             $table->boolean('disponible')->default(true);
             $table->unsignedBigInteger('creado_por_usuario');
             $table->unsignedBigInteger('actualizado_por_usuario');

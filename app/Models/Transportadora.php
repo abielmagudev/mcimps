@@ -27,5 +27,6 @@ class Transportadora extends Model
         'nombre',
         'sitio_web',
         'telefono',
+        'nacionalidad',
     ];
 }

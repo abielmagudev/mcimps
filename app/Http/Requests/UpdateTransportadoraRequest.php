@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Transportadora\TransportadoraNacionalidadEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTransportadoraRequest extends FormRequest
 {
@@ -23,8 +25,15 @@ class UpdateTransportadoraRequest extends FormRequest
     {
         return [
             'nombre' => 'required',
-            'sitio_web' => ['required', 'url'],
+            'sitio_web' => [
+                'required', 
+                'url'
+            ],
             'telefono' => 'required',
+            'nacionalidad' => [
+                'required',
+                Rule::in(TransportadoraNacionalidadEnum::cases()),
+            ],
         ];
     }
 }
