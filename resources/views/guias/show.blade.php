@@ -68,9 +68,6 @@
             <div class="mb-3">
                 @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
             </div>
-            <x-info title="Rastreo en México">
-                {{ $guia->numero_rastreo_mex }}
-            </x-info>
 
             @else
             <p class="text-muted">* Pendiente</p>
@@ -85,12 +82,6 @@
             <x-info title="Recibido">
                 <span>{{ $guia->created_at }}</span><br>   
                 <span>{{ $guia->creadoPorUsuario->name }}</span>
-            </x-info>
-
-            <x-info title="Salida">
-                <span>{{ $guia->registro_salida }}</span><br>
-                <span>{{ $guia->fecha_salida }}</span><br>
-                <span>{{ $guia->salidaPorUsuario?->name }}</span>
             </x-info>
         </div>
     </div>

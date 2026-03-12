@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // $table->string('numero_rastreo_mex')->nullable();
+        // $table->string('registro_salida')->nullable();
+        // $table->timestamp('fecha_salida')->nullable();
+        // $table->unsignedBigInteger('salida_por_usuario')->nullable();
+        
         Schema::create('guias', function (Blueprint $table) {
             $table->id();
             $table->string('numero_rastreo_origen')->nullable();
             $table->string('numero_rastreo_usa')->nullable();
-            $table->string('numero_rastreo_mex')->nullable();
-            $table->string('registro_salida')->nullable();
-            $table->timestamp('fecha_salida')->nullable();
-            $table->unsignedBigInteger('salida_por_usuario')->nullable();
             $table->text('observaciones')->nullable();
             $table->string('nombre_contacto')->nullable();
             $table->string('telefono_contacto')->nullable();

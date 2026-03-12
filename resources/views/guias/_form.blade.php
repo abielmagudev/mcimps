@@ -9,16 +9,6 @@
   <x-invalid-feedback name="numero_rastreo_usa" />
 </div>
 <div class="mb-3">
-  <label for="numeroRastreoMexInput" class="form-label">Número de rastreo en México</label>
-  <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_mex') }}" id="numeroRastreoMexInput" name="numero_rastreo_mex" value="{{ old('numero_rastreo_mex', $guia->numero_rastreo_mex) }}">
-  <x-invalid-feedback name="numero_rastreo_mex" />
-</div>
-<div class="mb-3">
-  <label for="registroSalidaInput" class="form-label">Registro de salida</label>
-  <input type="text" class="form-control {{ bsInputInvalid('registro_salida') }}" id="registroSalidaInput" name="registro_salida" value="{{ old('registro_salida', $guia->registro_salida) }}">
-  <x-invalid-feedback name="registro_salida" />
-</div>
-<div class="mb-3">
   <label for="transportadoraInput" class="form-label">Transportadora</label>
   <select class="form-select {{ bsInputInvalid('transportadora_id') }}" id="transportadoraInput" name="transportadora_id">
     <option selected label="- Pendiente -"></option>

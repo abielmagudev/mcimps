@@ -21,19 +21,12 @@ class Guia extends Model
     protected $fillable = [
         'numero_rastreo_origen',
         'numero_rastreo_usa',
-        'numero_rastreo_mex',
-        'registro_salida',
-        'fecha_salida',
         'observaciones',
         'nombre_contacto',
         'telefono_contacto',
-        'observaciones',
         'status',
         'direccion_id',
         'transportadora_id',
-        // 'salida_por_usuario',
-        // 'creado_por_usuario',
-        // 'actualizado_por_usuario',
     ];
 
     public function direccion(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -51,9 +44,9 @@ class Guia extends Model
         return $this->belongsTo(Transportadora::class);
     }
 
-    public function salidaPorUsuario(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function tieneTransportadora(): bool
     {
-        return $this->belongsTo(User::class, 'salida_por_usuario');
+        return $this->transportadora instanceof Transportadora;
     }
 
     public function tieneDireccion(): bool
@@ -61,44 +54,8 @@ class Guia extends Model
         return $this->direccion instanceof Direccion;
     }
 
-    public function tieneTransportadora(): bool
-    {
-        return $this->transportadora instanceof Transportadora;
-    }
-
     public function statusEs(GuiaStatusEnum $statusEnum): bool
     {
         return $this->status == $statusEnum->value;
-    }
-
-    public function asignarStatus(GuiaStatusEnum $statusEnum): self
-    {
-        $this->status = $statusEnum->value;
-        return $this;
-    }
-
-    public function puedeTenerStatusPendiente(): bool
-    {
-        return $this->tieneDireccion() && $this->tieneTransportadora();
-    }
-
-    public function puedeTenerStatusTransito(): bool
-    {
-        return $this->puedeTenerStatusPendiente() && isset($this->numero_rastreo_mex) && isset($this->registro_salida);
-    }
-
-    public function puedeTenerStatusEntregado(): bool
-    {
-        return $this->puedeTenerStatusTransito() && $this->statusEs(GuiaStatusEnum::TRANSITO);
-    }
-
-    public function puedeTenerRegistroSalida(): bool
-    {
-        return $this->tieneDireccion() && $this->tieneTransportadora() && isset($this->numero_rastreo_mex);
-    }
-
-    public function tieneStatusEntregado(): bool
-    {
-        return $this->statusEs(GuiaStatusEnum::ENTREGADO);
     }
 }

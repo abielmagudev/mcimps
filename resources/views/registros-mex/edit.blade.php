@@ -46,13 +46,13 @@
         </div>
     </div>
 
-    @if ( $guia->tieneStatusEntregado() )
+    @if ( $guia && false )
     <div class="alert alert-success text-center">
         <strong>Guía registrada con salida</strong><br>
         <a href="{{ route('registros.mex.search') }}" class="link-primary">Registra salida deotra guía</a>
     </div>
 
-    @elseif ( $guia->puedeTenerRegistroSalida() )
+    @elseif ( $guia  )
     <x-card>
         <form action="{{ route('registros.mex.update', $guia) }}" method="post" autocomplete="off">
             @csrf

@@ -21,9 +21,7 @@ class GuiaController extends Controller
         {
             $guiasQuery = $guiasQuery
             ->where('numero_rastreo_origen', 'like', "%{$request->get('rastreo')}%")
-            ->orWhere('numero_rastreo_usa', 'like', "%{$request->get('rastreo')}%")
-            ->orWhere('numero_rastreo_mex', 'like', "%{$request->get('rastreo')}%")
-            ->orWhere('registro_salida', 'like', "%{$request->get('rastreo')}%");
+            ->orWhere('numero_rastreo_usa', 'like', "%{$request->get('rastreo')}%");
         } 
         elseif( $request->filled('fecha') )
         {
@@ -41,15 +39,11 @@ class GuiaController extends Controller
             $guiasQuery = $guiasQuery->where('status', GuiaStatusEnum::RECIBIDO);
         }
 
-        $ordered = $request->get('status') == GuiaStatusEnum::ENTREGADO->value ? 'desc' : 'asc';
-
-        $guias = $guiasQuery->orderBy('updated_at', $ordered)->paginate(100);
+        $guias = $guiasQuery->orderBy('updated_at', 'desc')->paginate(100);
 
         $contadores = [
             'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),
-            'pendiente' => Guia::where('status', GuiaStatusEnum::PENDIENTE)->count(),
-            'transito' => Guia::where('status', GuiaStatusEnum::TRANSITO)->count(),
-            'entregado' => Guia::where('status', GuiaStatusEnum::ENTREGADO)->count(),
+            'ingreso' => Guia::where('status', GuiaStatusEnum::INGRESO)->count(),
         ];
 
         return view('guias.index', [
@@ -109,29 +103,7 @@ class GuiaController extends Controller
         if(! $guia->update($request->validated()) ) {
             return back()->withErrors($guia->errors())->with('error', 'Error al actualizar la guía');
         }
-
-        $guia->refresh();
-
-        if(! $guia->puedeTenerStatusPendiente() ) {
-            $guia->asignarStatus(GuiaStatusEnum::RECIBIDO);
-        }
-
-        if( $guia->puedeTenerStatusPendiente() ) {
-            $guia->asignarStatus(GuiaStatusEnum::PENDIENTE);
-        }
-
-        if( $guia->puedeTenerStatusTransito() ) {
-            $guia->asignarStatus(GuiaStatusEnum::TRANSITO);
-        }
-
-        if( $guia->puedeTenerStatusEntregado() && $request->filled('status_entregado') ) {
-            $guia->asignarStatus(GuiaStatusEnum::ENTREGADO);
-        }
-
-        if( $guia->isDirty() &&! $guia->save() ) {
-            return back()->withErrors($guia->errors())->with('error', 'Error al actualizar status de la guía');
-        }
-
+        
         return redirect()->route('guias.edit', $guia)->with('success', 'Guía actualizada con éxito');
     }
 

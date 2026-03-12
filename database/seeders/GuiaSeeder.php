@@ -18,30 +18,14 @@ class GuiaSeeder extends Seeder
     {
         $direcciones = Direccion::all();
         $transportadoras = Transportadora::all();
-        $guias = Guia::factory(100)->make();
+        $guias = Guia::factory(750)->make();
 
         foreach ($guias as $guia)
         {
-            if( $guia->numero_rastreo_mex )
-            {
-                $guia->direccion_id = $direcciones->random()->id;
-                $guia->transportadora_id = $transportadoras->random()->id;
-            }
-            else
+            if( $guia->statusEs(GuiaStatusEnum::INGRESO) )
             {
                 $guia->direccion_id = mt_rand(0,1) ? $direcciones->random()->id : null;
-                $guia->transportadora_id = $guia->direccion_id && mt_rand(0,1) ? $transportadoras->random()->id : null;
-            }
-
-            if( $guia->transportadora_id &&! $guia->registro_salida )
-            {
-                $guia->status = GuiaStatusEnum::PENDIENTE;
-            }
-
-            if( $guia->registro_salida )
-            {
-                $guia->salida_por_usuario = mt_rand(1,10);
-                $guia->status = mt_rand(0,1) ? GuiaStatusEnum::ENTREGADO : GuiaStatusEnum::TRANSITO;
+                $guia->transportadora_id = mt_rand(0,1) ? $transportadoras->random()->id : null;
             }
 
             $guia->creado_por_usuario = mt_rand(1,10);
@@ -50,3 +34,27 @@ class GuiaSeeder extends Seeder
         }
     }
 }
+
+/*
+if( $guia->numero_rastreo_mex )
+{
+    $guia->direccion_id = $direcciones->random()->id;
+    $guia->transportadora_id = $transportadoras->random()->id;
+}
+else
+{
+    $guia->direccion_id = mt_rand(0,1) ? $direcciones->random()->id : null;
+    $guia->transportadora_id = $guia->direccion_id && mt_rand(0,1) ? $transportadoras->random()->id : null;
+}
+
+if( $guia->transportadora_id &&! $guia->registro_salida )
+{
+    $guia->status = GuiaStatusEnum::PENDIENTE;
+}
+
+if( $guia->registro_salida )
+{
+    $guia->salida_por_usuario = mt_rand(1,10);
+    $guia->status = mt_rand(0,1) ? GuiaStatusEnum::ENTREGADO : GuiaStatusEnum::TRANSITO;
+}
+*/

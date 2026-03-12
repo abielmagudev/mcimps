@@ -19,8 +19,6 @@
                 <th class="text-nowrap">Rastreo de origen</th>
                 @endif
                 <th class="text-nowrap">Rastreo en USA</th>
-                <th class="text-nowrap">Rastreo en México</th>
-                <th class="text-nowrap">Registro de salida</th>
                 <th>Status</th>
                 <th></th>
             </tr>
@@ -50,8 +48,6 @@
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
             @endif
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
-            <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_mex ?? '') !!}</td>
-            <td>{!! marker(request('rastreo', ''), $guia->registro_salida ?? '') !!}</td>
             <td>
                 @include('guias.inc.etiqueta-status')
             </td>
