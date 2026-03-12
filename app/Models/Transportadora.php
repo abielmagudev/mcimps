@@ -6,7 +6,9 @@ use App\Models\Guia\Traits\RelacionGuiasTrait;
 use App\ModelFeatures\Traits\ActualizadoPorUsuarioTrait;
 use App\ModelFeatures\Traits\CreadoPorUsuarioTrait;
 use App\ModelFeatures\Traits\EliminadoPorUsuarioTrait;
+use App\Models\Transportadora\TransportadoraNacionalidadEnum;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -29,4 +31,14 @@ class Transportadora extends Model
         'telefono',
         'nacionalidad',
     ];
+
+    public function scopeAmericanas(Builder $query): Builder
+    {
+        return $query->where('nacionalidad', TransportadoraNacionalidadEnum::AMERICANA);
+    }
+
+    public function scopeMexicanas(Builder $query): Builder
+    {
+        return $query->where('nacionalidad', TransportadoraNacionalidadEnum::MEXICANA);
+    }
 }
