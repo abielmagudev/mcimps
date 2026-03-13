@@ -1,4 +1,14 @@
 <div class="mb-3">
+  <label class="form-label" for="nombreContactoInput">Nombre del contacto (Opcional)</label>
+    <input type="text" class="form-control {{ bsInputInvalid('nombre_contacto') }}" id="nombreContactoInput" name="nombre_contacto" value="{{ old('nombre_contacto', ($direccion?->prellenados['nombre_contacto'] ?? $guia->nombre_contacto) ) }}">
+    <x-invalid-feedback name="nombre_contacto" />
+</div>
+<div class="mb-3">
+  <label class="form-label" for="telefonoContactoInput">Teléfono del contacto (Opcional)</label>
+  <input type="text" class="form-control {{ bsInputInvalid('telefono_contacto') }}" id="telefonoContactoInput" name="telefono_contacto" value="{{ old('telefono_contacto', ($direccion?->prellenados['telefono_contacto'] ?? $guia->telefono_contacto) ) }}">
+  <x-invalid-feedback name="telefono_contacto" />
+</div>
+<div class="mb-3">
   <label for="numeroRastreoUsaInput" class="form-label">Número de rastreo en USA {{ isset($guia->numero_rastreo_usa) ? '' : '(Requerido)' }}</label>
   <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_usa') }}" id="numeroRastreoUsaInput" name="numero_rastreo_usa" value="{{ old('numero_rastreo_usa', $guia->numero_rastreo_usa) }}" @if(!$guia->exists) autofocus @endif required>
   <x-invalid-feedback name="numero_rastreo_usa" />
@@ -22,14 +32,4 @@
   <label for="observacionesInput" class="form-label">Observaciones (Opcional)</label>
   <textarea class="form-control {{ bsInputInvalid('observaciones') }}" id="observacionesInput" name="observaciones" rows="3">{{ old('observaciones', $guia->observaciones) }}</textarea>
   <x-invalid-feedback name="observaciones" />
-</div>
-<div class="mb-3">
-  <label class="form-label" for="nombreContactoInput">Nombre del contacto (Opcional)</label>
-    <input type="text" class="form-control {{ bsInputInvalid('nombre_contacto') }}" id="nombreContactoInput" name="nombre_contacto" value="{{ old('nombre_contacto', ($direccion?->prellenados['nombre_contacto'] ?? $guia->nombre_contacto) ) }}">
-    <x-invalid-feedback name="nombre_contacto" />
-</div>
-<div class="mb-3">
-  <label class="form-label" for="telefonoContactoInput">Teléfono del contacto (Opcional)</label>
-  <input type="text" class="form-control {{ bsInputInvalid('telefono_contacto') }}" id="telefonoContactoInput" name="telefono_contacto" value="{{ old('telefono_contacto', ($direccion?->prellenados['telefono_contacto'] ?? $guia->telefono_contacto) ) }}">
-  <x-invalid-feedback name="telefono_contacto" />
 </div>
