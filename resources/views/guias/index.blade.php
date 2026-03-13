@@ -12,7 +12,7 @@
         <x-slot name="thead">
             <tr>
                 <th></th>
-                <th>Contacto</th>
+                <th>Cliente</th>
                 <th style="min-width: 248px;">Direccion</th>
                 <th class="text-nowrap">Transportadora Americana</th>
                 <th class="text-nowrap">Transportadora Mexicana</th>

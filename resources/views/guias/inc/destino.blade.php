@@ -1,6 +1,6 @@
 <address>
     @isset($guia->nombre_cliente)
-    <x-info title="Contacto">
+    <x-info title="Cliente">
         <span>{{ $guia->nombre_cliente }}, {{ $guia->telefono_cliente }}</span><br>
     </x-info>
     @endisset

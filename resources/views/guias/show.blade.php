@@ -11,7 +11,7 @@
     </div>
 
     <div class="row">
-        {{-- Socio y Contacto --}}
+        {{-- Socio y Cliente --}}
         <div class="col-lg">
             <hr class="d-block d-lg-none">
             <h6>Socio</h6>
