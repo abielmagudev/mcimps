@@ -29,8 +29,8 @@
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
             <td class="text-nowrap">
-                <span class="d-block">{{ $guia->nombre_contacto ?? '' }}</span>
-                <small>{{ $guia->telefono_contacto ?? '' }}</small>
+                <span class="d-block">{{ $guia->nombre_cliente ?? '' }}</span>
+                <small>{{ $guia->telefono_cliente ?? '' }}</small>
             </td>
             <td class="text-nowrap">
                 @if( $guia->tieneDireccion() )

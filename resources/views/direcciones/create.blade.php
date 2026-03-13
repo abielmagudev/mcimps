@@ -9,7 +9,7 @@
         @csrf
         @include('direcciones._form')
         <button type="submit" class="btn btn-success">Agregar dirección</button>
-        <a href="{{ route('socios.show', $socio) }}" class="btn btn-secondary">Cancelar</a>
+        <a href="{{ route('socios.show', $socio) }}" class="btn btn-outline-secondary">Cancelar</a>
     </form>
 </x-card>
 @endsection

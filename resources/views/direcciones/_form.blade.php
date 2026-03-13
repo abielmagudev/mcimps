@@ -43,10 +43,10 @@
   <x-invalid-feedback name="referencias" />
 </div>
 <div class="mb-3">
-  <label for="nombreContactoInput" class="form-label">Nombre del contacto (Opcional)</label>
-  <input type="text" class="form-control {{ bsInputInvalid('prellenados.nombre_contacto') }}" id="nombreContactoInput" name="prellenados[nombre_contacto]" value="{{ old('prellenados.nombre_contacto', ($direccion->prellenados['nombre_contacto'] ?? '')) }}">
+  <label for="nombreClienteInput" class="form-label">Nombre del cliente (Opcional)</label>
+  <input type="text" class="form-control {{ bsInputInvalid('prellenados.nombre_cliente') }}" id="nombreClienteInput" name="prellenados[nombre_cliente]" value="{{ old('prellenados.nombre_cliente', ($direccion->prellenados['nombre_cliente'] ?? '')) }}">
 </div>
 <div class="mb-3">
-  <label for="telefonoContactoInput" class="form-label">Teléfono del contacto (Opcional)</label>
-  <input type="text" class="form-control {{ bsInputInvalid('prellenados.telefono_contacto') }}" id="telefonoContactoInput" name="prellenados[telefono_contacto]" value="{{ old('prellenados.telefono_contacto', ($direccion->prellenados['telefono_contacto'] ?? '')) }}">
+  <label for="telefonoClienteInput" class="form-label">Teléfono del cliente (Opcional)</label>
+  <input type="text" class="form-control {{ bsInputInvalid('prellenados.telefono_cliente') }}" id="telefonoClienteInput" name="prellenados[telefono_cliente]" value="{{ old('prellenados.telefono_cliente', ($direccion->prellenados['telefono_cliente'] ?? '')) }}">
 </div>

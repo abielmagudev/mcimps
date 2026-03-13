@@ -26,8 +26,8 @@ class DireccionFactory extends Factory
             'cobertura' => $this->faker->randomElement(['domicilio', 'ocurre']),
             'referencias' => $this->faker->optional()->sentence(),
             'prellenados' => [
-                'nombre_contacto' => $this->faker->optional()->name(),
-                'telefono_contacto' => $this->faker->optional()->phoneNumber(),
+                'nombre_cliente' => $this->faker->optional()->name(),
+                'telefono_cliente' => $this->faker->optional()->phoneNumber(),
             ],
             'creado_por_usuario' => $this->faker->randomElement([1, 2]),
             'actualizado_por_usuario' => $this->faker->randomElement([1, 2]),

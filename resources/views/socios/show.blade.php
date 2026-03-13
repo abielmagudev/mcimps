@@ -38,7 +38,7 @@
                 @foreach ($socio->direcciones->reverse() as $direccion)
                 <tr>
                     <td>
-                        <span>{{ $direccion->prellenados['nombre_contacto'] }}</span>
+                        <span>{{ $direccion->prellenados['nombre_cliente'] }}</span>
                     </td>
                     <td>
                         <div class="text-nowrap">

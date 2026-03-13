@@ -16,8 +16,8 @@ class UpdateGuiaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre_contacto' => 'nullable',
-            'telefono_contacto' => 'nullable',
+            'nombre_cliente' => 'nullable',
+            'telefono_cliente' => 'nullable',
             'numero_rastreo_origen' => 'nullable',
             'numero_rastreo_usa' => 'required',
             'observaciones' => 'nullable',

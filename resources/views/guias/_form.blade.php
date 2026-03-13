@@ -9,14 +9,14 @@
   <x-invalid-feedback name="numero_rastreo_origen" />
 </div>
 <div class="mb-3">
-  <label class="form-label" for="nombreContactoInput">Nombre del contacto (Opcional)</label>
-    <input type="text" class="form-control {{ bsInputInvalid('nombre_contacto') }}" id="nombreContactoInput" name="nombre_contacto" value="{{ old('nombre_contacto', ($direccion?->prellenados['nombre_contacto'] ?? $guia->nombre_contacto) ) }}">
-    <x-invalid-feedback name="nombre_contacto" />
+  <label class="form-label" for="nombreContactoInput">Nombre del cliente (Opcional)</label>
+    <input type="text" class="form-control {{ bsInputInvalid('nombre_cliente') }}" id="nombreContactoInput" name="nombre_cliente" value="{{ old('nombre_cliente', ($direccion?->prellenados['nombre_cliente'] ?? $guia->nombre_cliente) ) }}">
+    <x-invalid-feedback name="nombre_cliente" />
 </div>
 <div class="mb-3">
-  <label class="form-label" for="telefonoContactoInput">Teléfono del contacto (Opcional)</label>
-  <input type="text" class="form-control {{ bsInputInvalid('telefono_contacto') }}" id="telefonoContactoInput" name="telefono_contacto" value="{{ old('telefono_contacto', ($direccion?->prellenados['telefono_contacto'] ?? $guia->telefono_contacto) ) }}">
-  <x-invalid-feedback name="telefono_contacto" />
+  <label class="form-label" for="telefonoContactoInput">Teléfono del cliente (Opcional)</label>
+  <input type="text" class="form-control {{ bsInputInvalid('telefono_cliente') }}" id="telefonoContactoInput" name="telefono_cliente" value="{{ old('telefono_cliente', ($direccion?->prellenados['telefono_cliente'] ?? $guia->telefono_cliente) ) }}">
+  <x-invalid-feedback name="telefono_cliente" />
 </div>
 <div class="mb-3">
   <label for="transportadoraAmericanaInput" class="form-label">Transportadora Americana</label>

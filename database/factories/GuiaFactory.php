@@ -26,8 +26,8 @@ class GuiaFactory extends Factory
             'numero_rastreo_origen' => $this->faker->optional()->numberBetween(10000000, 99999999),
             'numero_rastreo_usa' => $this->faker->bothify('**********************'),
             'observaciones' => $this->faker->optional()->sentence(),
-            'nombre_contacto' => $this->faker->optional()->name(),
-            'telefono_contacto' => $this->faker->optional()->phoneNumber(),
+            'nombre_cliente' => $this->faker->optional()->name(),
+            'telefono_cliente' => $this->faker->optional()->phoneNumber(),
             'status' => $this->faker->randomElement( array_column(GuiaStatusEnum::cases(), 'value') ),
         ];
     }

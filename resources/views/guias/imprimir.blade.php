@@ -17,11 +17,11 @@
             </tr>
             <tr>
                 <td class="bg-body-secondary">Nombre</td>
-                <td>{{ $guia->nombre_contacto }}</td>
+                <td>{{ $guia->nombre_cliente }}</td>
             </tr>
             <tr>
                 <td class="bg-body-secondary">Télefono</td>
-                <td>{{ $guia->telefono_contacto }}</td>
+                <td>{{ $guia->telefono_cliente }}</td>
             </tr>
             <tr>
                 <td class="bg-body-secondary">Dirección</td>
