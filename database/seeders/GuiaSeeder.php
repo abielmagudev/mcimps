@@ -17,7 +17,8 @@ class GuiaSeeder extends Seeder
     public function run(): void
     {
         $direcciones = Direccion::all();
-        $transportadoras = Transportadora::all();
+        $transportadorasAmericanas = Transportadora::americanas()->get();
+        $transportadorasMexicanas = Transportadora::mexicanas()->get();
         $guias = Guia::factory(750)->make();
 
         foreach ($guias as $guia)
@@ -25,7 +26,8 @@ class GuiaSeeder extends Seeder
             if( $guia->statusEs(GuiaStatusEnum::INGRESO) )
             {
                 $guia->direccion_id = mt_rand(0,1) ? $direcciones->random()->id : null;
-                $guia->transportadora_id = mt_rand(0,1) ? $transportadoras->random()->id : null;
+                $guia->transportadora_americana_id = mt_rand(0,1) ? $transportadorasAmericanas->random()->id : null;
+                $guia->transportadora_mexicana_id = mt_rand(0,1) ? $transportadorasMexicanas->random()->id : null;
             }
 
             $guia->creado_por_usuario = mt_rand(1,10);

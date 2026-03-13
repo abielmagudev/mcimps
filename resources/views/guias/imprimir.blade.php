@@ -8,8 +8,12 @@
                 <td>{{ $guia->numero_rastreo_usa }}</td>
             </tr>
             <tr>
-                <td class="bg-body-secondary">Transportadora</td>
-                <td>{{ $guia->transportadora?->nombre }}</td>
+                <td class="bg-body-secondary">Transportadora Americana</td>
+                <td>{{ $guia->transportadoraAmericana?->nombre }}</td>
+            </tr>
+            <tr>
+                <td class="bg-body-secondary">Transportadora Mexicana</td>
+                <td>{{ $guia->transportadoraMexicana?->nombre }}</td>
             </tr>
             <tr>
                 <td class="bg-body-secondary">Nombre</td>

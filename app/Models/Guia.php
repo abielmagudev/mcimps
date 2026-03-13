@@ -26,7 +26,8 @@ class Guia extends Model
         'telefono_contacto',
         'status',
         'direccion_id',
-        'transportadora_id',
+        'transportadora_americana_id',
+        'transportadora_mexicana_id',
     ];
 
     public function direccion(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -39,14 +40,24 @@ class Guia extends Model
         return $this->direccion->socio;
     }
 
-    public function transportadora(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function transportadoraAmericana(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Transportadora::class);
+        return $this->belongsTo(Transportadora::class, 'transportadora_americana_id');
     }
 
-    public function tieneTransportadora(): bool
+    public function transportadoraMexicana(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->transportadora instanceof Transportadora;
+        return $this->belongsTo(Transportadora::class, 'transportadora_mexicana_id');
+    }
+
+    public function tieneTransportadoraAmericana(): bool
+    {
+        return $this->transportadoraAmericana instanceof Transportadora;
+    }
+
+    public function tieneTransportadoraMexicana(): bool
+    {
+        return $this->transportadoraMexicana instanceof Transportadora;
     }
 
     public function tieneDireccion(): bool

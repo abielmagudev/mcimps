@@ -21,18 +21,18 @@
                     @include('socios.inc.info-vertical', ['socio' => $guia->direccion->socio])
                 </div>
 
+                @isset( $guia->numero_rastreo_usa )
+                <x-info title="Rastreo en USA">
+                    {{ $guia->numero_rastreo_usa }}
+                </x-info>
+                @endisset
+
                 @isset( $guia->numero_rastreo_origen )
                 <div class="mb-3">
                     <x-info title="Rastreo de Origen">
                         {{ $guia->numero_rastreo_origen }}
                     </x-info>
                 </div>
-                @endisset
-
-                @isset( $guia->numero_rastreo_usa )
-                <x-info title="Rastreo en USA">
-                    {{ $guia->numero_rastreo_usa }}
-                </x-info>
                 @endisset
             </div>
 
@@ -63,10 +63,21 @@
         <!-- Transportadora -->
         <div class="col-lg">
             <hr class="d-block d-lg-none">
-            <h6>Transportadora</h6>
-            @if ( $guia->tieneTransportadora() )
+            <h6>Transportadora Americana</h6>
+            @if ( $guia->tieneTransportadoraAmericana() )
             <div class="mb-3">
-                @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadora])
+                @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadoraAmericana])
+            </div>
+
+            @else
+            <p class="text-muted">* Pendiente</p>
+
+            @endif
+
+            <h6>Transportadora Mexicana</h6>
+            @if ( $guia->tieneTransportadoraMexicana() )
+            <div class="mb-3">
+                @include('transportadoras.inc.info-vertical', ['transportadora' => $guia->transportadoraMexicana])
             </div>
 
             @else

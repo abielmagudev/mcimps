@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Transportadora;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -15,22 +16,22 @@ class UpdateGuiaRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'nombre_contacto' => 'nullable',
+            'telefono_contacto' => 'nullable',
             'numero_rastreo_origen' => 'nullable',
             'numero_rastreo_usa' => 'required',
             'observaciones' => 'nullable',
-            'nombre_contacto' => 'nullable',
-            'telefono_contacto' => 'nullable',
             'direccion_id' => [
                 'nullable',
                 'exists:direcciones,id',
             ],
-            'transportadora_id' => [
+            'transportadora_americana_id' => [
                 'nullable',
-                'exists:transportadoras,id',
+                Rule::in(array_column(Transportadora::americanas()->get()->toArray(), 'id')),
             ],
-            'status_entregado' => [
-                'sometimes', 
-                'boolean',
+            'transportadora_mexicana_id' => [
+                'nullable',
+                Rule::in(array_column(Transportadora::mexicanas()->get()->toArray(), 'id')),
             ],
         ];
     }

@@ -29,8 +29,8 @@
         </div>
 
         @include('guias._form')
-        <button type="submit" class="btn btn-success">Crear guia</button>
-        <a href="{{ route('guias.index') }}" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-success">Guardar guia</button>
+        <a href="{{ route('guias.index') }}" class="btn btn-outline-secondary">Cancelar</a>
     </form>
 </x-card>
 @endsection

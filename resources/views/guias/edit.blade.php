@@ -80,7 +80,7 @@
         @endif
 
         <button type="submit" class="btn btn-success">Actualizar guía</button>
-        <a href="{{ route('guias.index') }}" class="btn btn-secondary">Cancelar</a>
+        <a href="{{ route('guias.index') }}" class="btn btn-outline-secondary">Cancelar</a>
     </form>
 </x-card>
 

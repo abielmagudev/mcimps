@@ -9,14 +9,27 @@
                 </div>
             </form>   
 
-            {{-- Trasnportadora --}}
+            {{-- Trasnportadora Americana --}}
             <form action="{{ route('guias.index') }}" method="get">
                 <div class="input-group">
-                    <span class="input-group-text" id="basic-addon1">Transportadora</span>
-                    <select class="form-select" name="transportadora" onchange="this.form.submit()" required>
+                    <span class="input-group-text" id="basic-addon1">Transportadora Americana</span>
+                    <select class="form-select" name="transportadora-americana" onchange="this.form.submit()" required>
                         <option label="Todas"></option>
-                        @foreach ($transportadoras as $transportadora)
-                        <option value="{{ $transportadora->id }}" @selected($request->get('transportadora') == $transportadora->id)>{{ $transportadora->nombre }}</option>
+                        @foreach ($transportadorasAmericanas as $transportadora)
+                        <option value="{{ $transportadora->id }}" @selected($request->get('transportadora-americana') == $transportadora->id)>{{ $transportadora->nombre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </form>   
+
+            {{-- Trasnportadora Mexicana --}}
+            <form action="{{ route('guias.index') }}" method="get">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Transportadora Mexicana</span>
+                    <select class="form-select" name="transportadora-mexicana" onchange="this.form.submit()" required>
+                        <option label="Todas"></option>
+                        @foreach ($transportadorasMexicanas as $transportadora)
+                        <option value="{{ $transportadora->id }}" @selected($request->get('transportadora-mexicana') == $transportadora->id)>{{ $transportadora->nombre }}</option>
                         @endforeach
                     </select>
                 </div>

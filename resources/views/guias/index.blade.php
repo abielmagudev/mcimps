@@ -14,11 +14,12 @@
                 <th></th>
                 <th>Contacto</th>
                 <th style="min-width: 248px;">Direccion</th>
-                <th>Transportadora</th>
+                <th class="text-nowrap">Transportadora Americana</th>
+                <th class="text-nowrap">Transportadora Mexicana</th>
+                <th class="text-nowrap">Número de rastreo en USA</th>
                 @if ($request->has('rastreo'))
-                <th class="text-nowrap">Rastreo de origen</th>
+                <th class="text-nowrap">Número de rastreo de origen</th>
                 @endif
-                <th class="text-nowrap">Rastreo en USA</th>
                 <th>Status</th>
                 <th></th>
             </tr>
@@ -40,14 +41,19 @@
                 @endif
             </td>
             <td>
-                @if($guia->tieneTransportadora())
-                <a href="{{ $guia->transportadora->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadora->nombre }}</a>
+                @if($guia->tieneTransportadoraAmericana())
+                <a href="{{ $guia->transportadoraAmericana->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadoraAmericana->nombre }}</a>
                 @endif
             </td>
+            <td>
+                @if($guia->tieneTransportadoraMexicana())
+                <a href="{{ $guia->transportadoraMexicana->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadoraMexicana->nombre }}</a>
+                @endif
+            </td>
+            <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             @if ($request->has('rastreo'))
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
             @endif
-            <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             <td>
                 @include('guias.inc.etiqueta-status')
             </td>

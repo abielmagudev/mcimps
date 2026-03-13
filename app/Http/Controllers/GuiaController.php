@@ -15,7 +15,7 @@ class GuiaController extends Controller
 {
     public function index(Request $request)
     {
-        $guiasQuery = Guia::with(['direccion.Socio', 'transportadora']);
+        $guiasQuery = Guia::with(['direccion.Socio', 'transportadoraAmericana', 'transportadoraMexicana']);
 
         if( $request->has('rastreo') )
         {
@@ -27,9 +27,13 @@ class GuiaController extends Controller
         {
             $guiasQuery = $guiasQuery->whereDate('created_at', '=', $request->get('fecha'));
         }
-        elseif( $request->filled('transportadora') )
+        elseif( $request->filled('transportadora-americana') )
         {
-            $guiasQuery = $guiasQuery->where('transportadora_id', $request->get('transportadora'));
+            $guiasQuery = $guiasQuery->where('transportadora_americana_id', $request->get('transportadora-americana'));
+        }
+        elseif( $request->filled('transportadora-mexicana') )
+        {
+            $guiasQuery = $guiasQuery->where('transportadora_mexicana_id', $request->get('transportadora-mexicana'));
         }
         elseif( $request->filled('status') )
         {
@@ -49,7 +53,8 @@ class GuiaController extends Controller
         return view('guias.index', [
             'guias' => $guias,
             'contadores' => $contadores,
-            'transportadoras' => Transportadora::all(),
+            'transportadorasAmericanas' => Transportadora::americanas()->get(),
+            'transportadorasMexicanas' => Transportadora::mexicanas()->get(),
             'statuses' => GuiaStatusEnum::cases(),
             'request' => $request,
         ]);
@@ -65,7 +70,8 @@ class GuiaController extends Controller
             'direccion' => Direccion::find($request->get('direccion')) ?? new Direccion,
             'guia' => new Guia,
             'request' => $request,
-            'transportadoras' => Transportadora::all(),
+            'transportadorasAmericanas' => Transportadora::americanas()->get(),
+            'transportadorasMexicanas' => Transportadora::mexicanas()->get(),
         ]);
     }
 
@@ -94,7 +100,8 @@ class GuiaController extends Controller
         return view('guias.edit', [
             'direccion' => Direccion::find($request->get('direccion')) ?? new Direccion,
             'guia' => $guia,
-            'transportadoras' => Transportadora::all(),
+            'transportadorasAmericanas' => Transportadora::americanas()->get(),
+            'transportadorasMexicanas' => Transportadora::mexicanas()->get(),
         ]);
     }
 

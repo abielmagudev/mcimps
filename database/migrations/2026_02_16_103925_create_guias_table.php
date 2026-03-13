@@ -27,7 +27,8 @@ return new class extends Migration
             $table->string('telefono_contacto')->nullable();
             $table->string('status')->default(GuiaStatusEnum::DEFAULT);
             $table->unsignedBigInteger('direccion_id')->nullable();
-            $table->unsignedBigInteger('transportadora_id')->nullable();
+            $table->unsignedBigInteger('transportadora_americana_id')->nullable();
+            $table->unsignedBigInteger('transportadora_mexicana_id')->nullable();
             $table->unsignedBigInteger('creado_por_usuario');
             $table->unsignedBigInteger('actualizado_por_usuario');
             $table->timestamps();

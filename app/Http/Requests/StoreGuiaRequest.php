@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Transportadora;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreGuiaRequest extends FormRequest
 {
@@ -14,21 +16,25 @@ class StoreGuiaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'numero_rastreo_origen' => 'nullable',
-            'numero_rastreo_usa' => 'required',
-            'registro_salida' => 'nullable',
-            'observaciones' => 'nullable',
             'nombre_contacto' => 'nullable',
             'telefono_contacto' => 'nullable',
+            'numero_rastreo_usa' => 'required',
+            'numero_rastreo_origen' => 'nullable',
+            'observaciones' => 'nullable',
             'direccion_id' => [
                 'bail',
                 'nullable',
                 'exists:direcciones,id',
             ],
-            'transportadora_id' => [
+            'transportadora_americana_id' => [
                 'bail',
                 'nullable',
-                'exists:transportadoras,id',
+                Rule::in(array_column(Transportadora::americanas()->get()->toArray(), 'id')),
+            ],
+            'transportadora_mexicana_id' => [
+                'bail',
+                'nullable',
+                Rule::in(array_column(Transportadora::mexicanas()->get()->toArray(), 'id')),
             ],
         ];
     }
@@ -37,7 +43,8 @@ class StoreGuiaRequest extends FormRequest
     {
         return [
             'direccion_id' => 'dirección',
-            'transportadora_id' => 'transportadora',
+            'transportadora_americana_id' => 'transportadora americana',
+            'transportadora_mexicana_id' => 'transportadora mexicana',
         ];
     }
 }
