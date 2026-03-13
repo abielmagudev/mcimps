@@ -19,8 +19,8 @@ class Guia extends Model
     use ActualizadoPorUsuarioTrait;
 
     protected $fillable = [
-        'numero_rastreo_origen',
         'numero_rastreo_usa',
+        'numero_rastreo_origen',
         'observaciones',
         'nombre_contacto',
         'telefono_contacto',

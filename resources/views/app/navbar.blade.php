@@ -17,13 +17,13 @@
           <ul class="dropdown-menu">
             @can('registrar-usa')
             <li>
-              <a class="dropdown-item {{ request()->routeIs('registros.usa.*') ? '' : 'text-muted' }}" href="{{ route('registros.usa.create') }}">Entradas (Estados Unidos)</a>
+              <a class="dropdown-item {{ request()->routeIs('registros.usa.*') ? '' : 'text-muted' }}" href="{{ route('registros.usa.create') }}">Estados Unidos (Recibido)</a>
             </li>
             @endcan
 
             @can('registrar-mex')
             <li>
-              <a class="dropdown-item {{ request()->routeIs('registros.mex.*') ? '' : 'text-muted' }}" href="{{ route('registros.mex.search') }}">Salidas (México)</a>
+              <a class="dropdown-item {{ request()->routeIs('registros.mex.*') ? '' : 'text-muted' }}" href="{{ route('registros.mex.search') }}">México (Ingreso)</a>
             </li>
             @endcan
           </ul>

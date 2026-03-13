@@ -14,7 +14,7 @@ class UpdateRegistroMexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'registro_salida' => 'required',
+
         ];
     }
 }

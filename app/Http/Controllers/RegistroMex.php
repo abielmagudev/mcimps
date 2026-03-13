@@ -12,23 +12,14 @@ class RegistroMex extends Controller
 {
     public function search(Request $request)
     {
-        if( $request->has('guia') )
-        {
-            // $guia = Guia::where('numero_rastreo_usa', $request->input('guia'))
-            // ->orWhere('numero_rastreo_mex', $request->input('guia'))
-            // ->orWhere('numero_rastreo_origen', $request->input('guia'))
-            // ->first();
+        $guia = Guia::where('numero_rastreo_usa', $request->input('guia'))->first();
 
-            $guia = Guia::where('numero_rastreo_usa', $request->input('guia'))->first();
-
-            if( $guia ) {
-                return redirect()->route('registros.mex.edit', $guia);
-            }
+        if( $guia && $guia->exists() ) {
+            return redirect()->route('registros.mex.edit', $guia);
         }
 
         return view('registros-mex.search', [
             'request' => $request,
-            'guia' => isset($guia) ? $guia : new Guia,
         ]);
     }
 
@@ -39,15 +30,12 @@ class RegistroMex extends Controller
 
     public function update(UpdateRegistroMexRequest $request, Guia $guia)
     {
-        $guia->registro_salida = $request->input('registro_salida');
-        $guia->fecha_salida = now();
-        $guia->salida_por_usuario = Auth::id();
-        $guia->status = GuiaStatusEnum::TRANSITO;
+        $guia->status = GuiaStatusEnum::INGRESO->value;
 
-        if(! $guia->save() ) {
-            return back()->with('error', 'Error al actualizar el registro de salida de guía');
+        if( ! $guia->save() ) {
+            return back()->with('error', sprintf('Error al registrar de número de rastreo en México [%s]', $guia->numero_rastreo_usa));
         }
 
-        return redirect()->route('registros.mex.search')->with('success', sprintf('Registro de salida de guía #%s actualizado', $guia->numero_rastreo_usa));
+        return redirect()->route('registros.mex.search')->with('success', sprintf('Registro de número de rastroe en México [%s]', $guia->numero_rastreo_usa));
     }
 }
