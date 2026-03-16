@@ -94,6 +94,11 @@
                 <span>{{ $guia->created_at }}</span><br>   
                 <span>{{ $guia->creadoPorUsuario->name }}</span>
             </x-info>
+
+            <x-info title="Ingresado">
+                <span>{{ $guia->ingresadoPorUsuario?->name }}</span><br>   
+                <span>{{ $guia->fecha_ingreso }}</span>
+            </x-info>
         </div>
     </div>
 

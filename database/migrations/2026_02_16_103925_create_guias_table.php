@@ -29,6 +29,8 @@ return new class extends Migration
             $table->unsignedBigInteger('direccion_id')->nullable();
             $table->unsignedBigInteger('transportadora_americana_id')->nullable();
             $table->unsignedBigInteger('transportadora_mexicana_id')->nullable();
+            $table->unsignedBigInteger('ingresado_por_usuario')->nullable();
+            $table->timestamp('fecha_ingreso')->nullable();
             $table->unsignedBigInteger('creado_por_usuario');
             $table->unsignedBigInteger('actualizado_por_usuario');
             $table->timestamps();

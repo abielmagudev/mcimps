@@ -25,9 +25,11 @@ class GuiaSeeder extends Seeder
         {
             if( $guia->statusEs(GuiaStatusEnum::INGRESO) )
             {
-                $guia->direccion_id = mt_rand(0,1) ? $direcciones->random()->id : null;
+                $guia->direccion_id = $direcciones->random()->id;
                 $guia->transportadora_americana_id = mt_rand(0,1) ? $transportadorasAmericanas->random()->id : null;
                 $guia->transportadora_mexicana_id = mt_rand(0,1) ? $transportadorasMexicanas->random()->id : null;
+                $guia->ingresado_por_usuario = mt_rand(1,10);
+                $guia->fecha_ingreso = now();
             }
 
             $guia->creado_por_usuario = mt_rand(1,10);

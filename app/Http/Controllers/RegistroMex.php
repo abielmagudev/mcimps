@@ -30,9 +30,11 @@ class RegistroMex extends Controller
 
     public function update(UpdateRegistroMexRequest $request, Guia $guia)
     {
+        $guia->ingresado_por_usuario = Auth::id();
+        $guia->fecha_ingreso = now();
         $guia->status = GuiaStatusEnum::INGRESO->value;
 
-        if( ! $guia->save() ) {
+        if( ! $guia->saveQuietly() ) {
             return back()->with('error', sprintf('Error al registrar de número de rastreo en México [%s]', $guia->numero_rastreo_usa));
         }
 

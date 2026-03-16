@@ -24,7 +24,7 @@ class Guia extends Model
         'observaciones',
         'nombre_cliente',
         'telefono_cliente',
-        'status',
+        // 'status',
         'direccion_id',
         'transportadora_americana_id',
         'transportadora_mexicana_id',
@@ -38,6 +38,11 @@ class Guia extends Model
     public function socio(): Socio|null
     {
         return $this->direccion->socio;
+    }
+
+    public function ingresadoPorUsuario(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'ingresado_por_usuario');
     }
 
     public function transportadoraAmericana(): \Illuminate\Database\Eloquent\Relations\BelongsTo
