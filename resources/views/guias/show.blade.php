@@ -52,7 +52,7 @@
         <div class="col-lg">
             <h6>Destino</h6>
             @if ( $guia->tieneDireccion() )      
-            @include('guias.inc.destino')
+            @include('direcciones.inc.info-completa-vertical', ['direccion' => $guia->direccion])
 
             @else
             <p class="text-muted">* Pendiente</p>
