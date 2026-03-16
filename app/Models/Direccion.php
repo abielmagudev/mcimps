@@ -49,4 +49,9 @@ class Direccion extends Model
     {
         return $this->belongsTo(Socio::class);
     }
+
+    public function prellenado(string $clave): ?string
+    {
+        return $this->prellenados[$clave] ?? null;
+    }
 }
