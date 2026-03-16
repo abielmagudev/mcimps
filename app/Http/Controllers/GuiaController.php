@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGuiaRequest;
 use App\Http\Requests\UpdateGuiaRequest;
-use App\Models\Socio;
 use App\Models\Direccion;
 use App\Models\Guia;
 use App\Models\Guia\GuiaStatusEnum;
@@ -20,8 +19,9 @@ class GuiaController extends Controller
         if( $request->has('rastreo') )
         {
             $guiasQuery = $guiasQuery
-            ->where('numero_rastreo_origen', 'like', "%{$request->get('rastreo')}%")
-            ->orWhere('numero_rastreo_usa', 'like', "%{$request->get('rastreo')}%");
+            ->where('numero_rastreo_usa', 'like', "%{$request->get('rastreo')}%")
+            ->orWhere('numero_rastreo_origen', 'like', "%{$request->get('rastreo')}%")
+            ->orWhere('nombre_cliente', 'like', "%{$request->get('rastreo')}%");
         } 
         elseif( $request->filled('fecha') )
         {
@@ -62,10 +62,6 @@ class GuiaController extends Controller
 
     public function create(Request $request)
     {
-        if( $request->has('seleccionar-direccion') ) {
-           return $this->seleccionarDireccion($request, new Guia);
-        }
-
         return view('guias.create', [
             'direccion' => Direccion::find($request->get('direccion')) ?? new Direccion,
             'guia' => new Guia,
@@ -81,7 +77,7 @@ class GuiaController extends Controller
             return back()->withErrors($guia->errors())->with('error', 'Error al crear la nueva guía');
         }
 
-        return redirect()->route('guias.index')->with('success', sprintf('Nueva guía #%s creada con éxito', $guia->id));
+        return redirect()->route('guias.create')->with('success', sprintf('Nueva guía creada con rastreo: %s', $guia->numero_rastreo_usa));
     }
 
     public function show(Guia $guia)
@@ -93,10 +89,6 @@ class GuiaController extends Controller
 
     public function edit(Request $request, Guia $guia)
     {
-        if( $request->has('seleccionar-direccion') ) {
-           return $this->seleccionarDireccion($request, $guia);
-        }
-
         return view('guias.edit', [
             'direccion' => Direccion::find($request->get('direccion')) ?? new Direccion,
             'guia' => $guia,
@@ -114,31 +106,9 @@ class GuiaController extends Controller
         return redirect()->route('guias.edit', $guia)->with('success', 'Guía actualizada con éxito');
     }
 
-    public function seleccionarDireccion(Request $request, Guia $guia)
+    public function confirmarEliminacion(Guia $guia)
     {
-        $data = [
-            'guia' => $guia,
-            'request' => $request,
-        ];
-
-        if( $request->filled('seleccionar-direccion') ) 
-        {
-            $buscar = $request->get('seleccionar-direccion');
-
-            $data['direcciones'] = Direccion::join('socios', 'direcciones.socio_id', '=', 'socios.id')
-            ->select('direcciones.*', 'socios.nombre') // Evita colisión de IDs
-            ->where(function ($query) use ($buscar) {
-                $query->where('direcciones.calle', 'like', "%{$buscar}%")
-                    ->orWhere('socios.nombre', 'like', "%{$buscar}%");
-            })
-            ->with('socio')
-            ->limit(50)
-            ->get();
-
-            $data['sociosDirecciones'] = $data['direcciones']->groupBy('socio_id');
-        }
-
-        return view('guias.seleccionar-direccion', $data);
+        return view('guias.confirmar-eliminacion')->with('guia', $guia);
     }
 
     public function destroy(Guia $guia)
@@ -148,10 +118,5 @@ class GuiaController extends Controller
         }
 
         return redirect()->route('guias.index')->with('success', sprintf('Guía con rastreo #%s eliminada con éxito', $guia->numero_rastreo_usa));
-    }
-
-    public function confirmarEliminacion(Guia $guia)
-    {
-        return view('guias.confirmar-eliminacion')->with('guia', $guia);
     }
 }

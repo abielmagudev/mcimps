@@ -1,48 +1,52 @@
-@extends('app', ['pageTitle' => $guia->exists ? 'Cambiar dirección de esta guía' : 'Seleccionar dirección para nueva guía'])
+@extends('app', ['pageTitle' => $guia->exists ? 'Cambiar dirección de guia' : 'Seleccionar dirección de guía'])
 @section('content')
+{{-- Formulario de búsqueda --}}
 <x-card class="mb-3">
-    <form action="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" method="get" class="mb-3">
+    <form action="{{ route('guias.seleccionar-direccion', $guia) }}" method="get" class="mb-3">
         <div class="mb-3">
-            <label class="form-label">Escribe la calle de la dirección o el nombre del Socio</label>
-            <input type="text" class="form-control" name="seleccionar-direccion" value="{{ $request->get('seleccionar-direccion') }}" autofocus required>
+            <label class="form-label">Escribe el nombre del socio, del cliente o la calle</label>
+            <input type="text" class="form-control" name="buscar" value="{{ $request->get('buscar') }}" autofocus required>
         </div>
         <button type="submit" class="btn btn-primary">Buscar</button>
         <a href="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" class="btn btn-outline-secondary">Cancelar</a>
     </form>
     <div class="text-end">
-        <a href="{{ route('socios.create', $guia->exists ? ['guia' => $guia->id] : []) }}" class="link-primary">Nuevo Socio</a>
+        <a href="{{ route('socios.create', ($guia->exists ? ['guia' => $guia->id] : [])) }}" class="link-primary">Nuevo socio</a>
     </div>
 </x-card>
 
-@isset($direcciones)
-@if( $direcciones->count() )
+{{-- Resultados de la busqueda --}}
+@if($request->filled('buscar'))
 <x-card>
     <div class="mb-3">
         <span class="badge bg-dark">{{ $direcciones->count() }}</span>
-        <span class="align-middle">Direcciones encontradas con <strong>"{{ $request->get('seleccionar-direccion') }}"</strong></span>
+        <span class="align-middle">Direcciones encontradas con </span>
+        <strong class="align-middle">"{{ $request->get('buscar') }}"</strong>
     </div>
+    
+    @if ($direcciones->count())
     <x-table>
         <x-slot name="thead">
             <th>Socio</th>
             <th>Dirección</th>
+            <th>Cliente</th>
             <th>Cobertura</th>
             <th></th>
         </x-slot>
         <tbody>
             @foreach ($direcciones as $direccion)
             <tr>
-                <td>
-                    {!! marker($request->get('seleccionar-direccion'), $direccion->socio->nombre) !!}
-                </td>         
+                <td>{!! marker($request->get('buscar', ''), $direccion->socio->nombre) !!}</td>         
                 <td>
                     @isset($direccion->prellenados['nombre'])
                     {{ $direccion->prellenados['nombre'] }},
                     @endisset
-                    {!! marker($request->get('seleccionar-direccion'), $direccion->calle) !!}, 
+                    {!! marker($request->get('buscar', ''), $direccion->calle) !!}, 
                     {{ $direccion->colonia }}, 
                     {{ $direccion->ciudad }}, 
                     {{ $direccion->estado }}, 
                 </td>
+                <td>{!! marker($request->get('buscar', ''), $direccion->prellenados['nombre_cliente'] ?? '') !!}</td>
                 <td>
                     <span class="text-capitalize">{{ $direccion->cobertura }}</span>
                 </td>
@@ -59,27 +63,23 @@
             @endforeach
         </tbody>
     </x-table>
+    @endif
 
-    @if ($sociosDirecciones->count() == 1)
-    <?php
-        $parametros = [$direcciones->first()->socio];
+    @if ($direccionesAgrupadosSocio->count() == 1)
+    <?php 
+    $parametros = [$direcciones->first()->socio];
 
-        if( $guia->exists ) {
-            $parametros['guia'] = $guia->id;
-        }
+    if ( $guia->exists ) {
+        $parametros['guia'] = $guia->id;
+    } 
     ?>
+
     <div class="text-end">
         <a href="{{ route('socios.direcciones.create', $parametros) }}" class="link-primary">Nueva dirección</a>
     </div>
     @endif
+
 </x-card>
-
-@else
-<div class="alert alert-warning text-center">
-    <span>No hay direcciones ni Socios: <strong><em>"{{ $request->get('seleccionar-direccion') }}"</em></strong></span><br>
-</div>  
-
 @endif
-@endisset
 
 @endsection

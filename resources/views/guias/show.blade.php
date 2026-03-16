@@ -98,7 +98,7 @@
     </div>
 
     <div class="text-end">
-        <a href="{{ route('guias.imprimir', $guia) }}" target="_blank" class="link-primary">Imprimir etiqueta</a>
+        <a href="{{ route('guias.imprimir-etiqueta', $guia) }}" target="_blank" class="link-primary">Imprimir etiqueta</a>
     </div>
 </x-card>
 <p class="text-end text-secondary small">Actualizado: {{ $guia->updated_at }} por {{ $guia->actualizadoPorUsuario->name }}</p>

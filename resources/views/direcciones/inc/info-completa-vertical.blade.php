@@ -3,7 +3,7 @@
     {{ $direccion->colonia }}<br>
 
     @isset($direccion->referencias) 
-    <small class="text-secondary">Referencias: {{ $direccion->referencias }}</small>
+    <small>Referencias: {{ $direccion->referencias }}</small>
     <br>
     @endisset   
 

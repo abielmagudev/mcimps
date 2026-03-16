@@ -21,13 +21,17 @@ Route::middleware('auth')->group(function () {
     ->except(['show'])
     ->middleware('can:viewAny,App\Models\Transportadora');
 
-    Route::get('guias/{guia}/imprimir', [\App\Http\Controllers\GuiaImpresionController::class, 'imprimir'])
-    ->name('guias.imprimir')
+    Route::get('guias/seleccionar-direccion/{guia?}', [\App\Http\Controllers\GuiaProcesoController::class, 'seleccionarDireccion'])
+    ->name('guias.seleccionar-direccion')
+    ->middleware('can:viewAny,App\Models\Guia');
+    Route::get('guias/imprimir-etiqueta/{guia}', [\App\Http\Controllers\GuiaProcesoController::class, 'imprimirEtiqueta'])
+    ->name('guias.imprimir-etiqueta')
+    ->middleware('can:viewAny,App\Models\Guia');
+
+    Route::resource('guias', \App\Http\Controllers\GuiaController::class)
     ->middleware('can:viewAny,App\Models\Guia');
     Route::get('guias/{guia}/confirmar-eliminacion', [\App\Http\Controllers\GuiaController::class, 'confirmarEliminacion'])
     ->name('guias.confirmar-eliminacion')
-    ->middleware('can:viewAny,App\Models\Guia');
-    Route::resource('guias', \App\Http\Controllers\GuiaController::class)
     ->middleware('can:viewAny,App\Models\Guia');
 
     Route::get('registros/usa', [\App\Http\Controllers\RegistroUsa::class, 'create'])->name('registros.usa.create')

@@ -12,8 +12,7 @@
         <x-slot name="thead">
             <tr>
                 <th></th>
-                <th>Cliente</th>
-                <th style="min-width: 248px;">Direccion</th>
+                <th style="min-width: 248px;">Destino</th>
                 <th class="text-nowrap">Transportadora Americana</th>
                 <th class="text-nowrap">Transportadora Mexicana</th>
                 <th class="text-nowrap">Número de rastreo en USA</th>
@@ -29,12 +28,13 @@
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
             <td class="text-nowrap">
-                <span class="d-block">{{ $guia->nombre_cliente ?? '' }}</span>
-                <small>{{ $guia->telefono_cliente ?? '' }}</small>
-            </td>
-            <td class="text-nowrap">
                 @if( $guia->tieneDireccion() )
                 <div>
+                    @isset ( $guia->nombre_cliente )
+                    <span>{{ $guia->nombre_cliente }}</span>
+                    <span>{{ $guia->telefono_cliente ? "($guia->telefono_cliente)" : '' }}</span><br>
+                    @endisset
+                    
                     @include('direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
                 </div>
                 <small>C.P. {{ $guia->direccion->codigo_postal ?? '' }} <strong class="text-capitalize">({{ $guia->direccion->cobertura }})</strong></small>
