@@ -33,6 +33,10 @@ class UpdateGuiaRequest extends FormRequest
                 'nullable',
                 Rule::in(array_column(Transportadora::mexicanas()->get()->toArray(), 'id')),
             ],
+            'status_entregado' => [
+                'nullable',
+                'boolean',
+            ],
         ];
     }
 
@@ -41,6 +45,7 @@ class UpdateGuiaRequest extends FormRequest
         return [
             'direccion_id' => 'dirección',
             'transportadora_id' => 'transportadora',
+            'status_entregado' => 'status entregado',
         ];
     }
 }

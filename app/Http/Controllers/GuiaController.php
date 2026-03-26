@@ -48,6 +48,7 @@ class GuiaController extends Controller
         $contadores = [
             'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),
             'ingreso' => Guia::where('status', GuiaStatusEnum::INGRESO)->count(),
+            'entregado' => Guia::where('status', GuiaStatusEnum::ENTREGADO)->count(),
         ];
 
         return view('guias.index', [
@@ -99,7 +100,13 @@ class GuiaController extends Controller
 
     public function update(UpdateGuiaRequest $request, Guia $guia)
     {
-        if(! $guia->update($request->validated()) ) {
+        $validated = $request->validated();
+
+        if( isset($validated['status_entregado']) ) {
+            $guia->status = GuiaStatusEnum::ENTREGADO->value;
+        }
+
+        if(! $guia->update($validated) ) {
             return back()->withErrors($guia->errors())->with('error', 'Error al actualizar la guía');
         }
         

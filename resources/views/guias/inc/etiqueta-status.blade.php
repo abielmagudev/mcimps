@@ -1,7 +1,8 @@
 <?php 
 $colors = [
     'recibido' => 'text-bg-primary',
-    'ingreso' => 'text-bg-success',
+    'ingreso' => 'text-bg-warning',
+    'entregado' => 'text-bg-success',
 ];
 ?>
 

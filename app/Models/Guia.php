@@ -24,10 +24,10 @@ class Guia extends Model
         'observaciones',
         'nombre_cliente',
         'telefono_cliente',
-        // 'status',
         'direccion_id',
         'transportadora_americana_id',
         'transportadora_mexicana_id',
+        // 'status',
     ];
 
     public function direccion(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -73,5 +73,10 @@ class Guia extends Model
     public function statusEs(GuiaStatusEnum $statusEnum): bool
     {
         return $this->status == $statusEnum->value;
+    }
+
+    public function tieneStatusEntregado(): bool
+    {
+        return $this->statusEs(GuiaStatusEnum::ENTREGADO);
     }
 }
