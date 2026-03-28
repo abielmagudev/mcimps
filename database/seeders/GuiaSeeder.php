@@ -23,7 +23,7 @@ class GuiaSeeder extends Seeder
 
         foreach ($guias as $guia)
         {
-            if( $guia->statusEs(GuiaStatusEnum::INGRESO) )
+            if(! $guia->statusEs(GuiaStatusEnum::RECIBIDO) )
             {
                 $guia->direccion_id = $direcciones->random()->id;
                 $guia->transportadora_americana_id = mt_rand(0,1) ? $transportadorasAmericanas->random()->id : null;
