@@ -20,7 +20,7 @@ class Guia extends Model
 
     protected $fillable = [
         'numero_rastreo_usa',
-        'numero_rastreo_origen',
+        'numero_rastreo_secundario',
         'numero_consolidado',
         'secuencia_cajas',
         'observaciones',

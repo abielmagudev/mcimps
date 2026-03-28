@@ -10,36 +10,40 @@
                 <x-invalid-feedback name="numero_rastreo" />
             </div>
             <div class="mb-3">
-                <label for="numeroRastreoOrigenInput" class="form-label">
-                    Escanea o ingresa el número de rastreo de origen
+                <label for="numeroRastreoSecundarioInput" class="form-label">
+                    Escanea o ingresa el número de rastreo secundario
                     <span class="text-secondary">(Opcional)</span>
                 </label>
-                <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_origen') }}" id="numeroRastreoOrigenInput" name="numero_rastreo_origen" value="{{ old('numero_rastreo_origen') }}">
-                <x-invalid-feedback name="numero_rastreo_origen" />
+                <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_secundario') }}" id="numeroRastreoSecundarioInput" name="numero_rastreo_secundario" value="{{ old('numero_rastreo_secundario') }}">
+                <x-invalid-feedback name="numero_rastreo_secundario" />
             </div>
-            <button type="submit" class="btn btn-success w-100">Registrar número de rastreo de USA</button>
+            <button type="submit" class="btn btn-success w-100">Registrar número de rastreo en USA</button>
         </form>
     </x-card>
 </div>
-<script>
-// let timer;
-// const inputs = document.querySelectorAll('.auto-next');
 
-// inputs.forEach((input, index) => {
-//     input.addEventListener('input', () => {
-//         // Limpiamos el temporizador cada vez que se escribe una letra
-//         clearTimeout(timer);
+{{-- 
+<script-example>
+let timer;
+const inputs = document.querySelectorAll('.auto-next');
 
-//         // Si el input tiene contenido, iniciamos la cuenta regresiva
-//         if (input.value.length > 0) {
-//             timer = setTimeout(() => {
-//                 const nextInput = inputs[index + 1];
-//                 if (nextInput) {
-//                     nextInput.focus();
-//                 }
-//             }, 750); // 1000 milisegundos = 1 segundo
-//         }
-//     });
-// });
-</script>
+inputs.forEach((input, index) => {
+    input.addEventListener('input', () => {
+        // Limpiamos el temporizador cada vez que se escribe una letra
+        clearTimeout(timer);
+
+        // Si el input tiene contenido, iniciamos la cuenta regresiva
+        if (input.value.length > 0) {
+            timer = setTimeout(() => {
+                const nextInput = inputs[index + 1];
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }, 750); // 1000 milisegundos = 1 segundo
+        }
+    });
+});
+</script> 
+--}}
+
 @endsection

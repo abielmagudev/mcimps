@@ -17,9 +17,9 @@
   <x-invalid-feedback name="numero_rastreo_usa" />
 </div>
 <div class="mb-3">
-  <label for="numeroRastreoOrigenInput" class="form-label">Número de rastreo de origen (Opcional)</label>
-  <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_origen') }}" id="numeroRastreoOrigenInput" name="numero_rastreo_origen" value="{{ old('numero_rastreo_origen', $guia->numero_rastreo_origen) }}">
-  <x-invalid-feedback name="numero_rastreo_origen" />
+  <label for="numeroRastreoSecundarioInput" class="form-label">Número de rastreo secundario (Opcional)</label>
+  <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_secundario') }}" id="numeroRastreoSecundarioInput" name="numero_rastreo_secundario" value="{{ old('numero_rastreo_secundario', $guia->numero_rastreo_secundario) }}">
+  <x-invalid-feedback name="numero_rastreo_secundario" />
 </div>
 <div class="mb-3">
   <label for="numeroConsolidadoInput" class="form-label">Número de consolidado (Opcional)</label>

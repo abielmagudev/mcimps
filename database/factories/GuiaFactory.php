@@ -30,7 +30,7 @@ class GuiaFactory extends Factory
         }
 
         return [
-            'numero_rastreo_origen' => $this->faker->optional()->numberBetween(10000000, 99999999),
+            'numero_rastreo_secundario' => $this->faker->optional()->numberBetween(10000000, 99999999),
             'numero_rastreo_usa' => $this->faker->bothify('**********************'),
             'numero_consolidado' => $this->faker->optional()->numberBetween(10000000, 99999999),
             'secuencia_cajas' => mt_rand(0,1) ? sprintf('%s de %s', $posicion_caja, $numero_cajas) : null,

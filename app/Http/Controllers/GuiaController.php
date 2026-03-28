@@ -20,7 +20,7 @@ class GuiaController extends Controller
         {
             $guiasQuery = $guiasQuery
             ->where('numero_rastreo_usa', 'like', "%{$request->get('rastreo')}%")
-            ->orWhere('numero_rastreo_origen', 'like', "%{$request->get('rastreo')}%")
+            ->orWhere('numero_rastreo_secundario', 'like', "%{$request->get('rastreo')}%")
             ->orWhere('nombre_cliente', 'like', "%{$request->get('rastreo')}%");
         } 
         elseif( $request->filled('fecha') )

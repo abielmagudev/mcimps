@@ -17,7 +17,7 @@
                 <th class="text-nowrap">Transportadora Mexicana</th>
                 <th class="text-nowrap">Número de rastreo en USA</th>
                 @if ($request->has('rastreo'))
-                <th class="text-nowrap">Número de rastreo de origen</th>
+                <th class="text-nowrap">Número de rastreo secundario</th>
                 @endif
                 <th>Status</th>
                 <th></th>
@@ -52,7 +52,7 @@
             </td>
             <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
             @if ($request->has('rastreo'))
-            <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_origen ?? '') !!}</td>
+            <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_secundario ?? '') !!}</td>
             @endif
             <td>
                 @include('guias.inc.etiqueta-status')

@@ -21,7 +21,7 @@ return new class extends Migration
         Schema::create('guias', function (Blueprint $table) {
             $table->id();
             $table->string('numero_rastreo_usa')->nullable();
-            $table->string('numero_rastreo_origen')->nullable();
+            $table->string('numero_rastreo_secundario')->nullable();
             $table->string('numero_consolidado')->nullable();
             $table->string('secuencia_cajas')->nullable();
             $table->text('observaciones')->nullable();

@@ -20,8 +20,8 @@
                 </x-info>
 
                 <div class="mb-3">
-                    <x-info title="Rastreo de Origen">
-                        {{ $guia->numero_rastreo_origen }}
+                    <x-info title="Rastreo secundario">
+                        {{ $guia->numero_rastreo_secundario }}
                     </x-info>
                 </div>
 

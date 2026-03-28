@@ -15,7 +15,7 @@ class StoreRegistroUsaRequest extends FormRequest
     {
         return [
             'numero_rastreo_usa' => 'required',
-            'numero_rastreo_origen' => 'nullable',
+            'numero_rastreo_secundario' => 'nullable',
         ];
     }
 }
