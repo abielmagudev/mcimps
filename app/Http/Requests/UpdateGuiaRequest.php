@@ -18,8 +18,10 @@ class UpdateGuiaRequest extends FormRequest
         return [
             'nombre_cliente' => 'nullable',
             'telefono_cliente' => 'nullable',
-            'numero_rastreo_origen' => 'nullable',
             'numero_rastreo_usa' => 'required',
+            'numero_rastreo_origen' => 'nullable',
+            'numero_consolidado' => 'nullable',
+            'secuencia_cajas' => 'nullable',
             'observaciones' => 'nullable',
             'direccion_id' => [
                 'nullable',

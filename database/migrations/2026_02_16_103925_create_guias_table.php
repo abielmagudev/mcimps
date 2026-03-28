@@ -22,6 +22,8 @@ return new class extends Migration
             $table->id();
             $table->string('numero_rastreo_usa')->nullable();
             $table->string('numero_rastreo_origen')->nullable();
+            $table->string('numero_consolidado')->nullable();
+            $table->string('secuencia_cajas')->nullable();
             $table->text('observaciones')->nullable();
             $table->string('nombre_cliente')->nullable();
             $table->string('telefono_cliente')->nullable();

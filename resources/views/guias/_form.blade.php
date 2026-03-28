@@ -10,6 +10,7 @@
     <x-invalid-feedback name="telefono_cliente" />
 </div>
 @endif
+
 <div class="mb-3">
   <label for="numeroRastreoUsaInput" class="form-label">Número de rastreo en USA {{ isset($guia->numero_rastreo_usa) ? '' : '(Requerido)' }}</label>
   <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_usa') }}" id="numeroRastreoUsaInput" name="numero_rastreo_usa" value="{{ old('numero_rastreo_usa', $guia->numero_rastreo_usa) }}" @if(!$guia->exists) autofocus @endif required>
@@ -20,6 +21,17 @@
   <input type="text" class="form-control {{ bsInputInvalid('numero_rastreo_origen') }}" id="numeroRastreoOrigenInput" name="numero_rastreo_origen" value="{{ old('numero_rastreo_origen', $guia->numero_rastreo_origen) }}">
   <x-invalid-feedback name="numero_rastreo_origen" />
 </div>
+<div class="mb-3">
+  <label for="numeroConsolidadoInput" class="form-label">Número de consolidado (Opcional)</label>
+  <input type="text" class="form-control {{ bsInputInvalid('numero_consolidado') }}" id="numeroConsolidadoInput" name="numero_consolidado" value="{{ old('numero_consolidado', $guia->numero_consolidado) }}">
+  <x-invalid-feedback name="numero_consolidado" />
+</div>
+<div class="mb-3">
+  <label for="secuencuaCajasInput" class="form-label">Secuencia de cajas (Opcional)</label>
+  <input type="text" class="form-control {{ bsInputInvalid('secuencia_cajas') }}" id="secuencuaCajasInput" name="secuencia_cajas" value="{{ old('secuencia_cajas', $guia->secuencia_cajas) }}" placeholder="Ej: 1 de 3">
+  <x-invalid-feedback name="secuencia_cajas" />
+</div>
+
 <div class="mb-3">
   <label for="transportadoraAmericanaInput" class="form-label">Transportadora Americana</label>
   <select class="form-select {{ bsInputInvalid('transportadora_americana_id') }}" id="transportadoraAmericanaInput" name="transportadora_americana_id">
@@ -40,6 +52,7 @@
   </select>
   <x-invalid-feedback name="transportadora_mexicana_id" />
 </div>
+
 <div class="mb-3">
   <label for="observacionesInput" class="form-label">Observaciones (Opcional)</label>
   <textarea class="form-control {{ bsInputInvalid('observaciones') }}" id="observacionesInput" name="observaciones" rows="3">{{ old('observaciones', $guia->observaciones) }}</textarea>

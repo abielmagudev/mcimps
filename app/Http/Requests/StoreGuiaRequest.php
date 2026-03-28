@@ -20,6 +20,8 @@ class StoreGuiaRequest extends FormRequest
             'telefono_cliente' => 'nullable',
             'numero_rastreo_usa' => 'required',
             'numero_rastreo_origen' => 'nullable',
+            'numero_consolidado' => 'nullable',
+            'secuencia_cajas' => 'nullable',
             'observaciones' => 'nullable',
             'direccion_id' => [
                 'bail',
