@@ -16,8 +16,11 @@
                 <th class="text-nowrap">Transportadora Americana</th>
                 <th class="text-nowrap">Transportadora Mexicana</th>
                 <th class="text-nowrap">Número de rastreo en USA</th>
-                @if ($request->has('rastreo'))
+                @if ($request->get('buscar-por') == 'rastreo')
                 <th class="text-nowrap">Número de rastreo secundario</th>
+                @endif
+                @if ($request->get('buscar-por') == 'consolidado')
+                <th class="text-nowrap">Número de consolidado</th>
                 @endif
                 <th>Status</th>
                 <th></th>
@@ -28,16 +31,31 @@
         <tr>
             <td class="small text-muted">{{ ($index+1) }}</td>
             <td class="text-nowrap">
+                {{-- Nombre del cliente directo en la Guia --}}
+                <div class="mb-1">
+                    @if ( $request->get('buscar-por') == 'cliente' )
+                    <span>{!! marker($request->get('buscar'), $guia->nombre_cliente ?? '') !!}</span>
+                    
+                    @else
+                    <span>{{ $guia->nombre_cliente }}</span>
+                    
+                    @endif
+                    <span>{{ $guia->telefono_cliente ? "($guia->telefono_cliente)" : '' }}</span>
+                </div>
+
+                {{-- Direccion de la Guia --}}
                 @if( $guia->tieneDireccion() )
                 <div>
-                    @isset ( $guia->nombre_cliente )
-                    <span>{{ $guia->nombre_cliente }}</span>
-                    <span>{{ $guia->telefono_cliente ? "($guia->telefono_cliente)" : '' }}</span><br>
+                    @include('direcciones.inc.info-basica-horizontal', [
+                        'direccion' => $guia->direccion, 
+                        'marcar' => $request->get('buscar-por') == 'direccion' ? $request->get('buscar') : null
+                    ])
+                    <br>
+                    @isset($guia->direccion->codigo_postal)
+                    <small>C.P. {{ $guia->direccion->codigo_postal }}</small>
                     @endisset
-                    
-                    @include('direcciones.inc.info-basica-horizontal', ['direccion' => $guia->direccion])
+                    <small><strong class="text-capitalize">({{ $guia->direccion->cobertura }})</strong></small>
                 </div>
-                <small>C.P. {{ $guia->direccion->codigo_postal ?? '' }} <strong class="text-capitalize">({{ $guia->direccion->cobertura }})</strong></small>
                 @endif
             </td>
             <td>
@@ -50,9 +68,12 @@
                 <a href="{{ $guia->transportadoraMexicana->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadoraMexicana->nombre }}</a>
                 @endif
             </td>
-            <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
-            @if ($request->has('rastreo'))
-            <td>{!! marker(request('rastreo', ''), $guia->numero_rastreo_secundario ?? '') !!}</td>
+            <td>{!! marker(request('buscar', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
+            @if ($request->get('buscar-por') == 'rastreo')
+            <td>{!! marker(request('buscar', ''), $guia->numero_rastreo_secundario ?? '') !!}</td>
+            @endif
+            @if ($request->get('buscar-por') == 'consolidado')
+            <td>{!! marker(request('buscar', ''), $guia->numero_consolidado ?? '') !!}</td>
             @endif
             <td>
                 @include('guias.inc.etiqueta-status')

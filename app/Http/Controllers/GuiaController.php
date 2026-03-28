@@ -15,13 +15,26 @@ class GuiaController extends Controller
     public function index(Request $request)
     {
         $guiasQuery = Guia::with(['direccion.Socio', 'transportadoraAmericana', 'transportadoraMexicana']);
-
-        if( $request->has('rastreo') )
+        
+        if( $request->get('buscar-por') == 'cliente' )
+        {
+            $guiasQuery = $guiasQuery->whereNotNull('nombre_cliente')->where('nombre_cliente', '!=', '')->where('nombre_cliente', 'like', "%{$request->get('buscar')}%");
+        }
+        elseif( $request->get('buscar-por') == 'direccion'  )
+        {
+            $guiasQuery = $guiasQuery->whereHas('direccion', function ($query) use ($request) {
+                $query->where('calle', 'like', "%{$request->get('buscar')}%");
+            });
+        }
+        elseif( $request->get('buscar-por') == 'rastreo'  )
         {
             $guiasQuery = $guiasQuery
-            ->where('numero_rastreo_usa', 'like', "%{$request->get('rastreo')}%")
-            ->orWhere('numero_rastreo_secundario', 'like', "%{$request->get('rastreo')}%")
-            ->orWhere('nombre_cliente', 'like', "%{$request->get('rastreo')}%");
+            ->where('numero_rastreo_usa', 'like', "%{$request->get('buscar')}%")
+            ->orWhere('numero_rastreo_secundario', 'like', "%{$request->get('buscar')}%");
+        } 
+        elseif( $request->get('buscar-por') == 'consolidado'  )
+        {
+            $guiasQuery = $guiasQuery->where('numero_consolidado', 'like', "%{$request->get('buscar')}%");
         } 
         elseif( $request->filled('fecha') )
         {

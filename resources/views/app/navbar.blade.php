@@ -68,7 +68,13 @@
   <div>
     <form action="{{ route('guias.index') }}" class="d-flex" role="search">
       <div class="input-group">
-        <input type="search" class="form-control" name="rastreo" value="{{ request('rastreo') }}" placeholder="Buscar guia(s) por número de rastreo">
+        <input type="search" class="form-control" name="buscar" value="{{ request('buscar') }}" placeholder="Buscar guia">
+        <select class="form-select" name="buscar-por">
+          <option value="cliente" @selected( is_null(request()->get('buscar-por')) || request()->get('buscar-por') == 'cliente' )>Cliente</option>
+          <option value="direccion" @selected( request()->get('buscar-por') == 'direccion' )>Dirección</option>
+          <option value="rastreo" @selected( request()->get('buscar-por') == 'rastreo' )>Rastreo</option>
+          <option value="consolidado" @selected( request()->get('buscar-por') == 'consolidado' )>Consolidado</option>
+        </select>
         <button type="submit" class="btn btn-outline-primary">
           &#128269;
           {{-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
