@@ -24,7 +24,10 @@ class StoreDireccionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'calle' => 'required',
+            'calle' => [
+                'required',
+                'string'
+            ],
             'colonia' => 'required',
             'codigo_postal' => [
                 'required',
