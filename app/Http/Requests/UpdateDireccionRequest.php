@@ -13,6 +13,17 @@ class UpdateDireccionRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        return $this->merge([
+            'calle' => str($this->input('calle'))->stripTags()->toString(),
+            'colonia' => str($this->input('colonia'))->stripTags()->toString(),
+            'ciudad' => str($this->input('ciudad'))->stripTags()->toString(),
+            'estado' => str($this->input('estado'))->stripTags()->toString(),
+            'referencias' => str($this->input('referencias'))->stripTags()->toString(),
+        ]);
+    }
+
     public function rules(): array
     {
         return [

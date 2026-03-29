@@ -13,6 +13,19 @@ class UpdateGuiaRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        return $this->merge([
+            'nombre_cliente' => str($this->input('nombre_cliente'))->stripTags()->toString(),
+            'telefono_cliente' => str($this->input('telefono_cliente'))->stripTags()->toString(),
+            'numero_rastreo_usa' => str($this->input('numero_rastreo_usa'))->stripTags()->toString(),
+            'numero_rastreo_secundario' => str($this->input('numero_rastreo_secundario'))->stripTags()->toString(),
+            'numero_consolidado' => str($this->input('numero_consolidado'))->stripTags()->toString(),
+            'secuencia_cajas' => str($this->input('secuencia_cajas'))->stripTags()->toString(),
+            'observaciones' => str($this->input('observaciones'))->stripTags()->toString(),
+        ]);
+    }
+    
     public function rules(): array
     {
         return [
