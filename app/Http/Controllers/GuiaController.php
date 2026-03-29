@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateGuiaRequest;
 use App\Models\Direccion;
 use App\Models\Guia;
 use App\Models\Guia\GuiaStatusEnum;
+use App\Models\Guia\GuiaQueryLista;
 use App\Models\Transportadora;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -14,49 +15,19 @@ class GuiaController extends Controller
 {
     public function index(Request $request)
     {
-        $guiasQuery = Guia::with(['direccion.Socio', 'transportadoraAmericana', 'transportadoraMexicana']);
+        $guiasQuery = Guia::with(['Direccion.Socio', 'transportadoraAmericana', 'transportadoraMexicana']);
         
-        if( $request->get('buscar-por') == 'cliente' )
-        {
-            $guiasQuery = $guiasQuery->whereNotNull('nombre_cliente')->where('nombre_cliente', '!=', '')->where('nombre_cliente', 'like', "%{$request->get('buscar')}%");
-        }
-        elseif( $request->get('buscar-por') == 'direccion'  )
-        {
-            $guiasQuery = $guiasQuery->whereHas('direccion', function ($query) use ($request) {
-                $query->where('calle', 'like', "%{$request->get('buscar')}%");
-            });
-        }
-        elseif( $request->get('buscar-por') == 'rastreo'  )
-        {
-            $guiasQuery = $guiasQuery
-            ->where('numero_rastreo_usa', 'like', "%{$request->get('buscar')}%")
-            ->orWhere('numero_rastreo_secundario', 'like', "%{$request->get('buscar')}%");
-        } 
-        elseif( $request->get('buscar-por') == 'consolidado'  )
-        {
-            $guiasQuery = $guiasQuery->where('numero_consolidado', 'like', "%{$request->get('buscar')}%");
-        } 
-        elseif( $request->filled('fecha') )
-        {
-            $guiasQuery = $guiasQuery->whereDate('created_at', '=', $request->get('fecha'));
-        }
-        elseif( $request->filled('transportadora-americana') )
-        {
-            $guiasQuery = $guiasQuery->where('transportadora_americana_id', $request->get('transportadora-americana'));
-        }
-        elseif( $request->filled('transportadora-mexicana') )
-        {
-            $guiasQuery = $guiasQuery->where('transportadora_mexicana_id', $request->get('transportadora-mexicana'));
-        }
-        elseif( $request->filled('status') )
-        {
-            $guiasQuery = $guiasQuery->where('status', $request->get('status'));
-        }
-        else {
-            $guiasQuery = $guiasQuery->where('status', GuiaStatusEnum::RECIBIDO);
+        if( $request->filled('buscar') && $request->filled('buscar-por') ) {
+            $guiasQuery = GuiaQueryLista::buscar($guiasQuery, $request->get('buscar'), $request->get('buscar-por'));
         }
 
-        $guias = $guiasQuery->orderBy('updated_at', 'desc')->paginate(100);
+        if(! $request->filled('buscar') ) {
+            $guiasQuery = GuiaQueryLista::filtrar($guiasQuery, $request, function ($guiasQuery) {
+                return $guiasQuery->where('status', GuiaStatusEnum::RECIBIDO);
+            });
+        }
+        
+        $guias = $guiasQuery->orderBy('updated_at', 'desc')->paginate(100)->withQueryString();
 
         $contadores = [
             'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),

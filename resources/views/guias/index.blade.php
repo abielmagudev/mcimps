@@ -93,8 +93,9 @@
 
 @else
 <div class="text-center">
-    <h3 class="mt-5">{{ request()->has('rastreo') ? 'Sin resultados' : 'No hay guías activas' }}</h3>
+    <h3 class="mt-5">Sin resultados de {{ request()->has('buscar') ? 'busqueda' : 'filtrado' }}</h3>
 </div>
+
 @endif
 
 @endsection
