@@ -108,6 +108,6 @@ class GuiaController extends Controller
             return back()->withErrors($guia->errors())->with('error', 'Error al eliminar la guía');
         }
 
-        return redirect()->route('guias.index')->with('success', sprintf('Guía con rastreo #%s eliminada con éxito', $guia->numero_rastreo_usa));
+        return redirect()->route('guias.index', ['status' => $guia->status])->with('success', sprintf('Guía con rastreo #%s eliminada con éxito', $guia->numero_rastreo_usa));
     }
 }
