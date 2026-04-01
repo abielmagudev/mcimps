@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('transportadoras', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique();
+            // $table->string('nombre')->unique();
+            $table->string('nombre');
             $table->string('sitio_web');
             $table->string('telefono');
             $table->string('nacionalidad');

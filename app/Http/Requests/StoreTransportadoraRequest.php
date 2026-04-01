@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Transportadora;
 use App\Models\Transportadora\TransportadoraNacionalidadEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -24,7 +25,11 @@ class StoreTransportadoraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required',
+            'nombre' => [
+                'required',
+                'string',
+                // sprintf('unique:%s,nombre', Transportadora::class),
+            ],
             'sitio_web' => [
                 'required', 
                 'url'
