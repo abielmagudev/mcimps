@@ -28,7 +28,7 @@ class GuiaProcesoController extends Controller
         return view('guias.proceso.seleccionar-direccion', [
             'direcciones' => $direcciones,
             'direccionesAgrupadosSocio' => $direccionesAgrupadosSocio,
-            'guia' => Guia::find($request->get('guia')),
+            'guia' => Guia::find($request->get('guia')) ?? new Guia,
             'request' => $request,
         ]);
     }

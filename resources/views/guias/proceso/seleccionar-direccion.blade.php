@@ -2,16 +2,24 @@
 @section('content')
 {{-- Formulario de búsqueda --}}
 <x-card class="mb-3">
-    <form action="{{ route('guias.seleccionar-direccion', $guia) }}" method="get" class="mb-3">
+    <form action="{{ route('guias.seleccionar-direccion') }}" method="get" class="mb-3">
         <div class="mb-3">
             <label class="form-label">Escribe el nombre del socio, del cliente o la calle</label>
             <input type="text" class="form-control" name="buscar" value="{{ $request->get('buscar') }}" autofocus required>
         </div>
         <button type="submit" class="btn btn-primary">Buscar</button>
-        <a href="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create') }}" class="btn btn-outline-secondary">Cancelar</a>
+        
+        @if( $guia->exists )
+        <a href="{{ route('guias.edit', $guia)}}" class="btn btn-outline-secondary">Volver</a>
+        <input type="hidden" name="guia" value="{{ $guia->id }}">
+
+        @else
+        <a href="{{ route('guias.create') }}" class="btn btn-outline-secondary">Cancelar</a>
+
+        @endif
     </form>
     <div class="text-end">
-        <a href="{{ route('socios.create', ($guia->exists ? ['guia' => $guia->id] : [])) }}" class="link-primary">Nuevo socio</a>
+        <a href="{{ route('socios.create', array_filter(['guia' => $guia->id])) }}" class="link-primary">Nuevo socio</a>
     </div>
 </x-card>
 
