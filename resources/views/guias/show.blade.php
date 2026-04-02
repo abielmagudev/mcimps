@@ -2,7 +2,7 @@
 @section('content')
 <x-card class="mb-3">
     <div class="d-flex justify-content-end gap-3 mb-3">
-        <a href="{{ route('guias.imprimir-etiqueta', $guia) }}" target="_blank" class="link-primary">Imprimir etiqueta</a>
+        <a href="{{ route('guias.imprimir.etiqueta', $guia) }}" target="_blank" class="link-primary">Imprimir etiqueta</a>
         <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar</a>
     </div>
 

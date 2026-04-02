@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Direccion;
 use App\Models\Guia;
 use Illuminate\Http\Request;
-use Milon\Barcode\DNS1D;
 
 class GuiaProcesoController extends Controller
 {
@@ -31,14 +30,6 @@ class GuiaProcesoController extends Controller
             'direccionesAgrupadosSocio' => $direccionesAgrupadosSocio,
             'guia' => Guia::find($request->get('guia')),
             'request' => $request,
-        ]);
-    }
-
-    public function imprimirEtiqueta(Guia $guia)
-    {
-        return view('guias.proceso.imprimir-etiqueta', [
-            'barcode' => (new DNS1D)->getBarcodeSVG($guia->numero_rastreo_usa, 'C128', 2, 60, 'black', true),
-            'guia' => $guia,
         ]);
     }
 }

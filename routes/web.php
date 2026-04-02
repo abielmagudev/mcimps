@@ -21,19 +21,23 @@ Route::middleware('auth')->group(function () {
     ->except(['show'])
     ->middleware('can:viewAny,App\Models\Transportadora');
 
+    // GUIAS
     Route::get('guias/seleccionar-direccion', [\App\Http\Controllers\GuiaProcesoController::class, 'seleccionarDireccion'])
     ->name('guias.seleccionar-direccion')
-    ->middleware('can:viewAny,App\Models\Guia');
-    Route::get('guias/imprimir-etiqueta/{guia}', [\App\Http\Controllers\GuiaProcesoController::class, 'imprimirEtiqueta'])
-    ->name('guias.imprimir-etiqueta')
     ->middleware('can:viewAny,App\Models\Guia');
 
     Route::resource('guias', \App\Http\Controllers\GuiaController::class)
     ->middleware('can:viewAny,App\Models\Guia');
+
+    Route::get('guias/{guia}/imprimir/etiqueta', [\App\Http\Controllers\GuiaImpresionController::class, 'etiqueta'])
+    ->name('guias.imprimir.etiqueta')
+    ->middleware('can:viewAny,App\Models\Guia');
+
     Route::get('guias/{guia}/confirmar-eliminacion', [\App\Http\Controllers\GuiaController::class, 'confirmarEliminacion'])
     ->name('guias.confirmar-eliminacion')
     ->middleware('can:viewAny,App\Models\Guia');
 
+    // Registro USA
     Route::get('registros/usa', [\App\Http\Controllers\RegistroUsa::class, 'create'])->name('registros.usa.create')
     ->middleware('can:registrar-usa');
     Route::post('registros/usa', [\App\Http\Controllers\RegistroUsa::class, 'store'])->name('registros.usa.store')
