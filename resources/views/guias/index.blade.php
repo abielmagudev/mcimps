@@ -12,7 +12,7 @@
         <x-slot name="thead">
             <tr>
                 <th></th>
-                <th style="min-width: 248px;">Destino</th>
+                <th style="min-width: 248px;">Dirección</th>
                 <th class="text-nowrap">Transportadora Americana</th>
                 <th class="text-nowrap">Transportadora Mexicana</th>
                 <th class="text-nowrap">Número de rastreo en USA</th>
