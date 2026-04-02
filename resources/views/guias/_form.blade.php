@@ -1,4 +1,3 @@
-@if( $guia->tieneDireccion() || $direccion->exists )
 <div class="mb-3">
     <label class="form-label" for="nombreClienteInput">Nombre del cliente (Opcional)</label>
     <input type="text" class="form-control {{ bsInputInvalid('nombre_cliente') }}" id="nombreClienteInput" name="nombre_cliente" value="{{ old('nombre_cliente', ($direccion?->prellenados['nombre_cliente'] ?? $guia->nombre_cliente) ) }}">
@@ -9,7 +8,6 @@
     <input type="text" class="form-control {{ bsInputInvalid('telefono_cliente') }}" id="telefonoClienteInput" name="telefono_cliente" value="{{ old('telefono_cliente', ($direccion?->prellenados['telefono_cliente'] ?? $guia->telefono_cliente) ) }}">
     <x-invalid-feedback name="telefono_cliente" />
 </div>
-@endif
 
 <div class="mb-3">
   <label for="numeroRastreoUsaInput" class="form-label">Número de rastreo en USA {{ isset($guia->numero_rastreo_usa) ? '' : '(Requerido)' }}</label>

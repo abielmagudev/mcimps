@@ -5,7 +5,7 @@
         @csrf
         @method('put')
 
-        @include('guias.inc.input-destino')
+        @include('guias.form.input-direccion-seleccionada')
         @include('guias._form')
 
         <div class="mb-3">

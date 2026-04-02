@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     ->except(['show'])
     ->middleware('can:viewAny,App\Models\Transportadora');
 
-    Route::get('guias/seleccionar-direccion/{guia?}', [\App\Http\Controllers\GuiaProcesoController::class, 'seleccionarDireccion'])
+    Route::get('guias/seleccionar-direccion', [\App\Http\Controllers\GuiaProcesoController::class, 'seleccionarDireccion'])
     ->name('guias.seleccionar-direccion')
     ->middleware('can:viewAny,App\Models\Guia');
     Route::get('guias/imprimir-etiqueta/{guia}', [\App\Http\Controllers\GuiaProcesoController::class, 'imprimirEtiqueta'])

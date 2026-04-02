@@ -9,7 +9,7 @@ use Milon\Barcode\DNS1D;
 
 class GuiaProcesoController extends Controller
 {
-    public function seleccionarDireccion(Request $request, Guia|null $guia)
+    public function seleccionarDireccion(Request $request)
     {
         $buscar = $request->get('buscar');
 
@@ -29,7 +29,7 @@ class GuiaProcesoController extends Controller
         return view('guias.proceso.seleccionar-direccion', [
             'direcciones' => $direcciones,
             'direccionesAgrupadosSocio' => $direccionesAgrupadosSocio,
-            'guia' => $guia,
+            'guia' => Guia::find($request->get('guia')),
             'request' => $request,
         ]);
     }

@@ -50,7 +50,6 @@ class GuiaController extends Controller
         return view('guias.create', [
             'direccion' => Direccion::find($request->get('direccion')) ?? new Direccion,
             'guia' => new Guia,
-            'request' => $request,
             'transportadorasAmericanas' => Transportadora::americanas()->get(),
             'transportadorasMexicanas' => Transportadora::mexicanas()->get(),
         ]);
