@@ -61,6 +61,10 @@
                 </x-info>
             </div>
 
+            <div class="mb-3">
+                <a href="{{ route('socios.show', $guia->direccion->socio) }}" class="link-primary">Ver socio</a>
+            </div>
+
             @else
             <p class="text-muted">* Pendiente</p>
             
