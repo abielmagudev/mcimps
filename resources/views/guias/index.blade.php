@@ -79,8 +79,28 @@
                 @include('guias.inc.etiqueta-status')
             </td>
             <td class="text-nowrap text-end" style="width:1%">
-                <a href="{{ route('guias.show', $guia) }}" class="link-primary me-1">Ver</a>
-                <a href="{{ route('guias.edit', [$guia, 'volver' => url()->full()]) }}" class="link-primary">Editar</a>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('guias.show', $guia) }}" class="link-primary">Ver</a>
+                    <a href="{{ route('guias.edit', [$guia, 'volver' => url()->full()]) }}" class="link-primary">Editar</a>
+                    <a href="{{ route('guias.imprimir.etiqueta', $guia) }}" class="link-primary d-none" target="_blank">Imprimir</a>
+                </div>
+
+                <div class="dropdown d-none">
+                    <button class="btn btn-sm btn-outline-dark border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Opciones
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ route('guias.show', $guia) }}" class="dropdown-item">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('guias.edit', [$guia, 'volver' => url()->full()]) }}" class="dropdown-item">Editar</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('guias.imprimir.etiqueta', $guia) }}" class="dropdown-item" target="_blank">Imprimir</a>
+                        </li>
+                    </ul>
+                </div>
             </td>
         </tr>         
         @endforeach
