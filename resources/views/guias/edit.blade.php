@@ -21,7 +21,7 @@
         @endif
 
         <button type="submit" class="btn btn-success">Actualizar guía</button>
-        <a href="{{ route('guias.index') }}" class="btn btn-outline-secondary">Volver</a>
+        <a href="{{ request()->has('volver') ? request('volver') : route('guias.show', $guia) }}" class="btn btn-outline-secondary">Volver</a>
     </form>
 </x-card>
 

@@ -88,7 +88,7 @@ class GuiaController extends Controller
             return back()->withErrors($guia->errors())->with('error', 'Error al actualizar la guía');
         }
         
-        return redirect()->route('guias.edit', $guia)->with('success', 'Guía actualizada con éxito');
+        return back()->with('success', 'Guía actualizada con éxito');
     }
 
     public function confirmarEliminacion(Guia $guia)

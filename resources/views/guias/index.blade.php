@@ -80,7 +80,7 @@
             </td>
             <td class="text-nowrap text-end" style="width:1%">
                 <a href="{{ route('guias.show', $guia) }}" class="link-primary me-1">Ver</a>
-                <a href="{{ route('guias.edit', $guia) }}" class="link-primary">Editar</a>
+                <a href="{{ route('guias.edit', [$guia, 'volver' => url()->full()]) }}" class="link-primary">Editar</a>
             </td>
         </tr>         
         @endforeach
