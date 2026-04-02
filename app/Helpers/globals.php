@@ -31,3 +31,11 @@ if( ! function_exists('marker') )
         return preg_replace($pattern, '<mark>$0</mark>', $subject);
     }
 }
+
+if( ! function_exists('iniciarIndicePaginacion') )
+{
+    function iniciarIndicePaginacion($cantidadPorPagina)
+    {
+        return (request('page', 1) - 1) * $cantidadPorPagina + 1;
+    }
+}
