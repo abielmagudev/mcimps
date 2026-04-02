@@ -27,9 +27,9 @@
             </tr>
         </x-slot>
 
-        @foreach ($guias as $index => $guia)
+        @foreach ($guias as $guia)
         <tr>
-            <td class="small text-muted">{{ ($index+1) }}</td>
+            <td class="small text-muted">{{ ($indicePaginacion++) }}</td>
             <td class="text-nowrap">
                 {{-- Nombre del cliente directo en la Guia --}}
                 <div class="mb-1">

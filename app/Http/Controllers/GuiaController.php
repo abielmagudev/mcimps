@@ -27,7 +27,7 @@ class GuiaController extends Controller
             });
         }
         
-        $guias = $guiasQuery->orderBy('updated_at', 'desc')->paginate(100)->withQueryString();
+        $guias = $guiasQuery->orderBy('updated_at', 'desc')->paginate( config('aplicacion.paginacion.guias') )->withQueryString();
 
         $contadores = [
             'recibido' => Guia::where('status', GuiaStatusEnum::RECIBIDO)->count(),
@@ -42,6 +42,7 @@ class GuiaController extends Controller
             'transportadorasMexicanas' => Transportadora::mexicanas()->get(),
             'statuses' => GuiaStatusEnum::cases(),
             'request' => $request,
+            'indicePaginacion' => iniciarIndicePaginacion(config('aplicacion.paginacion.guias')),
         ]);
     }
 
