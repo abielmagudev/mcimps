@@ -19,7 +19,7 @@ if( $guia->exists ) {
 <div class="mb-3">
     <div class="d-flex justify-content-between">
         <label class="form-label">Dirección</label>
-        {{-- Links --}}
+        {{-- Links para seleccionar dirección --}}
         <div class="d-flex gap-3">
             <a href="{{ route('guias.seleccionar-direccion', $argumentos) }}" class="link-primary">
                 {{ isset($argumentos['buscar']) ? 'Cambiar dirección' : 'Seleccionar dirección' }}
@@ -28,7 +28,7 @@ if( $guia->exists ) {
             @if( $direccion->exists )
             <a href="{{ $guia->exists ? route('guias.edit', $guia) : route('guias.create')}}" class="link-secondary">Cancelar</a>
             @endif
-        </div>
+        </div>   
     </div>
 
     @if ( $direccion->exists || $guia->tieneDireccion() )
