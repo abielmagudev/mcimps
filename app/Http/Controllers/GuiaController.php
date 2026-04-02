@@ -78,18 +78,13 @@ class GuiaController extends Controller
             'guia' => $guia,
             'transportadorasAmericanas' => Transportadora::americanas()->get(),
             'transportadorasMexicanas' => Transportadora::mexicanas()->get(),
+            'statusSeleccionables' => GuiaStatusEnum::seleccionables(),
         ]);
     }
 
     public function update(UpdateGuiaRequest $request, Guia $guia)
     {
-        $validated = $request->validated();
-
-        if( isset($validated['status_entregado']) ) {
-            $guia->status = GuiaStatusEnum::ENTREGADO->value;
-        }
-
-        if(! $guia->update($validated) ) {
+        if(! $guia->update($request->validated()) ) {
             return back()->withErrors($guia->errors())->with('error', 'Error al actualizar la guía');
         }
         

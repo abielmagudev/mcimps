@@ -29,7 +29,7 @@ class Guia extends Model
         'direccion_id',
         'transportadora_americana_id',
         'transportadora_mexicana_id',
-        // 'status',
+        'status',
     ];
 
     public function direccion(): \Illuminate\Database\Eloquent\Relations\BelongsTo

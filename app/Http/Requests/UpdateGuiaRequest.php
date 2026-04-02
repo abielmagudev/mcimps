@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Guia\GuiaStatusEnum;
 use App\Models\Transportadora;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -48,9 +49,10 @@ class UpdateGuiaRequest extends FormRequest
                 'nullable',
                 Rule::in(array_column(Transportadora::mexicanas()->get()->toArray(), 'id')),
             ],
-            'status_entregado' => [
-                'nullable',
-                'boolean',
+            'status' => [
+                'sometimes',
+                'required',
+                sprintf('in:%s', GuiaStatusEnum::seleccionables()->pluck('value')->implode(',')),
             ],
         ];
     }
@@ -60,7 +62,6 @@ class UpdateGuiaRequest extends FormRequest
         return [
             'direccion_id' => 'dirección',
             'transportadora_id' => 'transportadora',
-            'status_entregado' => 'status entregado',
         ];
     }
 }
