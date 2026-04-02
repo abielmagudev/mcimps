@@ -13,6 +13,9 @@ if( ! function_exists('bsInputInvalid') )
     }
 }
 
+/**
+ * Helper para marcar texto en un string con la etiqueta <mark>
+ */
 if( ! function_exists('marker') )
 {
     function marker(string $search, string $subject)
