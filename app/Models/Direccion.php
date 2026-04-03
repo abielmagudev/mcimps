@@ -40,7 +40,7 @@ class Direccion extends Model
                 return json_decode($value, true);
             },
             set: function ($value) {
-                return json_encode($value);
+                return json_encode($value ?? []);
             },
         );
     }
@@ -52,6 +52,6 @@ class Direccion extends Model
 
     public function prellenado(string $clave): ?string
     {
-        return $this->prellenados[$clave] ?? null;
+        return isset($this->prellenados[$clave]) ? $this->prellenados[$clave] : null;
     }
 }
