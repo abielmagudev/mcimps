@@ -43,8 +43,8 @@ if( $guia->exists ) {
             </div>
             <div class="col-md mb-3">
                 <h6>Cliente predefinido</h6>
-                <span>{{ $direccion?->prellenado('nombre_cliente') ?? $guia->direccion->prellenado('nombre_cliente') ?? '- Sin nombre -' }}</span><br>
-                <span>{{ $direccion?->prellenado('telefono_cliente') ?? $guia->direccion->prellenado('telefono_cliente') ?? '- Sin teléfono -' }}</span>
+                <span>{{ $direccion?->prellenado('nombre_cliente') ?? $guia->direccion?->prellenado('nombre_cliente') ?? '- Sin nombre -' }}</span><br>
+                <span>{{ $direccion?->prellenado('telefono_cliente') ?? $guia->direccion?->prellenado('telefono_cliente') ?? '- Sin teléfono -' }}</span>
             </div>
             <div class="col-md">
                 <h6>Socio</h6>
