@@ -12,7 +12,7 @@ class SocioController extends Controller
     public function index()
     {
         return view('socios.index', [
-            'socios' => Socio::orderBy('id')->paginate(config('aplicacion.paginacion.socios')),
+            'socios' => Socio::orderByDesc('id')->paginate(config('aplicacion.paginacion.socios')),
         ]);
     }
 
