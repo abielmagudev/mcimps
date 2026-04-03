@@ -13,12 +13,13 @@
             <tr>
                 <th></th>
                 <th style="min-width: 248px;">Dirección</th>
+                <th class="text-nowrap">Socio</th>
                 <th class="text-nowrap">Transportadora Americana</th>
-                <th class="text-nowrap">Transportadora Mexicana</th>
+                <th class="text-nowrap d-none">Transportadora Mexicana</th>
                 <th class="text-nowrap">Número de rastreo en USA</th>
-                @if ($request->get('buscar-por') == 'rastreo')
+                {{-- @if ($request->get('buscar-por') == 'rastreo') --}}
                 <th class="text-nowrap">Número de rastreo secundario</th>
-                @endif
+                {{-- @endif --}}
                 @if ($request->get('buscar-por') == 'consolidado')
                 <th class="text-nowrap">Número de consolidado</th>
                 @endif
@@ -58,20 +59,25 @@
                 </div>
                 @endif
             </td>
+            <td class="text-nowrap">
+                @if ($guia->tieneDireccion())
+                {{ $guia->direccion->socio->nombre }}
+                @endif
+            </td>
             <td>
                 @if($guia->tieneTransportadoraAmericana())
                 <a href="{{ $guia->transportadoraAmericana->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadoraAmericana->nombre }}</a>
                 @endif
             </td>
-            <td>
+            <td class="d-none">
                 @if($guia->tieneTransportadoraMexicana())
                 <a href="{{ $guia->transportadoraMexicana->sitio_web }}" target="_blank" class="link-primary">{{ $guia->transportadoraMexicana->nombre }}</a>
                 @endif
             </td>
             <td>{!! marker(request('buscar', ''), $guia->numero_rastreo_usa ?? '') !!}</td>
-            @if ($request->get('buscar-por') == 'rastreo')
+            {{-- @if ($request->get('buscar-por') == 'rastreo') --}}
             <td>{!! marker(request('buscar', ''), $guia->numero_rastreo_secundario ?? '') !!}</td>
-            @endif
+            {{-- @endif --}}
             @if ($request->get('buscar-por') == 'consolidado')
             <td>{!! marker(request('buscar', ''), $guia->numero_consolidado ?? '') !!}</td>
             @endif
