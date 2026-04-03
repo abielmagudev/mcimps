@@ -15,7 +15,7 @@ class GuiaController extends Controller
 {
     public function index(Request $request)
     {
-        $guiasQuery = Guia::with(['Direccion.Socio', 'transportadoraAmericana', 'transportadoraMexicana']);
+        $guiasQuery = Guia::with(['direccion','direccion.socio', 'transportadoraAmericana', 'transportadoraMexicana']);
         
         if( $request->filled('buscar') && $request->filled('buscar-por') ) {
             $guiasQuery = GuiaQueryLista::buscar($guiasQuery, $request->get('buscar'), $request->get('buscar-por'));
