@@ -23,7 +23,8 @@
             </form>   
 
             {{-- Trasnportadora Mexicana --}}
-            <form action="{{ route('guias.index') }}" method="get" class="d-none">
+            <?php /*
+            <form action="{{ route('guias.index') }}" method="get">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">Transportadora Mexicana</span>
                     <select class="form-select" name="transportadora-mexicana" onchange="this.form.submit()" required>
@@ -34,6 +35,7 @@
                     </select>
                 </div>
             </form>   
+            */ ?>
             
             {{-- Status --}}
             <form action="{{ route('guias.index') }}" method="get">

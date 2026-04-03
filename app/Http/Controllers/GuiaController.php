@@ -39,7 +39,7 @@ class GuiaController extends Controller
             'guias' => $guias,
             'contadores' => $contadores,
             'transportadorasAmericanas' => Transportadora::americanas()->get(),
-            'transportadorasMexicanas' => Transportadora::mexicanas()->get(),
+            // 'transportadorasMexicanas' => Transportadora::mexicanas()->get(),
             'statuses' => GuiaStatusEnum::cases(),
             'request' => $request,
             'indicePaginacion' => iniciarIndicePaginacion(config('aplicacion.paginacion.guias')),
