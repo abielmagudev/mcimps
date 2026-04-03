@@ -43,7 +43,7 @@ class DireccionController extends Controller
         route('guias.edit', [$guia, 'direccion' => $direccion->id]) : 
         route('guias.create', ['direccion' => $direccion->id]);
 
-        return redirect($url)->with('success', sprintf('Dirección %s guardada para Socio %s', $direccion->calle, $socio->nombre));
+        return redirect($url)->with('success', sprintf('Dirección "%s" guardada para socio "%s"', $direccion->calle, $socio->nombre));
     }
 
     /**
