@@ -13,6 +13,7 @@
         "laravel/fortify": "*",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "maatwebsite/excel": "*",
         "milon/barcode": "*"
     },
     "require-dev": {
