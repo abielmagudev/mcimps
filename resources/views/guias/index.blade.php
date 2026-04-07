@@ -4,10 +4,17 @@
 @include('guias.index.barra-filtros-links')
 @if ( $guias->count() )
 <x-card class="mb-3">
-    <p>
-        <span class="badge bg-dark">{{ $guias->total() }}</span>
-        <span class="align-middle">Guías encontradas</span>   
-    </p>
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+        <div>
+            <span class="badge bg-dark">{{ $guias->total() }}</span>
+            <span class="align-middle">Guías encontradas</span>   
+        </div>
+        <div>
+            <a href="{{ route('guias.exportar.lista', request()->query()) }}" class="link-primary">Exportar a Excel</a>
+        </div>
+    </div>
+
     <x-table class="table-sm table-hover">
         <x-slot name="thead">
             <tr>

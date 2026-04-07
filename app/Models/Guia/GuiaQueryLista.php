@@ -35,7 +35,7 @@ class GuiaQueryLista
         return $query;
     }
 
-    public static function filtrar(Builder $query, Request $request, callable $fallback): Builder
+    public static function filtrar(Builder $query, Request $request, callable|null $fallback = null): Builder
     {
         if( $request->has('fecha') ) {
             return $query->whereDate('created_at', '=', $request->get('fecha'));
@@ -53,6 +53,6 @@ class GuiaQueryLista
             return $query->where('status', $request->get('status'));
         }
 
-        return $fallback($query);
+        return is_callable($fallback) ? $fallback($query) : $query;
     }
 }

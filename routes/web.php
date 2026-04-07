@@ -26,6 +26,10 @@ Route::middleware('auth')->group(function () {
     ->middleware('can:viewAny,App\Models\Transportadora');
 
     // GUIAS
+    Route::get('guias/exportar', [\App\Http\Controllers\GuiaExportarController::class, 'lista'])
+    ->name('guias.exportar.lista')
+    ->middleware('can:viewAny,App\Models\Guia');
+
     Route::get('guias/seleccionar-direccion', [\App\Http\Controllers\GuiaProcesoController::class, 'seleccionarDireccion'])
     ->name('guias.seleccionar-direccion')
     ->middleware('can:viewAny,App\Models\Guia');
